@@ -12,21 +12,41 @@
 
 .header {
   grid-area: header;
+  background: pink;
 }
 
 .header > img {
   width: 60px;
   height: 60px;
+  margin-left: 40px;
 }
 
 .nav {
   grid-area: nav;
+  background: lightgreen;
+}
+
+.nav > ul {
+  padding: 40px;
+}
+
+.nav > ul > li {
+  list-style-type: none;
+  margin-bottom: 14px;
+}
+
+.nav > ul > li > a{
+  text-decoration: none;
+  color: black;
 }
 
 .content {
   grid-area: content;
 }
 
-.content > img {
+.content > div > img {
+  width: 1000px;
+  height: 200px;
 
+  object-fit: cover;
 }
