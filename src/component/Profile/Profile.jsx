@@ -1,3 +1,5 @@
+import MyPosts from './MyPosts/MyPosts.jsx';
+
 import s from './Profile.module.css';
 
 const Profile = () => {
@@ -18,21 +20,7 @@ const Profile = () => {
             </ul>
           </div>
         </div>
-        <div className={s.posts_form}>
-          <h2>My posts</h2>
-          <input type="text" placeholder='Your news...'></input>
-          <button type='submit'>Send</button>
-        </div>
-        <ul className={s.posts}>
-          <li>
-            <span></span>
-            <p>Hey, why nobody love me?</p>
-          </li>
-          <li>
-            <span></span>
-            <p>Fuck all.</p>
-          </li>
-        </ul>
+        <MyPosts />
       </div>
     );
 }
