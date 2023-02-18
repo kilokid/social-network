@@ -12,7 +12,7 @@ const Profile = () => {
             <h3>Your Name</h3>
             <ul>
               <li>Date of Birth: 1 january</li>
-              <li>City: Kiev</li>
+              <li>City: Kyiv</li>
               <li>Education: University of Cambridge</li>
               <li>Web Site: <a href="https://apple.com">apple.com</a></li>
             </ul>
