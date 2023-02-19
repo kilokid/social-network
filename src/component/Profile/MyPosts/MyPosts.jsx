@@ -11,9 +11,9 @@ const MyPosts = () => {
                 <button type='submit'>Send</button>
             </div>
             <ul className={s.posts}>
-                <Post text="why nobody love me?" />
-                <Post text="Fuck all." />
-                <Post text="Where are you??" />
+                <Post text="why nobody love me?" likes="14" />
+                <Post text="Fuck all." likes="234" />
+                <Post text="Where are you??" likes="2" />
             </ul>
         </>
     );

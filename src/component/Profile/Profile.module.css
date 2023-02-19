@@ -32,3 +32,8 @@
   color: purple;
   border-bottom: 1px solid purple;
 }
+
+.main_info ul > li a:hover {
+  color: gray;
+  border-color: gray;
+}

@@ -24,6 +24,10 @@
   cursor: pointer;
 }
 
+.posts_form > button:hover {
+  color: white;
+}
+
 .posts {
   display: flex;
   flex-direction: column;
