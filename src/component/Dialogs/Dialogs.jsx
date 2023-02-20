@@ -39,8 +39,8 @@ const Dialogs = () => {
     return (
         <div className={s.dialogs}>
             <ul className={s.dialogs_items}>
-                {dialogsData.map( (dialog) => {
-                    return <Dialog key={dialog.id} name={dialog.name} message={dialog.message} id={dialog.id} />
+                {dialogsData.map( ({id, name, message}) => {
+                    return <Dialog key={id} name={name} message={message} id={id} />
                 } )}
             </ul>
         </div>
