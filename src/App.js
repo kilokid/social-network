@@ -7,15 +7,15 @@ import Dialogs from './component/Dialogs/Dialogs';
 
 import './App.css';
 
-function App() {
+function App({posts, messages}) {
   return (
       <div className='app-wrapper'>
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route exact path="dialogs" element={ <Dialogs /> } />
-            <Route exact path="profile" element={ <Profile /> } />
+            <Route exact path="dialogs" element={ <Dialogs messages={messages} /> } />
+            <Route exact path="profile" element={ <Profile posts={posts} /> } />
           </Routes>
         </div>
       </div>
