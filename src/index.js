@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App posts={state.postsData} messages={state.dialogsData} />
+      <App posts={state.postsData} messages={state.dialogsData} friends={state.friends} />
     </BrowserRouter>
   </React.StrictMode>
 );

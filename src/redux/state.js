@@ -47,6 +47,20 @@ const state = {
             text: 'Where a u??',
             likes: '2'
         }
+    ],
+    friends: [
+        {
+            id: '0',
+            name: 'Me'
+        },
+        {
+            id: '1',
+            name: 'You'
+        },
+        {
+            id: '2',
+            name: 'We'
+        }
     ]
 };
 

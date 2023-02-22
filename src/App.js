@@ -7,11 +7,11 @@ import Dialogs from './component/Dialogs/Dialogs';
 
 import './App.css';
 
-function App({posts, messages}) {
+function App({posts, messages, friends}) {
   return (
       <div className='app-wrapper'>
         <Header />
-        <Navbar />
+        <Navbar friends={friends} />
         <div className='app-wrapper-content'>
           <Routes>
             <Route exact path="dialogs" element={ <Dialogs messages={messages} /> } />
