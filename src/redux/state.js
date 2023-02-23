@@ -33,23 +33,26 @@ const state = {
             message: 'I miss u'
         }
     ],
-    postsData: [
-        {
-            id: '0',
-            text: 'why nobody love me?',
-            likes: '14'
-        },
-        {
-            id: '1',
-            text: 'Fuck all.',
-            likes: '234'
-        },
-        {
-            id: '2',
-            text: 'Where a u??',
-            likes: '2'
-        }
-    ],
+    profilePage: {
+        postsData: [
+            {
+                id: '0',
+                text: 'why nobody love me?',
+                likes: '14'
+            },
+            {
+                id: '1',
+                text: 'Fuck all.',
+                likes: '234'
+            },
+            {
+                id: '2',
+                text: 'Where a u??',
+                likes: '2'
+            }
+        ],
+        postText: ''
+    },
     friends: [
         {
             id: '0',
@@ -66,14 +69,24 @@ const state = {
     ]
 };
 
-export const addPost = (postText) => {
+window.state = state;
+
+export const addPost = () => {
+    if ( !state.profilePage.postText ) return;
+
     const newPosts = {
         id: '3',
-        text: postText,
+        text: state.profilePage.postText,
         likes: '0'
     }
 
-    state.postsData.push(newPosts);
+    state.profilePage.postsData.push(newPosts);
+    state.profilePage.postText = '';
+    render(state);
+}
+
+export const onChangeText = (text) => {
+    state.profilePage.postText = text;
     render(state);
 }
 

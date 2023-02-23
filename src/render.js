@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
-import { addPost } from './redux/state';
+import { addPost, onChangeText } from './redux/state';
 
 import './index.css';
 import App from './App';
@@ -12,7 +12,14 @@ export const render = (state) => {
     root.render(
       <React.StrictMode>
         <BrowserRouter>
-          <App posts={state.postsData} messages={state.dialogsData} friends={state.friends} addPost={addPost} />
+          <App
+            posts={state.profilePage.postsData}
+            messages={state.dialogsData}
+            friends={state.friends}
+            addPost={addPost} 
+            onChangeText={onChangeText}
+            inputText={state.profilePage.postText}
+           />
         </BrowserRouter>
       </React.StrictMode>
     );
