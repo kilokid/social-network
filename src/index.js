@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 import state from './redux/state';
+import { addPost } from './redux/state';
 
 import './index.css';
 import App from './App';
@@ -11,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App posts={state.postsData} messages={state.dialogsData} friends={state.friends} />
+      <App posts={state.postsData} messages={state.dialogsData} friends={state.friends} addPost={addPost} />
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -4,12 +4,13 @@ import Post from './Post/Post';
 
 import s from './MyPosts.module.css';
 
-const MyPosts = ({posts}) => {
+const MyPosts = ({posts, addPost}) => {
     const inputRef = createRef();
 
     const createPost = () => {
         const text = inputRef.current.value;
-        alert(text)
+        addPost(text);
+        inputRef.current.value = '';
     }
 
     return (

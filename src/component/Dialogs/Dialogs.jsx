@@ -3,6 +3,7 @@ import Dialog from './Dialog/Dialog';
 import s from './Dialogs.module.css';
 
 const Dialogs = ({messages}) => {
+    // TODO: сделать страницу диалога, при нажатии на сообщение
     return (
         <div className={s.dialogs}>
             <ul className={s.dialogs_items}>

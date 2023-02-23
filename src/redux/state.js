@@ -64,4 +64,14 @@ const state = {
     ]
 };
 
+export const addPost = (postText) => {
+    const newPosts = {
+        id: '3',
+        text: postText,
+        likes: '0'
+    }
+
+    state.postsData.push(newPosts);
+}
+
 export default state;

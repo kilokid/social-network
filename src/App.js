@@ -7,7 +7,7 @@ import Dialogs from './component/Dialogs/Dialogs';
 
 import './App.css';
 
-function App({posts, messages, friends}) {
+function App({posts, messages, friends, addPost}) {
   return (
       <div className='app-wrapper'>
         <Header />
@@ -15,7 +15,7 @@ function App({posts, messages, friends}) {
         <div className='app-wrapper-content'>
           <Routes>
             <Route exact path="dialogs" element={ <Dialogs messages={messages} /> } />
-            <Route exact path="profile" element={ <Profile posts={posts} /> } />
+            <Route exact path="profile" element={ <Profile posts={posts} addPost={addPost} /> } />
           </Routes>
         </div>
       </div>
