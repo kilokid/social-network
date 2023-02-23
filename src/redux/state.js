@@ -1,3 +1,5 @@
+import { render } from "../render";
+
 const state = {
     dialogsData: [
         {
@@ -72,6 +74,7 @@ export const addPost = (postText) => {
     }
 
     state.postsData.push(newPosts);
+    render(state);
 }
 
 export default state;
