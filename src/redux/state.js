@@ -1,4 +1,6 @@
-import { render } from "../render";
+let rerenderEntriesTree = () => {
+    console.log('change state');
+} 
 
 const state = {
     dialogsData: [
@@ -82,12 +84,16 @@ export const addPost = () => {
 
     state.profilePage.postsData.push(newPosts);
     state.profilePage.postText = '';
-    render(state);
+    rerenderEntriesTree(state);
 }
 
 export const onChangeText = (text) => {
     state.profilePage.postText = text;
-    render(state);
+    rerenderEntriesTree(state);
+}
+
+export const subscribe = (observer) => {
+    rerenderEntriesTree = observer;
 }
 
 export default state;
