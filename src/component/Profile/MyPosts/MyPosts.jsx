@@ -8,7 +8,6 @@ const MyPosts = ({posts, dispatch, inputText}) => {
     const inputRef = createRef();
 
     const createPost = () => {
-        const text = inputRef.current.value;
         dispatch({type: 'ADD-POST'})
     }
 
