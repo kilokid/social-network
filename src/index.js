@@ -2,30 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
-import state from './redux/state';
-import { addPost, onChangeText, subscribe } from './redux/state';
+import store from './redux/state';
 
 import './index.css';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const rerenderEntriesTree = (state) => {
+const rerenderEntireTree = (state) => {
     root.render(
       <React.StrictMode>
         <BrowserRouter>
           <App
-            posts={state.profilePage.postsData}
-            messages={state.dialogsData}
-            friends={state.friends}
-            addPost={addPost} 
-            onChangeText={onChangeText}
-            inputText={state.profilePage.postText}
+            state={state}
+            onChangeText={store.onChangeText.bind(store)}
+            addPost={store.addPost.bind(store)}
            />
         </BrowserRouter>
       </React.StrictMode>
     );
 }
 
-rerenderEntriesTree(state);
-subscribe(rerenderEntriesTree);
+rerenderEntireTree(store.getState());
+store.subscribe(rerenderEntireTree);
