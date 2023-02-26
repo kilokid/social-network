@@ -4,17 +4,17 @@ import Post from './Post/Post';
 
 import s from './MyPosts.module.css';
 
-const MyPosts = ({posts, addPost, onChangeText, inputText}) => {
+const MyPosts = ({posts, dispatch, inputText}) => {
     const inputRef = createRef();
 
     const createPost = () => {
         const text = inputRef.current.value;
-        addPost(text);
+        dispatch({type: 'ADD-POST'})
     }
 
     const onChangePost = () => {
         const text = inputRef.current.value;
-        onChangeText(text)
+        dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
     }
 
     return (

@@ -15,7 +15,7 @@ function App(props) {
         <div className='app-wrapper-content'>
           <Routes>
             <Route exact path="dialogs" element={ <Dialogs messages={props.state.dialogsData} /> } />
-            <Route exact path="profile" element={ <Profile posts={props.state.profilePage.postsData} addPost={props.addPost} onChangeText={props.onChangeText} inputText={props.state.profilePage.postText} /> } />
+            <Route exact path="profile" element={ <Profile posts={props.state.profilePage.postsData} dispatch={props.dispatch} inputText={props.state.profilePage.postText} /> } />
           </Routes>
         </div>
       </div>
