@@ -1,7 +1,10 @@
 .dialog {
     display: flex;
     min-width: 40%;
-    margin-bottom: 12px;
+}
+
+.dialog:not( :last-child ) {
+     margin-bottom: 12px;
 }
 
 .dialog a {
