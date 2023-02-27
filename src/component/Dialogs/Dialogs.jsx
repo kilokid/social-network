@@ -1,16 +1,17 @@
 import Dialog from './Dialog/Dialog';
+import DialogWindow from './DialogWindow/DialogWindow';
 
 import s from './Dialogs.module.css';
 
-const Dialogs = ({messages}) => {
-    // TODO: сделать страницу диалога, при нажатии на сообщение
+const Dialogs = ({messages, newMessageText}) => {
     return (
         <div className={s.dialogs}>
             <ul className={s.dialogs_items}>
-                {messages.map( ({id, name, message}) => {
-                    return <Dialog key={id} name={name} message={message} id={id} />
+                {messages.map( ({id, name, messages}) => {
+                    return <Dialog key={id} name={name} message={messages[messages.length - 1]} id={id} />
                 } )}
             </ul>
+            <DialogWindow newMessageText={newMessageText} />
         </div>
     );
 }

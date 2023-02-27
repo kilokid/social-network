@@ -1,6 +1,6 @@
 .dialog {
     display: flex;
-    width: 100%;
+    min-width: 40%;
     margin-bottom: 12px;
 }
 
@@ -8,6 +8,8 @@
     display: flex;
     width: 100%;
     padding: 10px;
+    background: lightgray;
+    border-radius: 4px;
 }
 
 .dialog a:hover {
