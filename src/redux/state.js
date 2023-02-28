@@ -2,11 +2,6 @@ import dialogsReducer from "./dialogsReducer";
 import profileReducer from "./profileReducer";
 import friendsReducer from "./friendsReducer";
 
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
-const SEND_NEW_MESSAGE = 'SEND-NEW-MESSAGE';
-
 const store = {
     _state: {
         dialogsPage: {
@@ -106,33 +101,6 @@ const store = {
         this._state.friends = friendsReducer(this._state.friends, action);
 
         this._callSubscriber(this._state);
-    }
-}
-
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
-    }
-}
-
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-}
-
-export const sendNewMessageActionCreator = (id) => {
-    return {
-        type: SEND_NEW_MESSAGE,
-        id
-    }
-}
-
-export const updateNewMessageActionCreator = (messageText) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        newMessage: messageText
     }
 }
 
