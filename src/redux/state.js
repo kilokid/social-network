@@ -1,3 +1,7 @@
+import dialogsReducer from "./dialogsReducer";
+import profileReducer from "./profileReducer";
+import friendsReducer from "./friendsReducer";
+
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
@@ -97,32 +101,11 @@ const store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-             if ( !this._state.profilePage.postText ) return;
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.friends = friendsReducer(this._state.friends, action);
 
-            const newPosts = {
-                id: '3',
-                text: this._state.profilePage.postText,
-                likes: '0'
-            }
-
-            this._state.profilePage.postsData.push(newPosts);
-            this._state.profilePage.postText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.postText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.dialogsPage.newMessagesBody = action.newMessage;
-            this._callSubscriber(this._state);
-        } else if (action.type === SEND_NEW_MESSAGE) {
-            const message = this._state.dialogsPage.newMessagesBody;
-
-            if ( action.id === this._state.dialogsPage.dialogsData.id ) {
-                this._state.dialogsPage.dialogsData[action.id].messages.push(message);
-                this._callSubscriber(this._state);
-            }
-        }
+        this._callSubscriber(this._state);
     }
 }
 
