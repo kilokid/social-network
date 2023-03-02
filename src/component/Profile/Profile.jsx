@@ -1,11 +1,11 @@
 import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
-import MyPosts from './MyPosts/MyPosts.jsx';
+import MyPostsContainer from './MyPosts/MyPostsContainer.jsx';
 
 const Profile = ({posts, dispatch, inputText}) => {
     return (
       <div>
         <ProfileInfo />
-        <MyPosts posts={posts} dispatch={dispatch} inputText={inputText} />
+        <MyPostsContainer posts={posts} dispatch={dispatch} inputText={inputText} />
       </div>
     );
 }
