@@ -1,11 +1,15 @@
 import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
-import MyPostsContainer from './MyPosts/MyPostsContainer.jsx';
+import MyPosts from './MyPosts/MyPosts.jsx';
 
-const Profile = ({posts, dispatch, inputText}) => {
+const Profile = ({posts, inputText, changePost, onCreatePost}) => {
     return (
       <div>
         <ProfileInfo />
-        <MyPostsContainer posts={posts} dispatch={dispatch} inputText={inputText} />
+        <MyPosts
+          posts={posts}
+          inputText={inputText}
+          changePost={changePost}
+          onCreatePost={onCreatePost} />
       </div>
     );
 }
