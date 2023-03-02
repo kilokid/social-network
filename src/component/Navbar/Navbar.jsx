@@ -13,7 +13,7 @@ const Navbar = () => {
                 <li><NavLink style={({isActive}) => ({color: isActive ? 'white' : 'inherit'})} to="/news">News</NavLink></li>
                 <li><NavLink style={({isActive}) => ({color: isActive ? 'white' : 'inherit'})} to="/music">Music</NavLink></li>
             </ul>
-            <Friends />
+            {/* <Friends friends={friends} /> */}
         </nav>
     );
 }
