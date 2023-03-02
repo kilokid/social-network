@@ -1,17 +1,13 @@
-import { updateNewMessageActionCreator, sendNewMessageActionCreator } from '../../../redux/dialogsReducer';
-
 import s from './DialogWindow.module.css';
 
-const DialogWindow = ({newMessageText, dispatch}) => {
+const DialogWindow = ({newMessageText, sendMessage, changeMessage}) => {
     const onNewMessageChange = (e) => {
         const text = e.target.value;
-        dispatch(updateNewMessageActionCreator(text))
+        changeMessage(text);
     }
 
     const onSendMessageKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            console.log('send');
-        }
+        sendMessage(e)
     }
 
     return (
