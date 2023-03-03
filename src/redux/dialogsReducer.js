@@ -50,26 +50,29 @@ const initialState = {
 };
 
 const dialogsReducer = (state = initialState, action) => {
-    if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-        const newState = {...state};
+    switch(action.type) {
+        case UPDATE_NEW_MESSAGE_BODY: {
+            const newState = {...state};
 
-        newState.newMessagesBody = action.newMessage;
+            newState.newMessagesBody = action.newMessage;
 
-        return newState;
-    } else if (action.type === SEND_NEW_MESSAGE) {
-        const newState = {...state};
-        newState.dialogsData = {...state.dialogsData};
-        newState.dialogsData.message = [...state.dialogsData.message];
-        const message = state.newMessagesBody;
-
-        if ( action.id === state.dialogsData.id ) {
-            newState.dialogsData[action.id].messages.push(message);
+            return newState;
         }
+        case SEND_NEW_MESSAGE: {
+            const newState = {...state};
+            newState.dialogsData = {...state.dialogsData};
+            newState.dialogsData.message = [...state.dialogsData.message];
+            const message = state.newMessagesBody;
 
-        return newState;
+            if ( action.id === state.dialogsData.id ) {
+                newState.dialogsData[action.id].messages.push(message);
+            }
+
+            return newState;
+        }
+        default: 
+            return state;
     }
-
-    return state;
 }
 
 export const sendNewMessageActionCreator = (id) => {
