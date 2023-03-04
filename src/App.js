@@ -4,6 +4,7 @@ import Header from './component/Header/Header';
 import Navbar from './component/Navbar/Navbar';
 import ProfileContainer from './component/Profile/ProfileContainer';
 import DialogsContainer from './component/Dialogs/DialogsContainer';
+import UsersContainer from './component/Users/UsersContainer';
 
 import './App.css';
 
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route exact path="dialogs" element={ <DialogsContainer /> } />
             <Route exact path="profile" element={ <ProfileContainer /> } />
+            <Route exact path="users" element={ <UsersContainer /> } />
           </Routes>
         </div>
       </div>
