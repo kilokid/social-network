@@ -50,27 +50,30 @@ const initialState = {
 };
 
 const dialogsReducer = (state = initialState, action) => {
+    const newState = {...state};
+
     switch(action.type) {
         case UPDATE_NEW_MESSAGE_BODY: {
-            const newState = {...state};
-
             newState.newMessagesBody = action.newMessage;
 
             return newState;
         }
         case SEND_NEW_MESSAGE: {
-            const newState = {
-                ...state,
-                dialogsData: {
-                    ...state.dialogsData,
-                    message: [...state.dialogsData.message],
-                }
-            };
-            const message = state.newMessagesBody;
+            console.log('qq');
+            // const newState = {
+            //     ...state,
+            //     dialogsData: {
+            //         ...state.dialogsData,
+            //         messages: [...state.dialogsData.message],
+            //     }
+            // };
+            // const message = state.newMessagesBody;
 
-            if ( action.id === state.dialogsData.id ) {
-                newState.dialogsData[action.id].messages.push(message);
-            }
+            // if ( action.id === state.dialogsData.id ) {
+            //     newState.dialogsData[action.id].messages.push(message);
+            // }
+
+            newState.newMessagesBody = '';
 
             return newState;
         }
@@ -81,8 +84,7 @@ const dialogsReducer = (state = initialState, action) => {
 
 export const sendNewMessageActionCreator = (id) => {
     return {
-        type: SEND_NEW_MESSAGE,
-        id
+        type: SEND_NEW_MESSAGE
     }
 }
 
