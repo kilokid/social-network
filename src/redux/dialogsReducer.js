@@ -59,9 +59,13 @@ const dialogsReducer = (state = initialState, action) => {
             return newState;
         }
         case SEND_NEW_MESSAGE: {
-            const newState = {...state};
-            newState.dialogsData = {...state.dialogsData};
-            newState.dialogsData.message = [...state.dialogsData.message];
+            const newState = {
+                ...state,
+                dialogsData: {
+                    ...state.dialogsData,
+                    message: [...state.dialogsData.message],
+                }
+            };
             const message = state.newMessagesBody;
 
             if ( action.id === state.dialogsData.id ) {
