@@ -50,13 +50,12 @@ const initialState = {
 };
 
 const dialogsReducer = (state = initialState, action) => {
-    const newState = {...state};
-
     switch(action.type) {
         case UPDATE_NEW_MESSAGE_BODY: {
-            newState.newMessagesBody = action.newMessage;
-
-            return newState;
+            return {
+                ...state,
+                newMessagesBody: action.newMessage, 
+            }
         }
         case SEND_NEW_MESSAGE: {
             console.log('qq');
@@ -72,10 +71,10 @@ const dialogsReducer = (state = initialState, action) => {
             // if ( action.id === state.dialogsData.id ) {
             //     newState.dialogsData[action.id].messages.push(message);
             // }
-
-            newState.newMessagesBody = '';
-
-            return newState;
+            return {
+                ...state,
+                newMessagesBody: '',
+            }
         }
         default: 
             return state;
