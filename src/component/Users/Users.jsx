@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import axios from 'axios';
 
 import User from './User/User';
@@ -5,11 +7,12 @@ import User from './User/User';
 import s from './User.module.css';
 
 const Users = ({users, ...props}) => {
+    const getUsers = () => {
         if (users.users.length <= 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(response => {
-                    props.setUsers(response.data.items);
-                });
+            .then(response => {
+                props.setUsers(response.data.items);
+            });
 
             // props.setUsers(
             // [
@@ -47,8 +50,13 @@ const Users = ({users, ...props}) => {
             //         followed: true,
             //     }
             // ]
-        // )
+            // )
+        }
     }
+
+    useEffect(() => {
+        getUsers();
+    }, [])
 
     const elements = users.users.map(user => {
         return <User 
