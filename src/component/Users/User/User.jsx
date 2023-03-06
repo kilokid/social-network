@@ -16,10 +16,10 @@ const User = ({user, unfollowUser, followUser, setUsers}) => {
                     >Follow</button>}
             </div>
             <div className={s.user_info}>
-                <h3>{user.fullName}</h3>
+                <h3>{user.name}</h3>
                 <div className={s.location}>
-                    <span>{user.location.country},</span>
-                    <span>{user.location.city}</span>
+                    <span>Test Country,</span>
+                    <span>Test city</span>
                 </div>
                 <p className={s.status}>{user.status}</p>
             </div>

@@ -11,7 +11,7 @@ const Dialogs = ({messages, newMessageText, sendMessage, changeMessage}) => {
                     return <Dialog key={id} name={name} message={messages[messages.length - 1]} id={id} />
                 } )}
             </ul>
-            <DialogWindow newMessageText={newMessageText} sendMessage={sendMessage} changeMessage={changeMessage} />
+            {/* <DialogWindow newMessageText={newMessageText} sendMessage={sendMessage} changeMessage={changeMessage} /> */}
         </div>
     );
 }
