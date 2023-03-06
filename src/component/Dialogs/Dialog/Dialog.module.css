@@ -1,6 +1,6 @@
 .dialog {
     display: flex;
-    min-width: 40%;
+    width: 100%;
 }
 
 .dialog:not( :last-child ) {
