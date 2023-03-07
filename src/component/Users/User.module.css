@@ -10,6 +10,8 @@
     display: flex;
     margin-top: 50px;
     margin-bottom: 60px;
+    max-width: 990px;
+    overflow: scroll;
 }
 
 .pages > li:not(:last-child) {
