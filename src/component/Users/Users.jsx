@@ -9,7 +9,7 @@ import s from './User.module.css';
 const Users = ({users, ...props}) => {
     const getUsers = () => {
         if (users.length <= 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`)
             .then(response => {
                 props.setUsers(response.data.items);
             });
@@ -87,7 +87,7 @@ const Users = ({users, ...props}) => {
                 {
                     pages.map(page => {
                         return <li key={page} className={page === props.currentPage ? s.currentPage : ''}>
-                            <button type='button'>{page}</button>
+                            <button onClick={() => props.setCurrentPage(page)} type='button'>{page}</button>
                         </li>
                     })
                 }

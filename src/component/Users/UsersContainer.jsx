@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { followActionCreator, ulfollowActionCreator, setUsersActionCreator } from '../../redux/usersReducer';
+import { followActionCreator, ulfollowActionCreator, setUsersActionCreator, setCurrentPageActionCreator } from '../../redux/usersReducer';
 
 import Users from './Users';
 
@@ -22,7 +22,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         setUsers: (users) => {
             dispatch(setUsersActionCreator(users));
-        }
+        },
+        setCurrentPage: (pageNumber) => {
+            dispatch(setCurrentPageActionCreator(pageNumber));
+        },
     }
 }
 
