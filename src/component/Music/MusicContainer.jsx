@@ -6,7 +6,7 @@ import Music from "./Music";
 
 const mapStateToProps = (state) => {
     return {
-        musics: state.musics
+        musics: state.musics.musics
     }
 }
 

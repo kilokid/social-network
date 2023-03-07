@@ -1,7 +1,7 @@
 import Song from "./Song/Song";
 
 const Music = ({musics, ...props}) => {
-    const elements = musics.musics.map(song => {
+    const elements = musics.map(song => {
         return <Song key={song.id} song={song} />
     })
 
