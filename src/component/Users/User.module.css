@@ -5,3 +5,28 @@
 .title {
     font-size: 24px;
 }
+
+.pages {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.pages > li:not(:last-child) {
+    margin-right: 10px;
+}
+
+.pages button {
+    cursor: pointer;
+    border: none;
+    background: lightgreen;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 4px;
+    color: white;
+}
+
+.pages > li.currentPage > button {
+    font-weight: 700;
+    background: orange;
+}

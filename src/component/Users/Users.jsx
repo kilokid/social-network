@@ -8,7 +8,7 @@ import s from './User.module.css';
 
 const Users = ({users, ...props}) => {
     const getUsers = () => {
-        if (users.users.length <= 0) {
+        if (users.length <= 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
                 props.setUsers(response.data.items);
@@ -56,9 +56,11 @@ const Users = ({users, ...props}) => {
 
     useEffect(() => {
         getUsers();
+
+        // eslint-disable-next-line
     }, [])
 
-    const elements = users.users.map(user => {
+    const elements = users.map(user => {
         return <User 
             key={user.id}
             user={user}
@@ -68,11 +70,27 @@ const Users = ({users, ...props}) => {
         />
     })
 
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    const pages = [];
+
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
+    }
+
     return (
         <div>
             <h2 className={s.title}>Users</h2>
             <ul className={s.users}>
                 {elements}
+            </ul>
+            <ul className={s.pages}>
+                {
+                    pages.map(page => {
+                        return <li key={page} className={page === props.currentPage ? s.currentPage : ''}>
+                            <button type='button'>{page}</button>
+                        </li>
+                    })
+                }
             </ul>
         </div>
     )
