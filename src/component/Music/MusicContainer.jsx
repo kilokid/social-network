@@ -10,17 +10,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        playSong: (musicId) => {
-            dispatch(playSongActionCreator(musicId));
-        },
-        stopSong: (musicId) => {
-            dispatch(stopPlayingSongActionCreator(musicId));
-        },
-    }
-}
-
-const MusicContainer = connect(mapStateToProps, mapDispatchToProps)(Music);
+const MusicContainer = connect(mapStateToProps, {
+    playSong: playSongActionCreator,
+    stopSong: stopPlayingSongActionCreator
+})(Music);
 
 export default MusicContainer;

@@ -4,7 +4,6 @@ import s from './DialogWindow.module.css';
 
 const DialogWindow = ({newMessageText, sendMessage, changeMessage}) => {
     const {dialogId} = useParams();
-    console.log(dialogId);
 
     const onNewMessageChange = (e) => {
         const text = e.target.value;

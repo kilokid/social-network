@@ -4,6 +4,13 @@ import DialogWindow from './DialogWindow/DialogWindow';
 import s from './Dialogs.module.css';
 
 const Dialogs = ({messages, newMessageText, sendMessage, changeMessage}) => {
+    const onSendMessage = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            sendMessage()
+        }
+    }
+
     return (
         <div className={s.dialogs}>
             <ul className={s.dialogs_items}>
@@ -11,7 +18,7 @@ const Dialogs = ({messages, newMessageText, sendMessage, changeMessage}) => {
                     return <Dialog key={id} name={name} message={messages[messages.length - 1]} id={id} />
                 } )}
             </ul>
-            {/* <DialogWindow newMessageText={newMessageText} sendMessage={sendMessage} changeMessage={changeMessage} /> */}
+            {/* <DialogWindow newMessageText={newMessageText} sendMessage={onSendMessage} changeMessage={changeMessage} /> */}
         </div>
     );
 }

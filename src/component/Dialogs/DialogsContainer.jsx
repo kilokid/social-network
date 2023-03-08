@@ -10,20 +10,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        sendMessage: (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                dispatch(sendNewMessageActionCreator());
-            }
-        },
-        changeMessage: (text) => {
-            dispatch(updateNewMessageActionCreator(text))
-        }
-    }
-}
-
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, {
+    sendMessage: sendNewMessageActionCreator,
+    changeMessage: updateNewMessageActionCreator
+})(Dialogs);
 
 export default DialogsContainer;

@@ -55,29 +55,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        followUser: (userId) => {
-            dispatch(followActionCreator(userId));
-        },
-        unfollowUser: (userId) => {
-            dispatch(ulfollowActionCreator(userId));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersActionCreator(users));
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageActionCreator(pageNumber));
-        },
-        setTotalUsersCount: (usersCount) => {
-            dispatch(setTotalUsersCountActionCreator(usersCount));
-        },
-        setIsFetching: (isFetching) => {
-            dispatch(setIsFetchingActionCreator(isFetching));
-        },
-    }
-}
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer);
+const UsersContainer = connect(mapStateToProps, {
+    followUser: followActionCreator,
+        unfollowUser: ulfollowActionCreator,
+        setUsers: setUsersActionCreator,
+        setCurrentPage: setCurrentPageActionCreator,
+        setTotalUsersCount: setTotalUsersCountActionCreator,
+        setIsFetching: setIsFetchingActionCreator,
+})(UsersApiContainer);
 
 export default UsersContainer;
