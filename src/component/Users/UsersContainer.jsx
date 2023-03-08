@@ -2,16 +2,19 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 import { connect } from 'react-redux';
-import { followActionCreator, ulfollowActionCreator, setUsersActionCreator, setCurrentPageActionCreator, setTotalUsersCountActionCreator } from '../../redux/usersReducer';
+import { followActionCreator, ulfollowActionCreator, setUsersActionCreator, setCurrentPageActionCreator, setTotalUsersCountActionCreator, setIsFetchingActionCreator } from '../../redux/usersReducer';
 
 import Users from './Users';
+import Loader from '../Commons/Loader/Loader';
 
 const UsersApiContainer = (props) => {
     const getUsers = (currentPage) => {
+        props.setIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${props.pageSize}`)
         .then(response => {
             props.setUsers(response.data.items);
             props.setTotalUsersCount(response.data.totalCount)
+            props.setIsFetching(false);
         });
     }
 
@@ -23,16 +26,22 @@ const UsersApiContainer = (props) => {
     const {users, pageSize, pageNumber, totalUsersCount, currentPage, setCurrentPage, followUser, unfollowUser} = props;
 
     return (
-        <Users 
-            users={users}
-            pageSize={pageSize}
-            pageNumber={pageNumber}
-            totalUsersCount={totalUsersCount}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            followUser={followUser}
-            unfollowUser={unfollowUser}
-        />
+        <>
+            {
+                props.isFetching ? 
+                <Loader /> : 
+                <Users 
+                    users={users}
+                    pageSize={pageSize}
+                    pageNumber={pageNumber}
+                    totalUsersCount={totalUsersCount}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    followUser={followUser}
+                    unfollowUser={unfollowUser}
+                />
+            }
+        </>
     );
 }
 
@@ -42,6 +51,7 @@ const mapStateToProps = (state) => {
         pageSize: state.users.pageSize,
         totalUsersCount: state.users.totalUsersCount,
         currentPage: state.users.currentPage,
+        isFetching: state.users.isFetching,
     }
 }
 
@@ -61,6 +71,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setTotalUsersCount: (usersCount) => {
             dispatch(setTotalUsersCountActionCreator(usersCount));
+        },
+        setIsFetching: (isFetching) => {
+            dispatch(setIsFetchingActionCreator(isFetching));
         },
     }
 }
