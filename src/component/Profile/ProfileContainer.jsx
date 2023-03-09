@@ -1,18 +1,41 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../redux/profileReducer';
+import axios from 'axios';
+
+import { addPostActionCreator, updateNewPostTextActionCreator, setUserProfileActionCreator } from '../../redux/profileReducer';
 
 import Profile from './Profile';
+
+const ProfileApiContainer = (props) => {
+    const getUsers = (currentPage) => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+        .then(response => {
+            props.setUserProfile(response.data);
+        });
+    }
+
+    useEffect(() => {
+        getUsers(props.currentPage);
+        // eslint-disable-next-line
+    }, [])
+
+    return (
+        <Profile {...props} profile={props.profile} />
+    )
+}
 
 const mapStateToProps = (state) => {
     return {
         posts: state.profilePage.postsData,
-        inputText: state.profilePage.postText
+        inputText: state.profilePage.postText,
+        profile: state.profilePage.profile,
     }
 }
 
 const ProfileContainer = connect(mapStateToProps, {
     changePost: updateNewPostTextActionCreator,
-    onCreatePost: addPostActionCreator
-})(Profile);
+    onCreatePost: addPostActionCreator,
+    setUserProfile: setUserProfileActionCreator,
+})(ProfileApiContainer);
 
 export default ProfileContainer;
