@@ -7,7 +7,7 @@ import { addPostActionCreator, updateNewPostTextActionCreator, setUserProfileAct
 import Profile from './Profile';
 
 const ProfileApiContainer = (props) => {
-    const getUsers = (currentPage) => {
+    const getUsers = () => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
         .then(response => {
             props.setUserProfile(response.data);
@@ -15,7 +15,7 @@ const ProfileApiContainer = (props) => {
     }
 
     useEffect(() => {
-        getUsers(props.currentPage);
+        getUsers();
         // eslint-disable-next-line
     }, [])
 

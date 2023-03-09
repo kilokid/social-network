@@ -4,7 +4,7 @@ import MyPosts from './MyPosts/MyPosts.jsx';
 const Profile = ({profile, posts, inputText, changePost, onCreatePost}) => {
     return (
       <div>
-        <ProfileInfo {...profile} />
+        <ProfileInfo profile={profile} />
         <MyPosts
           posts={posts}
           inputText={inputText}
