@@ -5,6 +5,7 @@ import dialogsReducer from "./dialogsReducer";
 import friendsReducer from "./friendsReducer";
 import usersReducer from "./usersReducer";
 import musicReducer from "./musicReducer";
+import authReducer from "./authReducer";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
@@ -12,6 +13,7 @@ const reducers = combineReducers({
     friends: friendsReducer,
     users: usersReducer,
     musics: musicReducer,
+    auth: authReducer,
 })
 
 const store = createStore(reducers);

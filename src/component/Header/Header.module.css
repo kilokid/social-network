@@ -1,12 +1,27 @@
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   grid-area: header;
   background: lightgreen;
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 10px 20px 0 0;
+  width: 100%;
 }
 
 .header > img {
   width: 60px;
   height: 60px;
   margin-left: 40px;
+}
+
+.login_block {
+}
+
+.login_block a {
+  color: black;
+
+}
+.login_block a:hover {
+  color: white;
 }
