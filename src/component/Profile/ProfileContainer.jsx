@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import { addPostActionCreator, updateNewPostTextActionCreator, setUserProfileActionCreator } from '../../redux/profileReducer';
@@ -7,8 +8,15 @@ import { addPostActionCreator, updateNewPostTextActionCreator, setUserProfileAct
 import Profile from './Profile';
 
 const ProfileApiContainer = (props) => {
+    let userId = props.router.params.userId;
+
+    if (!userId)
+    {
+        userId = '28291';
+    }
+
     const getUsers = () => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
         .then(response => {
             props.setUserProfile(response.data);
         });
@@ -32,10 +40,18 @@ const mapStateToProps = (state) => {
     }
 }
 
+const WithUrlRouteProfileComponent = (props) => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const params = useParams();
+
+    return <ProfileApiContainer {...props} router={{ location, navigate, params }} />;
+}
+
 const ProfileContainer = connect(mapStateToProps, {
     changePost: updateNewPostTextActionCreator,
     onCreatePost: addPostActionCreator,
     setUserProfile: setUserProfileActionCreator,
-})(ProfileApiContainer);
+})(WithUrlRouteProfileComponent);
 
 export default ProfileContainer;

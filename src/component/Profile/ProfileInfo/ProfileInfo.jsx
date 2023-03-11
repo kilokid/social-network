@@ -2,12 +2,13 @@ import Loader from '../../Commons/Loader/Loader';
 
 import s from './ProfileInfo.module.css';
 
-// oldNftAva https://static.prinseps.com/media/uploads/cryptopunk6278.png
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Loader />
   }
+
+  const withOutAvatar =  'https://static.prinseps.com/media/uploads/cryptopunk6278.png';
 
   return (
       <div className={s.content}>
@@ -15,7 +16,7 @@ const ProfileInfo = (props) => {
         <img src='https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg' />
       </div>
       <div className={s.main_info}>
-        <img src={props.profile.photos.large} alt={props.profile.fullName} />
+        <img src={props.profile.photos.large ? props.profile.photos.large : withOutAvatar} alt={props.profile.fullName} />
         <div>
           <h3>{props.profile.fullName}</h3>
           <ul>

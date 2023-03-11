@@ -5,7 +5,7 @@ const User = ({user, unfollowUser, followUser, setUsers}) => {
     return (
         <li className={s.user}>
             <div className={s.avatar_block}>
-                <NavLink to='/profile' className={s.user_link}>
+                <NavLink to={`/profile/${user.id}`} className={s.user_link}>
                     <span className={s.ava}></span>
                 </NavLink>
                 {user.followed ?
@@ -19,7 +19,7 @@ const User = ({user, unfollowUser, followUser, setUsers}) => {
                     >Follow</button>}
             </div>
             <div className={s.user_info}>
-                <NavLink to='/profile' className={s.user_info_link}>
+                <NavLink to={`/profile/${user.id}`} className={s.user_info_link}>
                     <h3>{user.name}</h3>
                     <div className={s.location}>
                         <span>Test Country,</span>
