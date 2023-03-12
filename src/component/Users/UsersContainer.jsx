@@ -10,7 +10,9 @@ import Loader from '../Commons/Loader/Loader';
 const UsersApiContainer = (props) => {
     const getUsers = (currentPage) => {
         props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${props.pageSize}`, {
+            withCredentials: true,
+        })
         .then(response => {
             props.setUsers(response.data.items);
             props.setTotalUsersCount(response.data.totalCount)

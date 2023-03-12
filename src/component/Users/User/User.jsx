@@ -1,7 +1,37 @@
+import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+
 import s from './User.module.css';
 
 const User = ({user, unfollowUser, followUser, setUsers}) => {
+    const follow = (userID) => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userID}`, {}, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': '9675b145-b3c3-4bd1-be1b-e370f493e960',
+            }
+        })
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                followUser(user.id);
+            }
+        });
+    }
+
+    const unfollow = (userID) => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userID}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': '9675b145-b3c3-4bd1-be1b-e370f493e960',
+            }
+        })
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                unfollowUser(user.id);
+            }
+        });
+    }
+
     return (
         <li className={s.user}>
             <div className={s.avatar_block}>
@@ -10,11 +40,11 @@ const User = ({user, unfollowUser, followUser, setUsers}) => {
                 </NavLink>
                 {user.followed ?
                     <button
-                        onClick={() => unfollowUser(user.id)}
+                        onClick={() => unfollow(user.id)}
                         className={s.btn}
                     >Unfollow</button> : 
                     <button
-                        onClick={() => followUser(user.id)}
+                        onClick={() => follow(user.id)}
                         className={s.btn}
                     >Follow</button>}
             </div>
