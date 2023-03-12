@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 
 import { addPostActionCreator, updateNewPostTextActionCreator, setUserProfileActionCreator } from '../../redux/profileReducer';
+import { getUserProfileRequest } from '../../api/api';
 
 import Profile from './Profile';
 
@@ -16,9 +16,9 @@ const ProfileApiContainer = (props) => {
     }
 
     const getUsers = () => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-        .then(response => {
-            props.setUserProfile(response.data);
+        getUserProfileRequest(userId)
+        .then(data => {
+            props.setUserProfile(data);
         });
     }
 
