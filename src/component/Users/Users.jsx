@@ -10,6 +10,8 @@ const Users = ({users, ...props}) => {
             unfollowUser={props.unfollowUser}
             followUser={props.followUser}
             setUsers={props.setUsers}
+            setIsFollowing={props.setIsFollowing}
+            isFollowingProgress={props.isFollowingProgress}
         />
     })
 

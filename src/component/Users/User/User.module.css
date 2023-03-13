@@ -65,3 +65,9 @@
 .status {
     width: 100%;
 }
+
+.disable {
+    background: gray;
+    cursor: default;
+    pointer-events: none;
+}

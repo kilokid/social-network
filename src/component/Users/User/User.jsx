@@ -4,24 +4,30 @@ import { followUserRequest, unfollowUserRequest } from '../../../api/api';
 
 import s from './User.module.css';
 
-const User = ({user, unfollowUser, followUser, setUsers}) => {
+const User = ({user, unfollowUser, followUser, setIsFollowing, isFollowingProgress}) => {
     const follow = (userID) => {
+        setIsFollowing(true, userID);
         followUserRequest(userID)
         .then(data => {
             if (data.resultCode === 0) {
                 followUser(user.id);
             }
+            setIsFollowing(false, userID);
         });
     }
 
     const unfollow = (userID) => {
+        setIsFollowing(true, userID);
         unfollowUserRequest(userID)
         .then(data => {
             if (data.resultCode === 0) {
                 unfollowUser(user.id);
             }
+            setIsFollowing(false, userID);
         });
     }
+
+    const btnClass = isFollowingProgress.some(id => id === user.id) ? `${s.btn} ${s.disable}` : s.btn;
 
     return (
         <li className={s.user}>
@@ -32,11 +38,11 @@ const User = ({user, unfollowUser, followUser, setUsers}) => {
                 {user.followed ?
                     <button
                         onClick={() => unfollow(user.id)}
-                        className={s.btn}
+                        className={btnClass}
                     >Unfollow</button> : 
                     <button
                         onClick={() => follow(user.id)}
-                        className={s.btn}
+                        className={btnClass}
                     >Follow</button>}
             </div>
             <div className={s.user_info}>

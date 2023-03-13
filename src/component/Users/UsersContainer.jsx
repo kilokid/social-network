@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { followActionCreator, ulfollowActionCreator, setUsersActionCreator, setCurrentPageActionCreator, setTotalUsersCountActionCreator, setIsFetchingActionCreator } from '../../redux/usersReducer';
+import { followActionCreator, ulfollowActionCreator, setUsersActionCreator, setCurrentPageActionCreator, setTotalUsersCountActionCreator, setIsFetchingActionCreator, setFollowingInProgressActionCreator } from '../../redux/usersReducer';
 
 import Users from './Users';
 import Loader from '../Commons/Loader/Loader';
@@ -23,7 +23,7 @@ const UsersApiContainer = (props) => {
         // eslint-disable-next-line
     }, [props.currentPage])
 
-    const {users, pageSize, pageNumber, totalUsersCount, currentPage, setCurrentPage, followUser, unfollowUser} = props;
+    const {users, pageSize, pageNumber, totalUsersCount, currentPage, setCurrentPage, followUser, unfollowUser, setIsFollowing, isFollowingProgress} = props;
 
     return (
         <>
@@ -39,6 +39,8 @@ const UsersApiContainer = (props) => {
                     setCurrentPage={setCurrentPage}
                     followUser={followUser}
                     unfollowUser={unfollowUser}
+                    setIsFollowing={setIsFollowing}
+                    isFollowingProgress={isFollowingProgress}
                 />
             }
         </>
@@ -52,6 +54,7 @@ const mapStateToProps = (state) => {
         totalUsersCount: state.users.totalUsersCount,
         currentPage: state.users.currentPage,
         isFetching: state.users.isFetching,
+        isFollowingProgress: state.users.followingInProgress,
     }
 }
 
@@ -62,6 +65,7 @@ const UsersContainer = connect(mapStateToProps, {
         setCurrentPage: setCurrentPageActionCreator,
         setTotalUsersCount: setTotalUsersCountActionCreator,
         setIsFetching: setIsFetchingActionCreator,
+        setIsFollowing: setFollowingInProgressActionCreator,
 })(UsersApiContainer);
 
 export default UsersContainer;
