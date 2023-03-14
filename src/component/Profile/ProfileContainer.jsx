@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { addPostActionCreator, updateNewPostTextActionCreator, setUserProfileActionCreator, getUserProfileThunkCreator } from '../../redux/profileReducer';
+import { addPostActionCreator, updateNewPostTextActionCreator, getUserProfileThunkCreator } from '../../redux/profileReducer';
 
 import Profile from './Profile';
 
@@ -47,7 +47,6 @@ const WithUrlRouteProfileComponent = (props) => {
 const ProfileContainer = connect(mapStateToProps, {
     changePost: updateNewPostTextActionCreator,
     onCreatePost: addPostActionCreator,
-    setUserProfile: setUserProfileActionCreator,
     getUserProfile: getUserProfileThunkCreator,
 })(WithUrlRouteProfileComponent);
 
