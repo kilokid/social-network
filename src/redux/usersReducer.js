@@ -1,3 +1,5 @@
+import { getUserRequest } from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
@@ -65,5 +67,17 @@ export const setCurrentPageActionCreator = (pageNumber) => ({type: SET_CURRENT_P
 export const setTotalUsersCountActionCreator = (usersCount) => ({type: SET_TOTAL_USERS_COUNT, usersCount});
 export const setIsFetchingActionCreator = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 export const setFollowingInProgressActionCreator = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId});
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setIsFetchingActionCreator(true));
+        getUserRequest(currentPage, pageSize)
+        .then(data => {
+            dispatch(setUsersActionCreator(data.items));
+            dispatch(setTotalUsersCountActionCreator(data.totalCount));
+            dispatch(setIsFetchingActionCreator(false));
+        });
+    }
+}
 
 export default usersReducer;

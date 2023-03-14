@@ -4,7 +4,7 @@ import Friends from './Friends/Friends';
 
 import s from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <nav className={s.nav}>
             <ul>
@@ -14,7 +14,7 @@ const Navbar = () => {
                 <li><NavLink style={({isActive}) => ({color: isActive ? 'white' : 'inherit'})} to="/news">News</NavLink></li>
                 <li><NavLink style={({isActive}) => ({color: isActive ? 'white' : 'inherit'})} to="/music">Music</NavLink></li>
             </ul>
-            {/* <Friends friends={friends} /> */}
+            {/* <Friends friends={props.friends} /> */}
         </nav>
     );
 }

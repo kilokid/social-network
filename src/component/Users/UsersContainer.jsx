@@ -1,21 +1,13 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { followActionCreator, ulfollowActionCreator, setUsersActionCreator, setCurrentPageActionCreator, setTotalUsersCountActionCreator, setIsFetchingActionCreator, setFollowingInProgressActionCreator } from '../../redux/usersReducer';
+import { followActionCreator, ulfollowActionCreator, setUsersActionCreator, setCurrentPageActionCreator, setTotalUsersCountActionCreator, setIsFetchingActionCreator, setFollowingInProgressActionCreator, getUsersThunkCreator } from '../../redux/usersReducer';
 
 import Users from './Users';
 import Loader from '../Commons/Loader/Loader';
 
-import { getUserRequest } from '../../api/api';
-
 const UsersApiContainer = (props) => {
     const getUsers = (currentPage) => {
-        props.setIsFetching(true);
-        getUserRequest(currentPage, props.pageSize)
-        .then(data => {
-            props.setUsers(data.items);
-            props.setTotalUsersCount(data.totalCount)
-            props.setIsFetching(false);
-        });
+        props.getUsersRequest(currentPage, props.pageSize);
     }
 
     useEffect(() => {
@@ -66,6 +58,7 @@ const UsersContainer = connect(mapStateToProps, {
         setTotalUsersCount: setTotalUsersCountActionCreator,
         setIsFetching: setIsFetchingActionCreator,
         setIsFollowing: setFollowingInProgressActionCreator,
+        getUsersRequest: getUsersThunkCreator,
 })(UsersApiContainer);
 
 export default UsersContainer;
