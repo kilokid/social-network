@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { followActionCreator, ulfollowActionCreator, setUsersActionCreator, setCurrentPageActionCreator, setTotalUsersCountActionCreator, setIsFetchingActionCreator, setFollowingInProgressActionCreator, getUsersThunkCreator } from '../../redux/usersReducer';
+import { followActionCreator, ulfollowActionCreator, setCurrentPageActionCreator, setFollowingInProgressActionCreator, getUsersThunkCreator } from '../../redux/usersReducer';
 
 import Users from './Users';
 import Loader from '../Commons/Loader/Loader';
@@ -53,10 +53,7 @@ const mapStateToProps = (state) => {
 const UsersContainer = connect(mapStateToProps, {
     followUser: followActionCreator,
         unfollowUser: ulfollowActionCreator,
-        setUsers: setUsersActionCreator,
         setCurrentPage: setCurrentPageActionCreator,
-        setTotalUsersCount: setTotalUsersCountActionCreator,
-        setIsFetching: setIsFetchingActionCreator,
         setIsFollowing: setFollowingInProgressActionCreator,
         getUsersRequest: getUsersThunkCreator,
 })(UsersApiContainer);
