@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { followActionCreator, ulfollowActionCreator, setCurrentPageActionCreator, setFollowingInProgressActionCreator, getUsersThunkCreator } from '../../redux/usersReducer';
+import { setCurrentPageActionCreator, getUsersThunkCreator, followOnUserThunkCreator, unFollowOnUserThunkCreator } from '../../redux/usersReducer';
 
 import Users from './Users';
 import Loader from '../Commons/Loader/Loader';
@@ -15,7 +15,7 @@ const UsersApiContainer = (props) => {
         // eslint-disable-next-line
     }, [props.currentPage])
 
-    const {users, pageSize, pageNumber, totalUsersCount, currentPage, setCurrentPage, followUser, unfollowUser, setIsFollowing, isFollowingProgress} = props;
+    const {users, pageSize, pageNumber, totalUsersCount, currentPage, setCurrentPage, followUser, unfollowUser, isFollowingProgress} = props;
 
     return (
         <>
@@ -31,7 +31,6 @@ const UsersApiContainer = (props) => {
                     setCurrentPage={setCurrentPage}
                     followUser={followUser}
                     unfollowUser={unfollowUser}
-                    setIsFollowing={setIsFollowing}
                     isFollowingProgress={isFollowingProgress}
                 />
             }
@@ -51,11 +50,10 @@ const mapStateToProps = (state) => {
 }
 
 const UsersContainer = connect(mapStateToProps, {
-    followUser: followActionCreator,
-        unfollowUser: ulfollowActionCreator,
-        setCurrentPage: setCurrentPageActionCreator,
-        setIsFollowing: setFollowingInProgressActionCreator,
-        getUsersRequest: getUsersThunkCreator,
+    followUser: followOnUserThunkCreator,
+    unfollowUser: unFollowOnUserThunkCreator,
+    setCurrentPage: setCurrentPageActionCreator,
+    getUsersRequest: getUsersThunkCreator,
 })(UsersApiContainer);
 
 export default UsersContainer;

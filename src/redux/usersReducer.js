@@ -1,4 +1,4 @@
-import { getUserRequest } from "../api/api";
+import { getUserRequest, followUserRequest, unfollowUserRequest } from "../api/api";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -76,6 +76,32 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
             dispatch(setUsersActionCreator(data.items));
             dispatch(setTotalUsersCountActionCreator(data.totalCount));
             dispatch(setIsFetchingActionCreator(false));
+        });
+    }
+}
+
+export const followOnUserThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(setFollowingInProgressActionCreator(true, userId));
+        followUserRequest(userId)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(followActionCreator(userId));
+            }
+            dispatch(setFollowingInProgressActionCreator(false, userId));
+        });
+    }
+}
+
+export const unFollowOnUserThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(setFollowingInProgressActionCreator(true, userId));
+        unfollowUserRequest(userId)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(ulfollowActionCreator(userId));
+            }
+            dispatch(setFollowingInProgressActionCreator(false, userId));
         });
     }
 }

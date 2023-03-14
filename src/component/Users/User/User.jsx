@@ -1,30 +1,14 @@
 import { NavLink } from 'react-router-dom';
 
-import { followUserRequest, unfollowUserRequest } from '../../../api/api';
-
 import s from './User.module.css';
 
-const User = ({user, unfollowUser, followUser, setIsFollowing, isFollowingProgress}) => {
+const User = ({user, unfollowUser, followUser, isFollowingProgress}) => {
     const follow = (userID) => {
-        setIsFollowing(true, userID);
-        followUserRequest(userID)
-        .then(data => {
-            if (data.resultCode === 0) {
-                followUser(user.id);
-            }
-            setIsFollowing(false, userID);
-        });
+        followUser(userID);
     }
 
     const unfollow = (userID) => {
-        setIsFollowing(true, userID);
-        unfollowUserRequest(userID)
-        .then(data => {
-            if (data.resultCode === 0) {
-                unfollowUser(user.id);
-            }
-            setIsFollowing(false, userID);
-        });
+        unfollowUser(userID);
     }
 
     const btnClass = isFollowingProgress.some(id => id === user.id) ? `${s.btn} ${s.disable}` : s.btn;
