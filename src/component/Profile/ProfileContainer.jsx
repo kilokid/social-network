@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { addPostActionCreator, updateNewPostTextActionCreator, setUserProfileActionCreator } from '../../redux/profileReducer';
-import { getUserProfileRequest } from '../../api/api';
+import { addPostActionCreator, updateNewPostTextActionCreator, setUserProfileActionCreator, getUserProfileThunkCreator } from '../../redux/profileReducer';
 
 import Profile from './Profile';
 
@@ -15,15 +14,12 @@ const ProfileApiContainer = (props) => {
         userId = '28291';
     }
 
-    const getUsers = () => {
-        getUserProfileRequest(userId)
-        .then(data => {
-            props.setUserProfile(data);
-        });
+    const getProfile = () => {
+        props.getUserProfile(userId)
     }
 
     useEffect(() => {
-        getUsers();
+        getProfile();
         // eslint-disable-next-line
     }, [])
 
@@ -52,6 +48,7 @@ const ProfileContainer = connect(mapStateToProps, {
     changePost: updateNewPostTextActionCreator,
     onCreatePost: addPostActionCreator,
     setUserProfile: setUserProfileActionCreator,
+    getUserProfile: getUserProfileThunkCreator,
 })(WithUrlRouteProfileComponent);
 
 export default ProfileContainer;
