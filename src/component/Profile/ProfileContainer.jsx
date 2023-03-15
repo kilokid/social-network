@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { connect,  } from 'react-redux';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { addPostActionCreator, updateNewPostTextActionCreator, getUserProfileThunkCreator } from '../../redux/profileReducer';
 
@@ -23,8 +23,12 @@ const ProfileApiContainer = (props) => {
         // eslint-disable-next-line
     }, [])
 
+    const render = !props.isAuth ? <Navigate to="/login" /> : <Profile {...props} profile={props.profile} />;
+
     return (
-        <Profile {...props} profile={props.profile} />
+        <>
+            {render}
+        </>
     )
 }
 
@@ -33,6 +37,7 @@ const mapStateToProps = (state) => {
         posts: state.profilePage.postsData,
         inputText: state.profilePage.postText,
         profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth,
     }
 }
 

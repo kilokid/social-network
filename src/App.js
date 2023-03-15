@@ -6,6 +6,7 @@ import ProfileContainer from './component/Profile/ProfileContainer';
 import DialogsContainer from './component/Dialogs/DialogsContainer';
 import UsersContainer from './component/Users/UsersContainer';
 import MusicContainer from './component/Music/MusicContainer';
+import Login from './component/Login/Login';
 
 import './App.css';
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/profile/:userId?" element={ <ProfileContainer /> } />
             <Route path="/users" element={ <UsersContainer /> } />
             <Route path="/music" element={ <MusicContainer /> } />
+            <Route path="/login" element={ <Login /> } />
           </Routes>
         </div>
       </div>
