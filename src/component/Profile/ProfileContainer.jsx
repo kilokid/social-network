@@ -36,7 +36,6 @@ const mapStateToProps = (state) => {
         posts: state.profilePage.postsData,
         inputText: state.profilePage.postText,
         profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth,
     }
 }
 
