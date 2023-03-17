@@ -5,6 +5,7 @@ import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { addPostActionCreator, updateNewPostTextActionCreator, getUserProfileThunkCreator } from '../../redux/profileReducer';
 
 import Profile from './Profile';
+import WithAuthRedirect from '../../hoc/withAuthRedirect';
 
 const ProfileApiContainer = (props) => {
     let userId = props.router.params.userId;
@@ -23,11 +24,11 @@ const ProfileApiContainer = (props) => {
         // eslint-disable-next-line
     }, [])
 
-    const render = !props.isAuth ? <Navigate to="/login" /> : <Profile {...props} profile={props.profile} />;
+    // const render = !props.isAuth ? <Navigate to="/login" /> : <Profile {...props} profile={props.profile} />;
 
     return (
         <>
-            {render}
+            <Profile {...props} profile={props.profile} />
         </>
     )
 }
@@ -41,12 +42,14 @@ const mapStateToProps = (state) => {
     }
 }
 
+const AuthRedirectContainer = WithAuthRedirect(ProfileApiContainer);
+
 const WithUrlRouteProfileComponent = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
     const params = useParams();
 
-    return <ProfileApiContainer {...props} router={{ location, navigate, params }} />;
+    return <AuthRedirectContainer {...props} router={{ location, navigate, params }} />;
 }
 
 const ProfileContainer = connect(mapStateToProps, {
