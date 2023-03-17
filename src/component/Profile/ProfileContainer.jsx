@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { connect,  } from 'react-redux';
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { addPostActionCreator, updateNewPostTextActionCreator, getUserProfileThunkCreator } from '../../redux/profileReducer';
 
 import Profile from './Profile';
 import WithAuthRedirect from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 const ProfileApiContainer = (props) => {
     let userId = props.router.params.userId;
@@ -49,10 +50,10 @@ const WithUrlRouteProfileComponent = (props) => {
     return <AuthRedirectContainer {...props} router={{ location, navigate, params }} />;
 }
 
-const ProfileContainer = connect(mapStateToProps, {
-    changePost: updateNewPostTextActionCreator,
-    onCreatePost: addPostActionCreator,
-    getUserProfile: getUserProfileThunkCreator,
-})(WithUrlRouteProfileComponent);
-
-export default ProfileContainer;
+export default compose(
+        connect(mapStateToProps, {
+        changePost: updateNewPostTextActionCreator,
+        onCreatePost: addPostActionCreator,
+        getUserProfile: getUserProfileThunkCreator,
+    })
+)(WithUrlRouteProfileComponent);
