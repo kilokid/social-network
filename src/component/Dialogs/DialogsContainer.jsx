@@ -2,6 +2,7 @@ import { updateNewMessageActionCreator, sendNewMessageActionCreator } from '../.
 import { connect } from 'react-redux';
 
 import Dialogs from './Dialogs';
+import WithAuthRedirect from '../../hoc/withAuthRedirect';
 
 const mapStateToProps = (state) => {
     return {
@@ -11,9 +12,11 @@ const mapStateToProps = (state) => {
     }
 }
 
+const AuthRedirectContainer = WithAuthRedirect(Dialogs);
+
 const DialogsContainer = connect(mapStateToProps, {
     sendMessage: sendNewMessageActionCreator,
     changeMessage: updateNewMessageActionCreator
-})(Dialogs);
+})(AuthRedirectContainer);
 
 export default DialogsContainer;

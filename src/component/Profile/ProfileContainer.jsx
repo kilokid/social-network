@@ -24,8 +24,6 @@ const ProfileApiContainer = (props) => {
         // eslint-disable-next-line
     }, [])
 
-    // const render = !props.isAuth ? <Navigate to="/login" /> : <Profile {...props} profile={props.profile} />;
-
     return (
         <>
             <Profile {...props} profile={props.profile} />

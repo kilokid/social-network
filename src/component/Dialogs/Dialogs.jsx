@@ -14,13 +14,11 @@ const Dialogs = ({messages, newMessageText, sendMessage, changeMessage, isAuth})
 
     return (
         <div className={s.dialogs}>
-            {!isAuth ? <Navigate to="/login" /> :
-                <ul className={s.dialogs_items}>
-                    {messages.map( ({id, name, messages}) => {
-                        return <Dialog key={id} name={name} message={messages[messages.length - 1]} id={id} />
-                    } )}
-                </ul>
-            }
+            <ul className={s.dialogs_items}>
+                {messages.map( ({id, name, messages}) => {
+                    return <Dialog key={id} name={name} message={messages[messages.length - 1]} id={id} />
+                } )}
+            </ul>
             {/* <DialogWindow newMessageText={newMessageText} sendMessage={onSendMessage} changeMessage={changeMessage} /> */}
         </div>
     );
