@@ -25,7 +25,7 @@ const ProfileInfo = (props) => {
             <li>City: Kyiv</li>
             <li>Education: University of Cambridge</li>
             <li>Web Site: <a href="https://apple.com">apple.com</a></li>
-            <ProfileStatus status="hello world🙂" setStatus={props.setStatus} />
+            <ProfileStatus updateStatus={props.setStatus} status={props.status} />
           </ul>
         </div>
       </div>

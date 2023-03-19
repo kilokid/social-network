@@ -44,7 +44,7 @@ export const getAuthInfoRequest = () => {
 export const getProfilerStatusRequest = (userId) => {
     return request.get(`/profile/status/${userId}`)
     .then(response => {
-        return response.data;
+        return response.statusText;
     })
 }
 

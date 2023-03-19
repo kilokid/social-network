@@ -42,6 +42,7 @@ const mapStateToProps = (state) => {
         posts: state.profilePage.postsData,
         inputText: state.profilePage.postText,
         profile: state.profilePage.profile,
+        status: state.profilePage.status,
     }
 }
 
