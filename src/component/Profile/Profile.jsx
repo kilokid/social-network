@@ -1,10 +1,10 @@
 import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
 import MyPosts from './MyPosts/MyPosts.jsx';
 
-const Profile = ({profile, posts, inputText, changePost, onCreatePost}) => {
+const Profile = ({profile, posts, inputText, changePost, onCreatePost, setProfileStatus}) => {
     return (
       <div>
-        <ProfileInfo profile={profile} />
+        <ProfileInfo profile={profile} setStatus={setProfileStatus} />
         <MyPosts
           posts={posts}
           inputText={inputText}
