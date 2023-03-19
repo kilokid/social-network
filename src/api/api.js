@@ -40,3 +40,17 @@ export const getAuthInfoRequest = () => {
             return response.data;
         })
 }
+
+export const getProfilerStatusRequest = (userId) => {
+    return request.get(`/profile/status/${userId}`)
+    .then(response => {
+        return response.data;
+    })
+}
+
+export const setProfileStatusRequest = () => {
+    return request.put(`/profile/status`)
+    .then(response => {
+        return response.data;
+    })
+}
