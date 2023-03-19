@@ -1,0 +1,11 @@
+.status_wrapper {
+    margin-top: 10px;
+}
+
+.status_wrapper > span {
+   cursor: pointer;
+}
+
+.status_wrapper > span:hover {
+   color: grey;
+}
