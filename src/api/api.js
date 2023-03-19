@@ -48,8 +48,8 @@ export const getProfilerStatusRequest = (userId) => {
     })
 }
 
-export const setProfileStatusRequest = () => {
-    return request.put(`/profile/status`)
+export const setProfileStatusRequest = (status) => {
+    return request.put(`/profile/status`, {status})
     .then(response => {
         return response.data;
     })
