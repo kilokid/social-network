@@ -51,6 +51,6 @@ export const getProfilerStatusRequest = (userId) => {
 export const setProfileStatusRequest = (status) => {
     return request.put(`/profile/status`, {status})
     .then(response => {
-        return response.data;
+        return response;
     })
 }

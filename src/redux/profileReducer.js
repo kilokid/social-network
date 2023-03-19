@@ -106,9 +106,9 @@ export const getProfileStatusThunkCreator = (userId) => {
     }
 }
 
-export const setProfileStatusThunkCreator = (userId) => {
+export const setProfileStatusThunkCreator = (status) => {
     return (dispatch) => {
-        setProfileStatusRequest()
+        setProfileStatusRequest(status)
         .then(data => {
             if (data.resultCode === 0)
             {
