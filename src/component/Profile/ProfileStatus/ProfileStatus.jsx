@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import s from './ProfileStatus.module.css';
 
@@ -16,6 +16,10 @@ const ProfileStatus = (props) => {
     const onChangeStatus = (e) => {
         setStatus(e.currentTarget.value);
     }
+
+    useEffect(() => {
+        setStatus(props.status);
+    }, [props.status])
 
     return (
         <li className={s.status_wrapper}>
