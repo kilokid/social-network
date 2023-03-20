@@ -44,13 +44,13 @@ export const getAuthInfoRequest = () => {
 export const getProfilerStatusRequest = (userId) => {
     return request.get(`/profile/status/${userId}`)
     .then(response => {
-        return response.statusText;
+        return response.data;
     })
 }
 
 export const setProfileStatusRequest = (status) => {
     return request.put(`/profile/status`, {status})
     .then(response => {
-        return response;
+        return response.data;
     })
 }

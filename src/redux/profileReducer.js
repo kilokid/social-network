@@ -110,9 +110,10 @@ export const setProfileStatusThunkCreator = (status) => {
     return (dispatch) => {
         setProfileStatusRequest(status)
         .then(data => {
+            console.log(data);
             if (data.resultCode === 0)
             {
-                dispatch(setProfileStatus(data));
+                dispatch(setProfileStatus(status));
             }
         });
     }
