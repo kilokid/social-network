@@ -54,3 +54,15 @@ export const setProfileStatusRequest = (status) => {
         return response.data;
     })
 }
+
+export const setLoginDataRequest = ({email, password, rememberMe}) => {
+    return request.post('/auth/login', {
+        email,
+        password,
+        rememberMe,
+        captcha: false,
+    })
+    .then(response => {
+        return response.data;
+    })
+}

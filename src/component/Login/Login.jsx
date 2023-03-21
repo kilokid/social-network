@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux';
 
-import { setLoginDataActionCreator } from "../../redux/formReducer";
+import { setLoginDataActionCreator, setLoginDataThunkCreator } from "../../redux/formReducer";
 
 const LoginComponent = (props) => {
     const onSubmit = (data) => {
         props.setLoginData({...data});
+        props.requestLoginData(data);
     }
     return (
         <section>
@@ -22,7 +23,7 @@ const LoginForm = (props) => {
         <form onSubmit={handleSubmit(props.onSubmit)}>
             <ul>
                 <li>
-                    <input {...register("login")} type="text" placeholder="Login" />
+                    <input {...register("email")} type="text" placeholder="Email" />
                 </li>
                 <li>
                     <input {...register("password")} type="text" placeholder="Password" />
@@ -47,6 +48,7 @@ const mapStateToProps = () => {
 
 const Login = connect(mapStateToProps, {
     setLoginData: setLoginDataActionCreator,
+    requestLoginData: setLoginDataThunkCreator,
 })(LoginComponent)
 
 export default Login;
