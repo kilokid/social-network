@@ -1,9 +1,9 @@
-import { setLoginRequest } from "../api/api";
+// import { setLoginRequest } from "../api/api";
 
 const SET_LOGIN = 'SET-LOGIN';
 
 const initialState = {
-    form: {},
+    form: null,
 }
 
 const formReducer = (state = initialState, action) => {

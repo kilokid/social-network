@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
+import { connect } from 'react-redux';
 
 import { setLoginDataActionCreator } from "../../redux/formReducer";
 
-const Login = () => {
+const LoginComponent = (props) => {
     const onSubmit = (data) => {
-        console.log(data);
-        setLoginDataActionCreator(data);
+        props.setLoginData({...data});
     }
     return (
         <section>
@@ -38,5 +38,15 @@ const LoginForm = (props) => {
         </form>
     )
 }
+
+const mapStateToProps = () => {
+    return {
+
+    }
+}
+
+const Login = connect(mapStateToProps, {
+    setLoginData: setLoginDataActionCreator,
+})(LoginComponent)
 
 export default Login;
