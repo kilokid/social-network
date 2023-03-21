@@ -1,24 +1,34 @@
-const Login = (props) => {
+import { useForm } from "react-hook-form";
+
+import { setLoginDataActionCreator } from "../../redux/formReducer";
+
+const Login = () => {
+    const onSubmit = (data) => {
+        console.log(data);
+        setLoginDataActionCreator(data);
+    }
     return (
         <section>
             <h1>Login</h1>
-           <LoginForm />
+           <LoginForm onSubmit={onSubmit} />
         </section>
     )
 }
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+    const { register, handleSubmit } = useForm();
+
     return (
-        <form>
+        <form onSubmit={handleSubmit(props.onSubmit)}>
             <ul>
                 <li>
-                    <input type="text" placeholder="Login" />
+                    <input {...register("login")} type="text" placeholder="Login" />
                 </li>
                 <li>
-                    <input type="text" placeholder="Password" />
+                    <input {...register("password")} type="text" placeholder="Password" />
                 </li>
                 <li>
-                    <input type="checkbox"/>
+                    <input {...register("rememberMe")} type="checkbox"/>
                     <span>Remember me</span>
                 </li>
                 <li>
