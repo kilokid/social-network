@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_NEW_MESSAGE = 'SEND-NEW-MESSAGE';
 
 const initialState = {
@@ -51,14 +50,8 @@ const initialState = {
 
 const dialogsReducer = (state = initialState, action) => {
     switch(action.type) {
-        case UPDATE_NEW_MESSAGE_BODY: {
-            return {
-                ...state,
-                newMessagesBody: action.newMessage, 
-            }
-        }
         case SEND_NEW_MESSAGE: {
-            console.log('qq');
+            console.log(action.text);
             // const newState = {
             //     ...state,
             //     dialogsData: {
@@ -81,16 +74,10 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const sendNewMessageActionCreator = (id) => {
+export const sendNewMessageActionCreator = (data) => {
     return {
-        type: SEND_NEW_MESSAGE
-    }
-}
-
-export const updateNewMessageActionCreator = (messageText) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        newMessage: messageText
+        type: SEND_NEW_MESSAGE,
+        text: {...data}
     }
 }
 
