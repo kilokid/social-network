@@ -11,7 +11,7 @@ const DialogWindow = ({sendMessage}) => {
     }
 
     return (
-        <div className={s.dialog_window}>
+        <div>
            <DialogForm onSubmit={onSubmit} />
         </div>
     );
@@ -21,7 +21,7 @@ const DialogForm = ({onSubmit}) => {
     const {register, handleSubmit} = useForm();
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className={s.dialog_window} onSubmit={handleSubmit(onSubmit)}>
             <textarea
                    className={s.message_input}
                    {...register('newMessage')}

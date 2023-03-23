@@ -14,3 +14,17 @@
     padding: 10px;
     border-radius: 4px;
 }
+
+.dialog_window button {
+  width: fit-content;
+  background: lightgreen;
+  border: none;
+  padding: 12px;
+  margin-left: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.dialog_window button:hover {
+  color: white;
+}

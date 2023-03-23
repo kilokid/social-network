@@ -8,7 +8,12 @@
   margin-bottom: 16px;
 }
 
-.posts_form > input {
+.posts_form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.posts_form input {
   width: 80%;
   border: none;
   background: lightgray;
@@ -16,7 +21,7 @@
   margin-bottom: 12px;
 }
 
-.posts_form > button {
+.posts_form button {
   width: fit-content;
   background: lightgreen;
   border: none;
@@ -24,7 +29,7 @@
   cursor: pointer;
 }
 
-.posts_form > button:hover {
+.posts_form button:hover {
   color: white;
 }
 

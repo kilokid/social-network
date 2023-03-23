@@ -32,7 +32,7 @@ const PostForm = ({onSubmit}) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register('postText')} type="text" placeholder='Your news...'></input>
+            <input {...register('postText', {required: true, message: <p>error message</p>})} type="text" placeholder='Your news...'></input>
             <button type='submit'>Send</button>
         </form>
     );
