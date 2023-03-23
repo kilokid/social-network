@@ -28,11 +28,12 @@ const MyPosts = ({posts, onCreatePost}) => {
 }
 
 const PostForm = ({onSubmit}) => {
-    const {register, handleSubmit} = useForm();
-
+    const {register, handleSubmit, formState: {errors}} = useForm();
+    
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register('postText', {required: true, message: <p>error message</p>})} type="text" placeholder='Your news...'></input>
+            <input className={errors.postText ? s.error : ''} {...register('postText', {required: "can't send empty post", minLength: {value: 1, message: 'Min length 1 symbol'}, maxLength: {value: 100, message: 'Max length message 100 symbols'}})} type="text" placeholder='Your news...'></input>
+            {errors.postText && <span className={s.errorMessage}>{errors.postText.message}</span>}
             <button type='submit'>Send</button>
         </form>
     );

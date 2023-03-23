@@ -14,16 +14,18 @@ const Login = (props) => {
 }
 
 const LoginForm = (props) => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: {errors} } = useForm();
 
     return (
         <form onSubmit={handleSubmit(props.onSubmit)}>
             <ul>
                 <li>
                     <input {...register("email")} type="text" placeholder="Email" />
+                    {errors.email && <span>This is required</span>}
                 </li>
                 <li>
-                    <input {...register("password")} type="text" placeholder="Password" />
+                    <input {...register("password")} type="password" placeholder="Password" />
+                    {errors.password && <span>This is required</span>}
                 </li>
                 <li>
                     <input {...register("rememberMe")} type="checkbox"/>
