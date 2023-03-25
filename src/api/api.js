@@ -66,3 +66,10 @@ export const setLoginDataRequest = ({email, password, rememberMe}) => {
         return response.data;
     })
 }
+
+export const logoutRequest = () => {
+    return request.delete('/auth/login')
+    .then(response => {
+        return response.data;
+    }) 
+}
