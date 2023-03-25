@@ -1,4 +1,4 @@
-import { getAuthInfoRequest } from "../api/api";
+import { getAuthInfoRequest, setLoginDataRequest } from "../api/api";
 
 const SET_USER_AUTH_DATA = 'SET-USER-AUTH-DATA';
 
@@ -15,7 +15,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.data,
-                isAuth: true,
             }
         }
         default:
@@ -23,7 +22,7 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setUserAuthDataActionCreator = (userId, login, email) => ({type: SET_USER_AUTH_DATA, data: {userId, login, email}});
+export const setUserAuthDataActionCreator = (userId, login, email, isAuth) => ({type: SET_USER_AUTH_DATA, data: {userId, login, email, isAuth}});
 
 export const setUserAuthThunkCreator = () => (dispatch) => {
     getAuthInfoRequest()
@@ -31,8 +30,15 @@ export const setUserAuthThunkCreator = () => (dispatch) => {
             if (data.resultCode === 0) {
                 const {id, login, email} = data.data;
     
-                dispatch(setUserAuthDataActionCreator(id, login, email));
+                dispatch(setUserAuthDataActionCreator(id, login, email, true));
             }
+        });
+}
+
+export const setLoginDataThunkCreator = (dataRequest) => (dispatch) => {
+    setLoginDataRequest(dataRequest)
+        .then(data => {
+            dispatch(setUserAuthThunkCreator(data));
         });
 }
 

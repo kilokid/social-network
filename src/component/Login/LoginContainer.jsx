@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { setLoginDataActionCreator, setLoginDataThunkCreator } from "../../redux/formReducer";
+import { setLoginDataThunkCreator } from "../../redux/authReducer";
 
 import Login from "./Login";
 
@@ -10,7 +10,6 @@ const mapStateToProps = (state) => ({
 
 const LoginContainer = connect(
     mapStateToProps, {
-    setLoginData: setLoginDataActionCreator,
     requestLoginData: setLoginDataThunkCreator,
 })(Login)
 

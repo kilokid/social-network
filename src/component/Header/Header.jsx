@@ -8,7 +8,10 @@ const Header = ({login, isAuth}) => {
             <img src="https://cdn-icons-png.flaticon.com/512/183/183595.png" alt="" />
             <div className={s.login_block}>
                 {isAuth ? 
-                    <p>{login}</p> :
+                    <div>
+                        <p>{login}</p>
+                        <button>Logout</button>
+                    </div> :
                     <NavLink to="/login">Login</NavLink>
                 }
             </div>

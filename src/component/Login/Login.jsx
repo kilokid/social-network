@@ -3,7 +3,6 @@ import { Navigate } from "react-router-dom";
 
 const Login = (props) => {
     const onSubmit = (data) => {
-        props.setLoginData({...data});
         props.requestLoginData(data);
     }
 
