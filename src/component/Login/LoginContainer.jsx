@@ -4,11 +4,12 @@ import { setLoginDataActionCreator, setLoginDataThunkCreator } from "../../redux
 
 import Login from "./Login";
 
-const mapStateToProps = () => {
-    return {}
-}
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth,
+})
 
-const LoginContainer = connect(mapStateToProps, {
+const LoginContainer = connect(
+    mapStateToProps, {
     setLoginData: setLoginDataActionCreator,
     requestLoginData: setLoginDataThunkCreator,
 })(Login)

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { connect,  } from 'react-redux';
+import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { addPostActionCreator, getUserProfileThunkCreator, getProfileStatusThunkCreator, setProfileStatusThunkCreator } from '../../redux/profileReducer';

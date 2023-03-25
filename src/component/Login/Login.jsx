@@ -1,14 +1,18 @@
 import { useForm } from "react-hook-form";
+import { Navigate } from "react-router-dom";
 
 const Login = (props) => {
     const onSubmit = (data) => {
         props.setLoginData({...data});
         props.requestLoginData(data);
     }
+
+    if (props.isAuth) return <Navigate to="/profile" />;
+
     return (
         <section>
             <h1>Login</h1>
-           <LoginForm onSubmit={onSubmit} />
+            <LoginForm onSubmit={onSubmit} />
         </section>
     )
 }
