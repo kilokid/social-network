@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 
@@ -11,13 +12,20 @@ const Login = (props) => {
     return (
         <section>
             <h1>Login</h1>
-            <LoginForm onSubmit={onSubmit} />
+            <LoginForm onSubmit={onSubmit} errorMessage={props.errorMessage} />
         </section>
     )
 }
 
 const LoginForm = (props) => {
-    const { register, handleSubmit, formState: {errors} } = useForm({mode: 'onBlur'});
+    const { register, handleSubmit, formState: {errors}, setError } = useForm({mode: 'onBlur'});
+
+    useEffect(() => {
+        if (props.errorMessage) {
+            setError("form", { type: "custom", message: props.errorMessage});
+        }
+        // eslint-disable-next-line
+    }, [props.errorMessage]);
 
     return (
         <form onSubmit={handleSubmit(props.onSubmit)}>
@@ -34,6 +42,7 @@ const LoginForm = (props) => {
                     <input {...register("rememberMe")} type="checkbox"/>
                     <span>Remember me</span>
                 </li>
+                {errors.form && <span>{errors.form.message}</span>}
                 <li>
                     <button>Login</button>
                 </li>

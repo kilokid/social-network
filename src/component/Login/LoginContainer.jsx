@@ -6,6 +6,7 @@ import Login from "./Login";
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
+    errorMessage: state.auth.someErrors,
 })
 
 const LoginContainer = connect(
