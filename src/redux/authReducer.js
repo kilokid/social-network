@@ -35,7 +35,7 @@ export const setUserAuthDataActionCreator = (userId, login, email, isAuth, someE
 const setSomeErrorsActionCreator = (errorMessage) => ({type: SET_SOME_ERRORS, errorMessage});
 
 export const setUserAuthThunkCreator = () => (dispatch) => {
-    getAuthInfoRequest()
+    return getAuthInfoRequest()
         .then(data => {
             if (data.resultCode === 0) {
                 const {id, login, email} = data.data;

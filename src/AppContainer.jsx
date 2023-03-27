@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-import { setInitialLoadActionCreator } from "./redux/appReducer";
+import { getAuthInfoThunkCreator } from "./redux/appReducer";
 
 import App from "./App";
 
@@ -10,5 +10,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(connect(mapStateToProps, {
-    setInitialLoad: setInitialLoadActionCreator,
+    setInitialLoad: getAuthInfoThunkCreator,
 })(App))

@@ -1,3 +1,5 @@
+import { setUserAuthThunkCreator } from "./authReducer";
+
 const SET_INITIAL_LOAD = 'SET-INITIAL-LOAD';
 
 const initialState = {
@@ -18,5 +20,14 @@ const authReducer = (state = initialState, action) => {
 }
 
 export const setInitialLoadActionCreator = () => ({type: SET_INITIAL_LOAD});
+
+export const getAuthInfoThunkCreator = () => (dispatch) => {
+    const promiseRequset = dispatch(setUserAuthThunkCreator());
+
+    Promise.all([promiseRequset])
+        .then(() => {
+            dispatch(setInitialLoadActionCreator());
+        })
+}
 
 export default authReducer;

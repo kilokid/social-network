@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {Routes, Route} from 'react-router-dom';
 
 import HeaderContainer from './component/Header/HeaderContainer';
@@ -12,6 +13,11 @@ import Loader from './component/Commons/Loader/Loader';
 import './App.css';
 
 const App = (props) => {
+  useEffect(() => {
+      props.setInitialLoad();
+
+       // eslint-disable-next-line
+  }, []);
   
   if (!props.initialLoad) {
     return <Loader />
