@@ -13,7 +13,9 @@ const ProfileApiContainer = (props) => {
 
     if (!userId)
     {
-        userId = '28291';
+        if (props.isAuth) {
+            userId = props.userId;
+        }
     }
 
     const getProfile = () => {
@@ -42,6 +44,8 @@ const mapStateToProps = (state) => {
         posts: state.profilePage.postsData,
         profile: state.profilePage.profile,
         status: state.profilePage.status,
+        isAuth: state.auth.isAuth,
+        userId: state.auth.userId,
     }
 }
 
