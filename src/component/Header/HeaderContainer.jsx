@@ -1,17 +1,9 @@
-import { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { setUserAuthThunkCreator, logoutThunkCreator } from "../../redux/authReducer";
+import { logoutThunkCreator } from "../../redux/authReducer";
 import Header from "./Header";
 
-const HeaderApiContainer = ({setUserAuthData, login, isAuth, logoutUser}) => {
-    const getUserAuthInfo = () => {
-        setUserAuthData();
-    }
-
-    useEffect(() => {
-        getUserAuthInfo();
-    }, []);
+const HeaderApiContainer = ({login, isAuth, logoutUser}) => {
 
     return <Header login={login} isAuth={isAuth} logoutUser={logoutUser} />
 }
@@ -24,7 +16,6 @@ const mapStateToProps = (state) => {
 }
 
 const HeaderContainer = connect(mapStateToProps, {
-    setUserAuthData: setUserAuthThunkCreator,
     logoutUser: logoutThunkCreator,
 })(HeaderApiContainer);
 

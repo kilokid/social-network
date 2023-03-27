@@ -7,10 +7,16 @@ import DialogsContainer from './component/Dialogs/DialogsContainer';
 import UsersContainer from './component/Users/UsersContainer';
 import MusicContainer from './component/Music/MusicContainer';
 import LoginContainer from './component/Login/LoginContainer';
+import Loader from './component/Commons/Loader/Loader';
 
 import './App.css';
 
-function App() {
+const App = (props) => {
+  
+  if (!props.initialLoad) {
+    return <Loader />
+  }
+
   return (
       <div className='app-wrapper'>
         <HeaderContainer />

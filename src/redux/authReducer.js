@@ -1,4 +1,5 @@
 import { getAuthInfoRequest, setLoginDataRequest, logoutRequest } from "../api/api";
+import { setInitialLoadActionCreator } from "./appReducer";
 
 const SET_USER_AUTH_DATA = 'SET-USER-AUTH-DATA';
 const SET_SOME_ERRORS = 'SET-SOME-ERRORS';
