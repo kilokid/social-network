@@ -7,6 +7,7 @@ import friendsReducer from "./friendsReducer";
 import usersReducer from "./usersReducer";
 import musicReducer from "./musicReducer";
 import authReducer from "./authReducer";
+import appReducer from "./appReducer";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
@@ -15,6 +16,7 @@ const reducers = combineReducers({
     users: usersReducer,
     musics: musicReducer,
     auth: authReducer,
+    app: appReducer,
 })
 
 const store = createStore(reducers, applyMiddleware(ThunkMiddleware));
