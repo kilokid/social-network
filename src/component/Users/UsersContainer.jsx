@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setCurrentPageActionCreator, getUsersThunkCreator, followOnUserThunkCreator, unFollowOnUserThunkCreator } from '../../redux/usersReducer';
+import { getUsers, getPageSize, getCurrentPage, getIsFetching, getIsFollowingProgress, getTotalUsersCount } from '../../redux/userSelector';
 
 import Users from './Users';
 import Loader from '../Commons/Loader/Loader';
+import { get } from 'react-hook-form';
 
 const UsersApiContainer = (props) => {
     const getUsers = (currentPage) => {
@@ -40,12 +42,12 @@ const UsersApiContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users.users,
-        pageSize: state.users.pageSize,
-        totalUsersCount: state.users.totalUsersCount,
-        currentPage: state.users.currentPage,
-        isFetching: state.users.isFetching,
-        isFollowingProgress: state.users.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        isFollowingProgress: getIsFollowingProgress(state),
     }
 }
 
