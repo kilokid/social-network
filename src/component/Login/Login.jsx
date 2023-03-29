@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 
+import s from './Login.module.css';
+
 const Login = (props) => {
     const onSubmit = (data) => {
         props.requestLoginData(data);
@@ -10,8 +12,8 @@ const Login = (props) => {
     if (props.isAuth) return <Navigate to="/profile" />;
 
     return (
-        <section>
-            <h1>Login</h1>
+        <section className={s.login_form}>
+            <h1 className={s.title}>Login</h1>
             <LoginForm onSubmit={onSubmit} errorMessage={props.errorMessage} />
         </section>
     )
@@ -28,7 +30,7 @@ const LoginForm = (props) => {
     }, [props.errorMessage]);
 
     return (
-        <form onSubmit={handleSubmit(props.onSubmit)}>
+        <form className={s.form} onSubmit={handleSubmit(props.onSubmit)}>
             <ul>
                 <li>
                     <input {...register("email", {required: 'Please enter your Email'})} type="text" placeholder="Email" />
