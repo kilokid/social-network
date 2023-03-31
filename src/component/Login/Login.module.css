@@ -5,3 +5,21 @@
     flex-direction: column;
     align-items: center;
 }
+
+.form {
+    background: lightgrey;
+    padding: 30px 50px;
+    margin-top: 22px;
+    border-radius: 12px;
+}
+
+.field > input {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.field {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}

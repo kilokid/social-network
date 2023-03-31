@@ -32,11 +32,11 @@ const LoginForm = (props) => {
     return (
         <form className={s.form} onSubmit={handleSubmit(props.onSubmit)}>
             <ul>
-                <li>
+                <li className={s.field}>
                     <input {...register("email", {required: 'Please enter your Email'})} type="text" placeholder="Email" />
                     {errors.email && <span>{errors.email.message}</span>}
                 </li>
-                <li>
+                <li className={s.field}>
                     <input {...register("password", {required: 'Please enter your password'})} type="password" placeholder="Password" />
                     {errors.password && <span>{errors.password.message}</span>}
                 </li>
