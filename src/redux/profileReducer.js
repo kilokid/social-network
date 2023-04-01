@@ -3,6 +3,7 @@ import { getUserProfileRequest, getProfilerStatusRequest, setProfileStatusReques
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const DELETE_POST = 'DELETE-STATUS';
 
 let idNumber = 3;
 
@@ -51,6 +52,12 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.userProfile,
             }
         }
+        case DELETE_POST: {
+            return {
+                ...state,
+                postsData: state.postsData.filter(post => post.id !== action.id),
+            }
+        }
         case SET_STATUS: {
             return {
                 ...state,
@@ -62,12 +69,8 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = (data) => {
-    return {
-        type: ADD_POST,
-        newPost: {...data},
-    }
-}
+export const addPostActionCreator = (data) => ({type: ADD_POST, newPost: {...data}});
+export const deletePostActionCreator = (id) => ({type: DELETE_POST, id});
 
 export const setUserProfileActionCreator = (userProfile) => ({type: SET_USER_PROFILE, userProfile});
 export const setProfileStatus = (status) => ({type: SET_STATUS, status});
