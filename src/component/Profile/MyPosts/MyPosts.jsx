@@ -4,13 +4,17 @@ import Post from './Post/Post';
 
 import s from './MyPosts.module.css';
 
-const MyPosts = ({posts, onCreatePost}) => {
+const MyPosts = ({posts, onCreatePost, onDeletePost}) => {
 
     const onSubmit = (data) => {
         onCreatePost(data);
     }
 
-    const elements = posts.map(({text, likes, id}) => <Post key={id} text={text} likes={likes} id={id} />);
+    const onDelete = (id) => {
+        onDeletePost(id);
+    }
+
+    const elements = posts.map(({text, likes, id}) => <Post key={id} text={text} likes={likes} onDelete={onDelete} id={id} />);
 
     return (
         <>

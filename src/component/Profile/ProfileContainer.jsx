@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { addPostActionCreator, getUserProfileThunkCreator, getProfileStatusThunkCreator, setProfileStatusThunkCreator } from '../../redux/profileReducer';
+import { addPostActionCreator, getUserProfileThunkCreator, deletePostActionCreator, getProfileStatusThunkCreator, setProfileStatusThunkCreator } from '../../redux/profileReducer';
 
 import Profile from './Profile';
 import WithAuthRedirect from '../../hoc/withAuthRedirect';
@@ -62,6 +62,7 @@ const WithUrlRouteProfileComponent = (props) => {
 export default compose(
         connect(mapStateToProps, {
         onCreatePost: addPostActionCreator,
+        onDeletePost: deletePostActionCreator,
         getUserProfile: getUserProfileThunkCreator,
         getProfileStatus: getProfileStatusThunkCreator,
         setProfileStatus: setProfileStatusThunkCreator,
