@@ -69,40 +69,40 @@ export const setIsFetchingActionCreator = (isFetching) => ({type: SET_IS_FETCHIN
 export const setFollowingInProgressActionCreator = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId});
 
 export const getUsersThunkCreator = (currentPage, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setIsFetchingActionCreator(true));
-        getUserRequest(currentPage, pageSize)
-        .then(data => {
-            dispatch(setUsersActionCreator(data.items));
-            dispatch(setTotalUsersCountActionCreator(data.totalCount));
-            dispatch(setIsFetchingActionCreator(false));
-        });
+        const data = await getUserRequest(currentPage, pageSize)
+        
+        dispatch(setUsersActionCreator(data.items));
+        dispatch(setTotalUsersCountActionCreator(data.totalCount));
+        dispatch(setIsFetchingActionCreator(false));
+
     }
 }
 
 export const followOnUserThunkCreator = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setFollowingInProgressActionCreator(true, userId));
-        followUserRequest(userId)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(followActionCreator(userId));
-            }
-            dispatch(setFollowingInProgressActionCreator(false, userId));
-        });
+        const data = await followUserRequest(userId)
+
+        if (data.resultCode === 0) {
+            dispatch(followActionCreator(userId));
+        }
+
+        dispatch(setFollowingInProgressActionCreator(false, userId));
     }
 }
 
 export const unFollowOnUserThunkCreator = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setFollowingInProgressActionCreator(true, userId));
-        unfollowUserRequest(userId)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(ulfollowActionCreator(userId));
-            }
-            dispatch(setFollowingInProgressActionCreator(false, userId));
-        });
+        const data = await unfollowUserRequest(userId)
+
+        if (data.resultCode === 0) {
+            dispatch(ulfollowActionCreator(userId));
+        }
+
+        dispatch(setFollowingInProgressActionCreator(false, userId));
     }
 }
 

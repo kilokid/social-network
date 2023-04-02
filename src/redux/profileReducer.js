@@ -76,33 +76,29 @@ export const setUserProfileActionCreator = (userProfile) => ({type: SET_USER_PRO
 export const setProfileStatus = (status) => ({type: SET_STATUS, status});
 
 export const getUserProfileThunkCreator = (userId) => {
-    return (dispatch) => {
-        getUserProfileRequest(userId)
-        .then(data => {
-            dispatch(setUserProfileActionCreator(data));
-        });
+    return async (dispatch) => {
+        const data = await getUserProfileRequest(userId)
+        
+        dispatch(setUserProfileActionCreator(data));
     }
 }
 
 export const getProfileStatusThunkCreator = (userId) => {
-    return (dispatch) => {
-        getProfilerStatusRequest(userId)
-        .then(data => {
-            dispatch(setProfileStatus(data));
-        });
+    return async (dispatch) => {
+        const data = await getProfilerStatusRequest(userId);
+        
+        dispatch(setProfileStatus(data));
     }
 }
 
 export const setProfileStatusThunkCreator = (status) => {
-    return (dispatch) => {
-        setProfileStatusRequest(status)
-        .then(data => {
-            console.log(data);
-            if (data.resultCode === 0)
-            {
-                dispatch(setProfileStatus(status));
-            }
-        });
+    return async (dispatch) => {
+        const data = await setProfileStatusRequest(status);
+        
+        if (data.resultCode === 0)
+        {
+            dispatch(setProfileStatus(status));
+        }
     }
 }
 
