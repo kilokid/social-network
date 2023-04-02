@@ -60,6 +60,17 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
+const followUnfollowFlow = async (userId, apiMethod, dispatch, actionCreator) => {
+    dispatch(setFollowingInProgressActionCreator(true, userId));
+    const data = await apiMethod(userId)
+
+    if (data.resultCode === 0) {
+        dispatch(actionCreator(userId));
+    }
+
+    dispatch(setFollowingInProgressActionCreator(false, userId));
+}
+
 export const followActionCreator = (userId) => ({type: FOLLOW, userId});
 export const ulfollowActionCreator = (userId) => ({type: UNFOLLOW, userId});
 export const setUsersActionCreator = (users) => ({type: SET_USERS, users});
@@ -82,27 +93,17 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
 
 export const followOnUserThunkCreator = (userId) => {
     return async (dispatch) => {
-        dispatch(setFollowingInProgressActionCreator(true, userId));
-        const data = await followUserRequest(userId)
+        const actionCreator = followActionCreator;
 
-        if (data.resultCode === 0) {
-            dispatch(followActionCreator(userId));
-        }
-
-        dispatch(setFollowingInProgressActionCreator(false, userId));
+        followUnfollowFlow(userId, followUserRequest, dispatch, actionCreator);
     }
 }
 
 export const unFollowOnUserThunkCreator = (userId) => {
     return async (dispatch) => {
-        dispatch(setFollowingInProgressActionCreator(true, userId));
-        const data = await unfollowUserRequest(userId)
-
-        if (data.resultCode === 0) {
-            dispatch(ulfollowActionCreator(userId));
-        }
-
-        dispatch(setFollowingInProgressActionCreator(false, userId));
+        const actionCreator = ulfollowActionCreator;
+        
+        followUnfollowFlow(userId, unfollowUserRequest, dispatch, actionCreator);
     }
 }
 
