@@ -93,17 +93,13 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
 
 export const followOnUserThunkCreator = (userId) => {
     return async (dispatch) => {
-        const actionCreator = followActionCreator;
-
-        followUnfollowFlow(userId, followUserRequest, dispatch, actionCreator);
+        followUnfollowFlow(userId, followUserRequest, dispatch, followActionCreator);
     }
 }
 
 export const unFollowOnUserThunkCreator = (userId) => {
     return async (dispatch) => {
-        const actionCreator = ulfollowActionCreator;
-        
-        followUnfollowFlow(userId, unfollowUserRequest, dispatch, actionCreator);
+        followUnfollowFlow(userId, unfollowUserRequest, dispatch, ulfollowActionCreator);
     }
 }
 
