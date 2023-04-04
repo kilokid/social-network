@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 
 import s from './ProfileStatus.module.css';
 
-const ProfileStatus = (props) => {
+const ProfileStatus = ({storeStatus, updateStoreStatus}) => {
     const [editMode, setEditMode] = useState(false);
-    const [status, setStatus] = useState(props.status);
+    const [status, setStatus] = useState(storeStatus);
 
     const activeEditMode = () => setEditMode(true);
 
     const disableEditMode = () => {
         setEditMode(false);
-        props.updateStatus(status);
+        updateStoreStatus(status);
     };
 
     const onChangeStatus = (e) => {
@@ -18,13 +18,13 @@ const ProfileStatus = (props) => {
     }
 
     useEffect(() => {
-        setStatus(props.status);
-    }, [props.status])
+        setStatus(storeStatus);
+    }, [storeStatus])
 
     return (
         <li className={s.status_wrapper}>
             {!editMode ?
-                <span onClick={activeEditMode}>{props.status ? props.status : 'Set your status'}</span> :
+                <span onClick={activeEditMode}>{storeStatus ? storeStatus : 'Set your status'}</span> :
                 <input onChange={onChangeStatus} autoFocus onBlur={disableEditMode} value={status} />
             }
         </li>

@@ -12,14 +12,14 @@ import Loader from './component/Commons/Loader/Loader';
 
 import './App.css';
 
-const App = (props) => {
+const App = ({setInitialLoad, initialLoad}) => {
   useEffect(() => {
-      props.setInitialLoad();
+      setInitialLoad();
 
        // eslint-disable-next-line
   }, []);
   
-  if (!props.initialLoad) {
+  if (!initialLoad) {
     return <Loader />
   }
 

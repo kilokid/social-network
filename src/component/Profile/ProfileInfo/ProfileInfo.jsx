@@ -4,8 +4,8 @@ import ProfileStatus from '../ProfileStatus/ProfileStatus';
 import s from './ProfileInfo.module.css';
 
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({profile, setStatus, status}) => {
+  if (!profile) {
     return <Loader />
   }
 
@@ -17,15 +17,15 @@ const ProfileInfo = (props) => {
         <img src='https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg' />
       </div>
       <div className={s.main_info}>
-        <img src={props.profile.photos.large ? props.profile.photos.large : withOutAvatar} alt={props.profile.fullName} />
+        <img src={profile.photos.large ? profile.photos.large : withOutAvatar} alt={profile.fullName} />
         <div>
-          <h3>{props.profile.fullName}</h3>
+          <h3>{profile.fullName}</h3>
           <ul>
             <li>Date of Birth: 1 january</li>
             <li>City: Kyiv</li>
             <li>Education: University of Cambridge</li>
             <li>Web Site: <a href="https://apple.com">apple.com</a></li>
-            <ProfileStatus updateStatus={props.setStatus} status={props.status} />
+            <ProfileStatus updateStoreStatus={setStatus} storeStatus={status} />
           </ul>
         </div>
       </div>

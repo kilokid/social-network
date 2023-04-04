@@ -4,33 +4,33 @@ import { Navigate } from "react-router-dom";
 
 import s from './Login.module.css';
 
-const Login = (props) => {
+const Login = ({requestLoginData, errorMessage, isAuth}) => {
     const onSubmit = (data) => {
-        props.requestLoginData(data);
+        requestLoginData(data);
     }
 
-    if (props.isAuth) return <Navigate to="/profile" />;
+    if (isAuth) return <Navigate to="/profile" />;
 
     return (
         <section className={s.login_form}>
             <h1 className={s.title}>Login</h1>
-            <LoginForm onSubmit={onSubmit} errorMessage={props.errorMessage} />
+            <LoginForm onSubmit={onSubmit} errorMessage={errorMessage} />
         </section>
     )
 }
 
-const LoginForm = (props) => {
+const LoginForm = ({errorMessage, onSubmit}) => {
     const { register, handleSubmit, formState: {errors}, setError } = useForm({mode: 'onBlur'});
 
     useEffect(() => {
-        if (props.errorMessage) {
-            setError("form", { type: "custom", message: props.errorMessage});
+        if (errorMessage) {
+            setError("form", { type: "custom", message: errorMessage});
         }
         // eslint-disable-next-line
-    }, [props.errorMessage]);
+    }, [errorMessage]);
 
     return (
-        <form className={s.form} onSubmit={handleSubmit(props.onSubmit)}>
+        <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
             <ul>
                 <li className={s.field}>
                     <input {...register("email", {required: 'Please enter your Email'})} type="text" placeholder="Email" />
