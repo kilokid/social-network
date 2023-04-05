@@ -1,8 +1,10 @@
+import { useState } from 'react';
+
 import User from './User/User';
 
 import s from './User.module.css';
 
-const Users = ({users, ...props}) => {
+const Users = ({users, portionSize = 10, ...props}) => {
     const elements = users.map(user => {
         return <User 
             key={user.id}
@@ -22,6 +24,11 @@ const Users = ({users, ...props}) => {
         pages.push(i);
     }
 
+    const portionCount = Math.ceil(pagesCount / portionSize);
+    const [portionNumber, setPortionNumber] = useState(1);
+    const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
+    const rightPortionPageNumber = portionNumber * portionSize;
+    
     return (
         <div>
             <h2 className={s.title}>Users</h2>
@@ -30,11 +37,20 @@ const Users = ({users, ...props}) => {
             </ul>
             <ul className={s.pages}>
                 {
-                    pages.map(page => {
+                    portionNumber > 1 &&
+                    <button onClick={() => {setPortionNumber(portionNumber - 1)}}>Prev</button>
+                }
+                {
+                    pages.filter(page => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
+                    .map(page => {
                         return <li key={page} className={page === props.currentPage ? s.currentPage : ''}>
                             <button onClick={() => props.setCurrentPage(page)} type='button'>{page}</button>
                         </li>
                     })
+                }
+                {
+                    portionCount > portionNumber &&
+                    <button onClick={() => {setPortionNumber(portionNumber + 1)}}>Next</button>
                 }
             </ul>
         </div>
