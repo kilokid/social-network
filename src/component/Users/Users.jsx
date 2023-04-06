@@ -38,7 +38,7 @@ const Users = ({users, portionSize = 10, ...props}) => {
             <ul className={s.pages}>
                 {
                     portionNumber > 1 &&
-                    <button onClick={() => {setPortionNumber(portionNumber - 1)}}>Prev</button>
+                    <button className={s.pagBtn + ' ' + s.prev} onClick={() => {setPortionNumber(portionNumber - 1)}}>Prev</button>
                 }
                 {
                     pages.filter(page => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
@@ -50,7 +50,7 @@ const Users = ({users, portionSize = 10, ...props}) => {
                 }
                 {
                     portionCount > portionNumber &&
-                    <button onClick={() => {setPortionNumber(portionNumber + 1)}}>Next</button>
+                    <button className={s.next + ' ' + s.pagBtn} onClick={() => {setPortionNumber(portionNumber + 1)}}>Next</button>
                 }
             </ul>
         </div>

@@ -32,3 +32,13 @@
     font-weight: 700;
     background: orange;
 }
+
+.pages .pagBtn {
+    border: 1px solid grey;
+    background: white;
+    color: black;
+}
+
+.pages .prev {
+    margin-right: 10px;
+}
