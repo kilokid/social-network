@@ -50,7 +50,7 @@ const Users = ({users, portionSize = 10, ...props}) => {
                 }
                 {
                     portionCount > portionNumber &&
-                    <button className={s.next + ' ' + s.pagBtn} onClick={() => {setPortionNumber(portionNumber + 1)}}>Next</button>
+                    <button className={s.pagBtn + ' ' + s.next} onClick={() => {setPortionNumber(portionNumber + 1)}}>Next</button>
                 }
             </ul>
         </div>
