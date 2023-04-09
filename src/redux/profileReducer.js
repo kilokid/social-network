@@ -1,9 +1,10 @@
-import { getUserProfileRequest, getProfilerStatusRequest, setProfileStatusRequest } from '../api/api';
+import { getUserProfileRequest, getProfilerStatusRequest, setProfileStatusRequest, setProfilePhotosRequest } from '../api/api';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
 const DELETE_POST = 'DELETE-STATUS';
+const SAVE_PHOTOS_SUCCESS = 'SAVE-PHOTOS-SUCCESS';
 
 let idNumber = 3;
 
@@ -64,6 +65,12 @@ const profileReducer = (state = initialState, action) => {
                 status: action.status,
             }
         }
+        case SAVE_PHOTOS_SUCCESS: {
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos},
+            }
+        }
         default:
             return state;
     }
@@ -73,7 +80,8 @@ export const addPostActionCreator = (data) => ({type: ADD_POST, newPost: {...dat
 export const deletePostActionCreator = (id) => ({type: DELETE_POST, id});
 
 export const setUserProfileActionCreator = (userProfile) => ({type: SET_USER_PROFILE, userProfile});
-export const setProfileStatus = (status) => ({type: SET_STATUS, status});
+export const setProfileStatusActionCreator = (status) => ({type: SET_STATUS, status});
+export const setProfilePhotosActionCreator = (photos) => ({type: SAVE_PHOTOS_SUCCESS, photos});
 
 export const getUserProfileThunkCreator = (userId) => {
     return async (dispatch) => {
@@ -87,7 +95,7 @@ export const getProfileStatusThunkCreator = (userId) => {
     return async (dispatch) => {
         const data = await getProfilerStatusRequest(userId);
         
-        dispatch(setProfileStatus(data));
+        dispatch(setProfileStatusActionCreator(data));
     }
 }
 
@@ -97,7 +105,18 @@ export const setProfileStatusThunkCreator = (status) => {
         
         if (data.resultCode === 0)
         {
-            dispatch(setProfileStatus(status));
+            dispatch(setProfileStatusActionCreator(status));
+        }
+    }
+}
+
+export const savePhotosThunkCreator = (file) => {
+    return async (dispatch) => {
+        const data = await setProfilePhotosRequest(file);
+        
+        if (data.resultCode === 0)
+        {
+            dispatch(setProfilePhotosActionCreator(data.data.photos));
         }
     }
 }

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { addPostActionCreator, getUserProfileThunkCreator, deletePostActionCreator, getProfileStatusThunkCreator, setProfileStatusThunkCreator } from '../../redux/profileReducer';
+import { addPostActionCreator, getUserProfileThunkCreator, deletePostActionCreator, getProfileStatusThunkCreator, setProfileStatusThunkCreator, savePhotosThunkCreator } from '../../redux/profileReducer';
 
 import Profile from './Profile';
 import WithAuthRedirect from '../../hoc/withAuthRedirect';
@@ -38,7 +38,7 @@ const ProfileApiContainer = (props) => {
 
     return (
         <>
-            <Profile {...props} profile={props.profile} />
+            <Profile {...props} profile={props.profile} savePhotos={props.savePhotos} isOwner={!props.router.params.userId} />
         </>
     )
 }
@@ -70,5 +70,6 @@ export default compose(
         getUserProfile: getUserProfileThunkCreator,
         getProfileStatus: getProfileStatusThunkCreator,
         setProfileStatus: setProfileStatusThunkCreator,
+        savePhotos: savePhotosThunkCreator,
     })
 )(WithUrlRouteProfileComponent);

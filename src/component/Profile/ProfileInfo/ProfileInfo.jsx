@@ -4,9 +4,15 @@ import ProfileStatus from '../ProfileStatus/ProfileStatus';
 import s from './ProfileInfo.module.css';
 
 
-const ProfileInfo = ({profile, setStatus, status}) => {
+const ProfileInfo = ({profile, setStatus, status, isOwner, savePhotos}) => {
   if (!profile) {
     return <Loader />
+  }
+
+  const onSaveNewAvatarPhoto = (e) => {
+    if (e.target.files.length) {
+      savePhotos(e.target.files[0]);
+    }
   }
 
   const withOutAvatar =  'https://static.prinseps.com/media/uploads/cryptopunk6278.png';
@@ -18,6 +24,7 @@ const ProfileInfo = ({profile, setStatus, status}) => {
       </div>
       <div className={s.main_info}>
         <img src={profile.photos.large ? profile.photos.large : withOutAvatar} alt={profile.fullName} />
+        {isOwner && <input type="file" onChange={onSaveNewAvatarPhoto} />}
         <div>
           <h3>{profile.fullName}</h3>
           <ul>

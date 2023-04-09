@@ -73,3 +73,17 @@ export const logoutRequest = () => {
         return response.data;
     }) 
 }
+
+export const setProfilePhotosRequest = (file) => {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    return request.put('/profile/photo', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+    .then(response => {
+        return response.data;
+    }) 
+}
