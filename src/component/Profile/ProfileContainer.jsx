@@ -9,28 +9,32 @@ import WithAuthRedirect from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 const ProfileApiContainer = (props) => {
-    let userId = props.router.params.userId;
+    const refreshProfile = () => {
+        let userId = props.router.params.userId;
 
-    if (!userId)
-    {
-        if (props.isAuth) {
-            userId = props.userId;
+        if (!userId)
+        {
+            if (props.isAuth) {
+                userId = props.userId;
+            }
         }
+
+        getProfile(userId);
+        getStatus(userId);
     }
 
-    const getProfile = () => {
+    const getProfile = (userId) => {
         props.getUserProfile(userId)
     }
 
-    const getStatus = () => {
+    const getStatus = (userId) => {
         props.getProfileStatus(userId)
     }
 
     useEffect(() => {
-        getProfile();
-        getStatus();
+        refreshProfile();
         // eslint-disable-next-line
-    }, [])
+    }, [props.router.params.userId])
 
     return (
         <>
