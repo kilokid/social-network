@@ -12,12 +12,12 @@ const initialState = {
     postsData: [
         {
             id: '0',
-            text: 'why nobody love me?',
+            text: '%@^(!#(',
             likes: '14'
         },
         {
             id: '1',
-            text: 'Fuck all.',
+            text: '***',
             likes: '234'
         },
         {
