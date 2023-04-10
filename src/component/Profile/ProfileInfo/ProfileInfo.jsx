@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Loader from '../../Commons/Loader/Loader';
 import ProfileStatus from '../ProfileStatus/ProfileStatus';
+import ProfileDataForm from '../ProfileDataForm/ProfileDataForm';
 
 import s from './ProfileInfo.module.css';
 
@@ -19,6 +20,10 @@ const ProfileInfo = ({profile, setStatus, status, isOwner, savePhotos}) => {
     }
   }
 
+  const onSubmit = (formData) => {
+    console.log(formData);
+  }
+
   const withOutAvatar =  'https://static.prinseps.com/media/uploads/cryptopunk6278.png';
 
   return (
@@ -30,7 +35,7 @@ const ProfileInfo = ({profile, setStatus, status, isOwner, savePhotos}) => {
         <img src={profile.photos.large ? profile.photos.large : withOutAvatar} alt={profile.fullName} />
         {isOwner && <input type="file" onChange={onSaveNewAvatarPhoto} />}
         <div>
-          {editMode ? <ProfileFormData /> : <ProfileData editProfileInfo={() => setEditMode(true)} profile={profile} setStatus={setStatus} status={status} />}
+          {editMode ? <ProfileDataForm profile={profile} onSubmit={onSubmit} /> : <ProfileData editProfileInfo={() => setEditMode(true)} profile={profile} setStatus={setStatus} status={status} />}
         </div>
       </div>
     </div>
@@ -52,12 +57,6 @@ const ProfileData = ({profile, setStatus, status, editProfileInfo}) => {
         </ul>
         <button onClick={editProfileInfo}>Edit</button>
     </>
-  )
-}
-
-const ProfileFormData = () => {
-  return (
-    <p>form</p>
   )
 }
 
