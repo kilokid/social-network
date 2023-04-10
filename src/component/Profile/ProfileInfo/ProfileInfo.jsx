@@ -28,16 +28,26 @@ const ProfileInfo = ({profile, setStatus, status, isOwner, savePhotos}) => {
         <div>
           <h3>{profile.fullName}</h3>
           <ul>
-            <li>Date of Birth: 1 january</li>
-            <li>City: Kyiv</li>
-            <li>Education: University of Cambridge</li>
-            <li>Web Site: <a href="https://apple.com">apple.com</a></li>
             <ProfileStatus updateStoreStatus={setStatus} storeStatus={status} />
+            <ProfileData profile={profile} />
           </ul>
         </div>
       </div>
     </div>
   );
+}
+
+const ProfileData = ({profile}) => {
+  return (
+    <>
+      <li>About me: {profile.aboutMe}</li>
+      <li>Looking for a job: {profile.lookingForAJob ? 'yes' : 'no'}</li>
+      {profile.lookingForAJob && <li>Job Description: {profile.lookingForAJobDescription}</li>}
+      {Object.keys(profile.contacts).map(key => {
+        return <li key={key}>{key}: {profile.contacts[key]}</li>
+      })}
+    </>
+  )
 }
 
 export default ProfileInfo;
