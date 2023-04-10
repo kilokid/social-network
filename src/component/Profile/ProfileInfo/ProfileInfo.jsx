@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Loader from '../../Commons/Loader/Loader';
 import ProfileStatus from '../ProfileStatus/ProfileStatus';
 
@@ -5,6 +7,8 @@ import s from './ProfileInfo.module.css';
 
 
 const ProfileInfo = ({profile, setStatus, status, isOwner, savePhotos}) => {
+  const [editMode, setEditMode] = useState(false);
+
   if (!profile) {
     return <Loader />
   }
@@ -26,27 +30,34 @@ const ProfileInfo = ({profile, setStatus, status, isOwner, savePhotos}) => {
         <img src={profile.photos.large ? profile.photos.large : withOutAvatar} alt={profile.fullName} />
         {isOwner && <input type="file" onChange={onSaveNewAvatarPhoto} />}
         <div>
-          <h3>{profile.fullName}</h3>
-          <ul>
-            <ProfileStatus updateStoreStatus={setStatus} storeStatus={status} />
-            <ProfileData profile={profile} />
-          </ul>
+          {editMode ? <ProfileFormData /> : <ProfileData editProfileInfo={() => setEditMode(true)} profile={profile} setStatus={setStatus} status={status} />}
         </div>
       </div>
     </div>
   );
 }
 
-const ProfileData = ({profile}) => {
+const ProfileData = ({profile, setStatus, status, editProfileInfo}) => {
   return (
     <>
-      <li>About me: {profile.aboutMe}</li>
-      <li>Looking for a job: {profile.lookingForAJob ? 'yes' : 'no'}</li>
-      {profile.lookingForAJob && <li>Job Description: {profile.lookingForAJobDescription}</li>}
-      {Object.keys(profile.contacts).map(key => {
-        return <li key={key}>{key}: {profile.contacts[key]}</li>
-      })}
+      <h3>{profile.fullName}</h3>
+        <ul>
+          <ProfileStatus updateStoreStatus={setStatus} storeStatus={status} />
+          <li>About me: {profile.aboutMe}</li>
+          <li>Looking for a job: {profile.lookingForAJob ? 'yes' : 'no'}</li>
+          {profile.lookingForAJob && <li>Job Description: {profile.lookingForAJobDescription}</li>}
+          {Object.keys(profile.contacts).map(key => {
+            return <li key={key}>{key}: {profile.contacts[key]}</li>
+          })}
+        </ul>
+        <button onClick={editProfileInfo}>Edit</button>
     </>
+  )
+}
+
+const ProfileFormData = () => {
+  return (
+    <p>form</p>
   )
 }
 
