@@ -3,7 +3,7 @@ import { memo } from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo.jsx';
 import MyPosts from './MyPosts/MyPosts.jsx';
 
-const Profile = memo(({profile, posts, onCreatePost, onDeletePost, setProfileStatus, status, isOwner, savePhotos}) => {
+const Profile = memo(({profile, posts, onCreatePost, onDeletePost, setProfileStatus, status, isOwner, savePhotos, saveProfileInfo, userId}) => {
     return (
       <div>
         <ProfileInfo
@@ -12,6 +12,8 @@ const Profile = memo(({profile, posts, onCreatePost, onDeletePost, setProfileSta
           status={status}
           isOwner={isOwner}
           savePhotos={savePhotos}
+          saveProfileInfo={saveProfileInfo}
+          userId={userId}
         />
         <MyPosts
           posts={posts}

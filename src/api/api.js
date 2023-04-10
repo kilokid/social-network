@@ -87,3 +87,10 @@ export const setProfilePhotosRequest = (file) => {
         return response.data;
     }) 
 }
+
+export const setProfileInfoRequest = (profile) => {
+    return request.put('/profile', profile)
+    .then(response => {
+        return response.data;
+    }) 
+}

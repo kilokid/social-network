@@ -7,7 +7,7 @@ import ProfileDataForm from '../ProfileDataForm/ProfileDataForm';
 import s from './ProfileInfo.module.css';
 
 
-const ProfileInfo = ({profile, setStatus, status, isOwner, savePhotos}) => {
+const ProfileInfo = ({profile, setStatus, status, isOwner, savePhotos, saveProfileInfo, userId}) => {
   const [editMode, setEditMode] = useState(false);
 
   if (!profile) {
@@ -21,7 +21,8 @@ const ProfileInfo = ({profile, setStatus, status, isOwner, savePhotos}) => {
   }
 
   const onSubmit = (formData) => {
-    console.log(formData);
+    saveProfileInfo(formData, userId);
+    setEditMode(false);
   }
 
   const withOutAvatar =  'https://static.prinseps.com/media/uploads/cryptopunk6278.png';

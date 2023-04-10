@@ -5,7 +5,13 @@ const ProfileDataForm = ({profile, onSubmit}) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <h3>{profile.fullName}</h3>
+            <h3>
+                <input
+                    {...register('fullName')}
+                    type='text'
+                    placeholder='Full name'
+                />
+            </h3>
             <ul>
                 <li>
                     <textarea
@@ -16,13 +22,13 @@ const ProfileDataForm = ({profile, onSubmit}) => {
                 </li>
                 <li>Looking for a job:
                     <input
-                        {...register('lookingJob')}
+                        {...register('lookingForAJob')}
                         type='checkbox'
                     />
                 </li>
                 <li>
                      <textarea
-                        {...register('skills')}
+                        {...register('lookingForAJobDescription')}
                         type='text'
                         placeholder='My professional skills'
                     />

@@ -1,4 +1,4 @@
-import { getUserProfileRequest, getProfilerStatusRequest, setProfileStatusRequest, setProfilePhotosRequest } from '../api/api';
+import { getUserProfileRequest, getProfilerStatusRequest, setProfileStatusRequest, setProfilePhotosRequest, setProfileInfoRequest } from '../api/api';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -117,6 +117,17 @@ export const savePhotosThunkCreator = (file) => {
         if (data.resultCode === 0)
         {
             dispatch(setProfilePhotosActionCreator(data.data.photos));
+        }
+    }
+}
+
+export const saveProfileInfoThunkCreator = (profile, userId) => {
+    return async (dispatch) => {
+        const data = await setProfileInfoRequest(profile);
+        
+        if (data.resultCode === 0)
+        {
+            dispatch(getUserProfileThunkCreator(userId));
         }
     }
 }
