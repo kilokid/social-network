@@ -4,8 +4,9 @@ import { Navigate } from "react-router-dom";
 
 import s from './Login.module.css';
 
-const Login = ({requestLoginData, errorMessage, isAuth}) => {
+const Login = ({requestLoginData, errorMessage, isAuth, captchaUrl}) => {
     const onSubmit = (data) => {
+        console.log(data);
         requestLoginData(data);
     }
 
@@ -14,20 +15,20 @@ const Login = ({requestLoginData, errorMessage, isAuth}) => {
     return (
         <section className={s.login_form}>
             <h1 className={s.title}>Login</h1>
-            <LoginForm onSubmit={onSubmit} errorMessage={errorMessage} />
+            <LoginForm onSubmit={onSubmit} captchaUrl={captchaUrl} errorMessage={errorMessage} />
         </section>
     )
 }
 
-const LoginForm = ({errorMessage, onSubmit}) => {
+const LoginForm = ({errorMessage, onSubmit, captchaUrl}) => {
     const { register, handleSubmit, formState: {errors}, setError } = useForm({mode: 'onBlur'});
-
-    useEffect(() => {
-        if (errorMessage) {
-            setError("form", { type: "custom", message: errorMessage});
-        }
-        // eslint-disable-next-line
-    }, [errorMessage]);
+    
+    // useEffect(() => {
+    //     if (errorMessage) {
+    //         setError("form", { type: "custom", message: errorMessage});
+    //     }
+    //     // eslint-disable-next-line
+    // }, [errorMessage]);
 
     return (
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
@@ -48,6 +49,8 @@ const LoginForm = ({errorMessage, onSubmit}) => {
                 <li>
                     <button>Login</button>
                 </li>
+                {captchaUrl && <img src={captchaUrl} alt="Captcha" />}
+                {captchaUrl && <input {...register("captcha")} type="text" placeholder="Symbols from picture"/>}
             </ul>
         </form>
     )

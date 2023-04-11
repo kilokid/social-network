@@ -42,25 +42,25 @@ export const getAuthInfoRequest = () => {
 }
 
 export const getProfilerStatusRequest = (userId) => {
-    return request.get(`/profile/status/${userId}`)
+    return request.get(`profile/status/${userId}`)
     .then(response => {
         return response.data;
     })
 }
 
 export const setProfileStatusRequest = (status) => {
-    return request.put(`/profile/status`, {status})
+    return request.put(`profile/status`, {status})
     .then(response => {
         return response.data;
     })
 }
 
-export const setLoginDataRequest = ({email, password, rememberMe}) => {
-    return request.post('/auth/login', {
+export const setLoginDataRequest = ({email, password, rememberMe, captcha = null}) => {
+    return request.post('auth/login', {
         email,
         password,
         rememberMe,
-        captcha: false,
+        captcha,
     })
     .then(response => {
         return response.data;
@@ -68,7 +68,7 @@ export const setLoginDataRequest = ({email, password, rememberMe}) => {
 }
 
 export const logoutRequest = () => {
-    return request.delete('/auth/login')
+    return request.delete('auth/login')
     .then(response => {
         return response.data;
     }) 
@@ -78,7 +78,7 @@ export const setProfilePhotosRequest = (file) => {
     const formData = new FormData();
     formData.append('image', file);
 
-    return request.put('/profile/photo', formData, {
+    return request.put('profile/photo', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
@@ -89,7 +89,14 @@ export const setProfilePhotosRequest = (file) => {
 }
 
 export const setProfileInfoRequest = (profile) => {
-    return request.put('/profile', profile)
+    return request.put('profile', profile)
+    .then(response => {
+        return response.data;
+    }) 
+}
+
+export const getCaptchaUrlRequest = () => {
+    return request.get('security/get-captcha-url')
     .then(response => {
         return response.data;
     }) 

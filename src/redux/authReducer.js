@@ -1,8 +1,9 @@
-import { getAuthInfoRequest, setLoginDataRequest, logoutRequest } from "../api/api";
+import { getAuthInfoRequest, setLoginDataRequest, logoutRequest, getCaptchaUrlRequest } from "../api/api";
 import { setInitialLoadActionCreator } from "./appReducer";
 
 const SET_USER_AUTH_DATA = 'SET-USER-AUTH-DATA';
 const SET_SOME_ERRORS = 'SET-SOME-ERRORS';
+const SET_CAPTCHA_URL = 'SET-CAPTCHA-URL';
 
 const initialState = {
     userId: null,
@@ -10,6 +11,7 @@ const initialState = {
     email: null,
     isAuth: false,
     someErrors: '',
+    url: null,
 }
 
 const authReducer = (state = initialState, action) => {
@@ -26,6 +28,12 @@ const authReducer = (state = initialState, action) => {
                 someErrors: action.errorMessage,
             }
         }
+        case SET_CAPTCHA_URL: {
+            return {
+                ...state,
+                ...action.url,
+            }
+        }
         default:
             return state
     }
@@ -33,6 +41,7 @@ const authReducer = (state = initialState, action) => {
 
 export const setUserAuthDataActionCreator = (userId, login, email, isAuth, someErrors) => ({type: SET_USER_AUTH_DATA, data: {userId, login, email, isAuth, someErrors}});
 const setSomeErrorsActionCreator = (errorMessage) => ({type: SET_SOME_ERRORS, errorMessage});
+const setCaptchaUrlActionCreator = (url) => ({type: SET_CAPTCHA_URL, url});
 
 export const setUserAuthThunkCreator = () => async (dispatch) => {
     const data = await getAuthInfoRequest();
@@ -52,8 +61,18 @@ export const setLoginDataThunkCreator = (dataRequest) => async (dispatch) => {
     }
     else
     {
+        if (data.resultCode === 10) {
+            dispatch(getCaptchaUrlThunkCreator());
+        }
+
         dispatch(setSomeErrorsActionCreator(data.messages[0]));
     }
+}
+
+export const getCaptchaUrlThunkCreator = () => async (dispatch) => {
+    const data = await getCaptchaUrlRequest();
+
+    dispatch(setCaptchaUrlActionCreator(data));
 }
 
 export const logoutThunkCreator = () => async (dispatch) => {
