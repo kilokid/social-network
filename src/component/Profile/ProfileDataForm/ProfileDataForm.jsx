@@ -33,9 +33,16 @@ const ProfileDataForm = ({profile, onSubmit}) => {
                         placeholder='My professional skills'
                     />
                 </li>
-                {/* {Object.keys(profile.contacts).map(key => {
-                    return <li key={key}>{key}: {profile.contacts[key]}</li>
-                })} */}
+                {Object.keys(profile.contacts).map(key => {
+                    return <li key={key}>{key}:
+                    <input
+                        {...register(`contacts.${key}`)}
+                        type='text'
+                        placeholder={key}
+                    />
+                    {profile.contacts[key]}
+                    </li>
+                })}
             </ul>
             <button type='submit'>Save</button>
         </form>
