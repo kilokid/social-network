@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, Navigate} from 'react-router-dom';
 
 import HeaderContainer from './component/Header/HeaderContainer';
 import Navbar from './component/Navbar/Navbar';
@@ -31,6 +31,7 @@ const App = ({setInitialLoad, initialLoad}) => {
         <div className='app-wrapper-content'>
           <Suspense fallback={<Loader />}>
             <Routes>
+              <Route path="/" element={<Navigate to="/profile" />} />
               <Route path="/dialogs" element={ <DialogsContainer /> } />
               <Route path="/profile" element={ <ProfileContainer /> } />
               <Route path="/profile/:userId?" element={ <ProfileContainer /> } />
