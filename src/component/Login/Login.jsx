@@ -6,7 +6,6 @@ import s from './Login.module.css';
 
 const Login = ({requestLoginData, errorMessage, isAuth, captchaUrl}) => {
     const onSubmit = (data) => {
-        console.log(data);
         requestLoginData(data);
     }
 

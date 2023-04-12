@@ -101,11 +101,15 @@ export const getProfileStatusThunkCreator = (userId) => {
 
 export const setProfileStatusThunkCreator = (status) => {
     return async (dispatch) => {
-        const data = await setProfileStatusRequest(status);
-        
-        if (data.resultCode === 0)
-        {
-            dispatch(setProfileStatusActionCreator(status));
+        try {
+            const data = await setProfileStatusRequest(status);
+            
+            if (data.resultCode === 0)
+            {
+                dispatch(setProfileStatusActionCreator(status));
+            }
+        } catch(error) {
+            console.error(`Возникла ошибка ${error}`)
         }
     }
 }
