@@ -3,16 +3,27 @@
   align-items: center;
   justify-content: space-between;
   grid-area: header;
-  background: lightgreen;
+  background: white;
   box-sizing: border-box;
   padding: 10px 20px 0 0;
   width: 100%;
+  border-bottom: 1px solid #DFDDDC;
 }
 
-.header > img {
+.header > div {
+
+  display: flex;
+  align-items: center;
+}
+
+.header > div > img {
   width: 60px;
   height: 60px;
   margin-left: 40px;
+}
+
+.header > div > h3 {
+  margin-left: 12px;
 }
 
 .login_block {
@@ -24,4 +35,11 @@
 }
 .login_block a:hover {
   color: white;
+}
+
+.login_block .login_btn {
+  color: white;
+  background: #1D8BD8;
+  padding: 10px 12px;
+  border-radius: 12px;
 }

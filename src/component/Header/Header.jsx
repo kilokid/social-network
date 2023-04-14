@@ -2,17 +2,22 @@ import { NavLink } from 'react-router-dom';
 
 import s from './Header.module.css';
 
+import logo from '../../assets/images/ufo.svg';
+
 const Header = ({login, isAuth, logoutUser}) => {
     return (
         <header className={s.header}>
-            <img src="https://cdn-icons-png.flaticon.com/512/183/183595.png" alt="" />
+            <div>
+                <img src={logo} alt="" />
+                <h3>killer vk</h3>
+            </div>
             <div className={s.login_block}>
-                {isAuth ? 
+                {isAuth ?
                     <div>
                         <p>{login}</p>
                         <button onClick={logoutUser}>Logout</button>
                     </div> :
-                    <NavLink to="/login">Login</NavLink>
+                    <NavLink className={s.login_btn} to="/login">Login</NavLink>
                 }
             </div>
         </header>
