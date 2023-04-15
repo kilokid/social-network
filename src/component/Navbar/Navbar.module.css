@@ -1,6 +1,6 @@
 .nav {
   grid-area: nav;
-  background: lightgreen;
+  background: white;
 
   min-height: 100vh;
   max-height: 100vh;
