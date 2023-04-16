@@ -34,23 +34,27 @@ const LoginForm = ({errorMessage, onSubmit, captchaUrl}) => {
             <ul>
                 <li className={s.field}>
                     <input {...register("email", {required: 'Please enter your Email'})} type="text" placeholder="Email" />
-                    {errors.email && <span>{errors.email.message}</span>}
+                    {errors.email && <span className={s.error}>{errors.email.message}</span>}
                 </li>
                 <li className={s.field}>
                     <input {...register("password", {required: 'Please enter your password'})} type="password" placeholder="Password" />
-                    {errors.password && <span>{errors.password.message}</span>}
+                    {errors.password && <span className={s.error}>{errors.password.message}</span>}
                 </li>
-                <li>
+                <li lassName={s.field_remember}>
                     <input {...register("rememberMe")} type="checkbox"/>
                     <span>Remember me</span>
                 </li>
-                {errors.form && <span>{errors.form.message}</span>}
+                {errors.form && <span className={s.error}>{errors.form.message}</span>}
                 <li>
-                    <button>Login</button>
+                    <button className={s.login_btn}>Login</button>
                 </li>
                 {captchaUrl && <img src={captchaUrl} alt="Captcha" />}
                 {captchaUrl && <input {...register("captcha")} type="text" placeholder="Symbols from picture"/>}
             </ul>
+            <div className={s.account_info}>
+                <a href="https://social-network.samuraijs.com/signUp">Don't have an account?</a>
+                <a href="https://social-network.samuraijs.com/login">Forgot password?</a>
+            </div>
         </form>
     )
 }
