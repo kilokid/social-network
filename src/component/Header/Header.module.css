@@ -42,4 +42,9 @@
   background: #1D8BD8;
   padding: 10px 12px;
   border-radius: 12px;
+  transition: background 0.3s ease-in-out;
+}
+
+.login_block .login_btn:hover {
+  background: black;
 }

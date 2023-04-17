@@ -52,8 +52,8 @@ const LoginForm = ({errorMessage, onSubmit, captchaUrl}) => {
                 {captchaUrl && <input {...register("captcha")} type="text" placeholder="Symbols from picture"/>}
             </ul>
             <div className={s.account_info}>
-                <a href="https://social-network.samuraijs.com/signUp">Don't have an account?</a>
-                <a href="https://social-network.samuraijs.com/login">Forgot password?</a>
+                <a href="https://social-network.samuraijs.com/signUp" target="_blank">Don't have an account?</a>
+                <a href="https://social-network.samuraijs.com/login" target="_blank">Forgot password?</a>
             </div>
         </form>
     )

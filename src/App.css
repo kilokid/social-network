@@ -13,4 +13,5 @@
 
 .app-wrapper-content {
   grid-area: content;
+  padding-right: 40px;
 }

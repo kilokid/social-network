@@ -14,6 +14,16 @@ type SetUserAuthDataType = {
         isAuth: boolean,
         someErrors: string,
     }
+
+}
+type SetSomeErrorsType = {
+    type: typeof SET_SOME_ERRORS,
+    errorMessage: string
+}
+
+type SetCaptchaUrlType = {
+    type: typeof SET_SOME_ERRORS,
+    url: string
 }
 
 type InitialStateType = {
@@ -60,8 +70,8 @@ const authReducer = (state = initialState, action) => {
 }
 
 export const setUserAuthDataActionCreator: SetUserAuthDataType = (userId, login, email, isAuth, someErrors) => ({type: SET_USER_AUTH_DATA, data: {userId, login, email, isAuth, someErrors}});
-const setSomeErrorsActionCreator = (errorMessage) => ({type: SET_SOME_ERRORS, errorMessage});
-const setCaptchaUrlActionCreator = (url) => ({type: SET_CAPTCHA_URL, url});
+const setSomeErrorsActionCreator: SetSomeErrorsType = (errorMessage) => ({type: SET_SOME_ERRORS, errorMessage});
+const setCaptchaUrlActionCreator: SetCaptchaUrlType = (url) => ({type: SET_CAPTCHA_URL, url});
 
 export const setUserAuthThunkCreator = () => async (dispatch) => {
     const data = await getAuthInfoRequest();

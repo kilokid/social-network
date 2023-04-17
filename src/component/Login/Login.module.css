@@ -24,7 +24,7 @@
 }
 
 .form li {
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     box-sizing: border-box;
 }
 
@@ -50,6 +50,12 @@
     color: white;
     padding: 10px 12px;
     border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.login_btn:hover {
+    background: black;
 }
 
 .error {
@@ -62,5 +68,26 @@
 }
 
 .field_remember {
-    margin-top: 8px;
+    margin-top: -8px;
+}
+
+.field_remember > input {
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+.account_info {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.account_info > a {
+    font-size: 14px;
+    color: #1D8BD8;
+    transition: color 0.3s ease-in-out;
+}
+
+.account_info > a:hover {
+    color: black;
 }

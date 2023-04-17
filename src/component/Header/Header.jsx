@@ -9,7 +9,7 @@ const Header = ({login, isAuth, logoutUser}) => {
         <header className={s.header}>
             <div>
                 <img src={logo} alt="" />
-                <h3>killer vk</h3>
+                <h3>killer vk 1.0</h3>
             </div>
             <div className={s.login_block}>
                 {isAuth ?
