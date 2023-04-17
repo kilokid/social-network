@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { setLoginDataThunkCreator } from "../../redux/authReducer";
+import { setLoginDataThunkCreator } from "../../redux/authReducer.tsx";
 
 import Login from "./Login";
 

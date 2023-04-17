@@ -1,4 +1,4 @@
-import { setUserAuthThunkCreator } from "./authReducer";
+import { setUserAuthThunkCreator } from "./authReducer.tsx";
 
 const SET_INITIAL_LOAD = 'SET-INITIAL-LOAD';
 

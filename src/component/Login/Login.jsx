@@ -40,7 +40,7 @@ const LoginForm = ({errorMessage, onSubmit, captchaUrl}) => {
                     <input {...register("password", {required: 'Please enter your password'})} type="password" placeholder="Password" />
                     {errors.password && <span className={s.error}>{errors.password.message}</span>}
                 </li>
-                <li lassName={s.field_remember}>
+                <li className={s.field_remember}>
                     <input {...register("rememberMe")} type="checkbox"/>
                     <span>Remember me</span>
                 </li>

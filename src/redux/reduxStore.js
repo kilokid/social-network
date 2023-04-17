@@ -6,7 +6,7 @@ import dialogsReducer from "./dialogsReducer";
 import friendsReducer from "./friendsReducer";
 import usersReducer from "./usersReducer";
 import musicReducer from "./musicReducer";
-import authReducer from "./authReducer";
+import authReducer from "./authReducer.tsx";
 import appReducer from "./appReducer";
 
 const reducers = combineReducers({

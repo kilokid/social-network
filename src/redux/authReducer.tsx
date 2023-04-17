@@ -5,7 +5,27 @@ const SET_USER_AUTH_DATA = 'SET-USER-AUTH-DATA';
 const SET_SOME_ERRORS = 'SET-SOME-ERRORS';
 const SET_CAPTCHA_URL = 'SET-CAPTCHA-URL';
 
-const initialState = {
+type SetUserAuthDataType = {
+    type: typeof SET_USER_AUTH_DATA,
+    data: {
+        id: number,
+        login: string,
+        email: string,
+        isAuth: boolean,
+        someErrors: string,
+    }
+}
+
+type InitialStateType = {
+    userId: null | number,
+    login: null | string,
+    email: null | string,
+    isAuth: boolean,
+    someErrors: string,
+    url: null | string
+}
+
+const initialState: InitialStateType = {
     userId: null,
     login: null,
     email: null,
@@ -39,7 +59,7 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setUserAuthDataActionCreator = (userId, login, email, isAuth, someErrors) => ({type: SET_USER_AUTH_DATA, data: {userId, login, email, isAuth, someErrors}});
+export const setUserAuthDataActionCreator: SetUserAuthDataType = (userId, login, email, isAuth, someErrors) => ({type: SET_USER_AUTH_DATA, data: {userId, login, email, isAuth, someErrors}});
 const setSomeErrorsActionCreator = (errorMessage) => ({type: SET_SOME_ERRORS, errorMessage});
 const setCaptchaUrlActionCreator = (url) => ({type: SET_CAPTCHA_URL, url});
 
