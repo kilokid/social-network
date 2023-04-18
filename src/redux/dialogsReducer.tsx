@@ -3,7 +3,7 @@ const SEND_NEW_MESSAGE = 'SEND-NEW-MESSAGE';
 type DialogsDataType = {
     id: string,
     name: string,
-    messages: [string]
+    messages: Array<string>
 }
 
 type InitialStateType = {
