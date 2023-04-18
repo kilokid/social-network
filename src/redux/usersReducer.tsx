@@ -9,8 +9,6 @@ const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 const SET_IS_FETCHING = 'SET-IS-FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS';
 
-
-
 const initialState = {
     users: [] as Array<UserType>,
     pageSize: 10,
