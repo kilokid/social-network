@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { playSongActionCreator, stopPlayingSongActionCreator } from "../../redux/musicReducer";
+import { playSongActionCreator, stopPlayingSongActionCreator } from "../../redux/musicReducer.tsx";
 
 import Music from "./Music";
 

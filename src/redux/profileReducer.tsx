@@ -8,7 +8,19 @@ const SAVE_PHOTOS_SUCCESS = 'SAVE-PHOTOS-SUCCESS';
 
 let idNumber = 3;
 
-const initialState = {
+type PostDataType = {
+    id: string,
+    text: string,
+    likes: string
+}
+
+type InitialStateType = {
+    postsData: PostDataType[],
+    profile: null,
+    status: string
+}
+
+const initialState: InitialStateType = {
     postsData: [
         {
             id: '0',
@@ -30,7 +42,7 @@ const initialState = {
     status: '',
 };
 
-const profileReducer = (state = initialState, action) => {
+const profileReducer = (state = initialState, action: any): InitialStateType => {
     switch(action.type) {
         case ADD_POST: {
             const newPosts = {

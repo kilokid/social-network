@@ -72,7 +72,12 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType => 
     }
 }
 
-export const sendNewMessageActionCreator = (data: any) => {
+type SendMessageType = {
+    type: typeof SEND_NEW_MESSAGE,
+    text: DialogsDataType
+}
+
+export const sendNewMessageActionCreator = (data: any): SendMessageType => {
     return {
         type: SEND_NEW_MESSAGE,
         text: {...data}

@@ -1,7 +1,21 @@
 const PLAY_SONG = 'PLAY-SONG';
 const STOP_PLAYING = 'STOP-PLAYING';
 
-const initialState = {
+type MusicsType = {
+    id: number,
+    title: string,
+    author: string,
+    time: string,
+    cover: string,
+    play: boolean,
+    added: boolean,
+}
+
+type InitialStateType = {
+    musics: MusicsType[]
+}
+
+const initialState: InitialStateType = {
     musics: [
         {
             id: 0,
@@ -33,7 +47,7 @@ const initialState = {
     ]
 }
 
-const musicReducer = (state = initialState, action) => {
+const musicReducer = (state = initialState, action: any): InitialStateType => {
     switch(action.type) {
         case PLAY_SONG:
             console.log('play');
@@ -44,7 +58,18 @@ const musicReducer = (state = initialState, action) => {
     }
 }
 
-export const playSongActionCreator = (musicId) => ({type: PLAY_SONG, musicId});
-export const stopPlayingSongActionCreator = (musicId) => ({type: STOP_PLAYING, musicId});
+type PlaySongType = {
+    type: typeof PLAY_SONG,
+    musicId: string
+}
+
+export const playSongActionCreator = (musicId: string): PlaySongType => ({type: PLAY_SONG, musicId});
+
+type StopSongPlayingType = {
+    type: typeof STOP_PLAYING,
+    musicId: string
+}
+
+export const stopPlayingSongActionCreator = (musicId: string): StopSongPlayingType => ({type: STOP_PLAYING, musicId});
 
 export default musicReducer;

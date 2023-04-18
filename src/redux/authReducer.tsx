@@ -1,5 +1,5 @@
 import { getAuthInfoRequest, setLoginDataRequest, logoutRequest, getCaptchaUrlRequest } from "../api/api";
-import { setInitialLoadActionCreator } from "./appReducer";
+// import { setInitialLoadActionCreator } from "./appReducer";
 
 const SET_USER_AUTH_DATA = 'SET-USER-AUTH-DATA';
 const SET_SOME_ERRORS = 'SET-SOME-ERRORS';
@@ -93,7 +93,7 @@ export const setLoginDataThunkCreator = (dataRequest: any) => async (dispatch: a
     const data = await setLoginDataRequest(dataRequest);
 
     if (data.resultCode === 0) {
-        dispatch(setUserAuthThunkCreator(data));
+        dispatch(setUserAuthThunkCreator());
     }
     else
     {

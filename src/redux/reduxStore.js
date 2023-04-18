@@ -1,11 +1,11 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import ThunkMiddleware from "redux-thunk";
 
-import profileReducer from "./profileReducer";
+import profileReducer from "./profileReducer.tsx";
 import dialogsReducer from "./dialogsReducer.tsx";
-import friendsReducer from "./friendsReducer";
+import friendsReducer from "./friendsReducer.tsx";
 import usersReducer from "./usersReducer";
-import musicReducer from "./musicReducer";
+import musicReducer from "./musicReducer.tsx";
 import authReducer from "./authReducer.tsx";
 import appReducer from "./appReducer.tsx";
 
