@@ -5,27 +5,6 @@ const SET_USER_AUTH_DATA = 'SET-USER-AUTH-DATA';
 const SET_SOME_ERRORS = 'SET-SOME-ERRORS';
 const SET_CAPTCHA_URL = 'SET-CAPTCHA-URL';
 
-type SetUserAuthDataType = {
-    type: typeof SET_USER_AUTH_DATA,
-    data: {
-        id: number,
-        login: string,
-        email: string,
-        isAuth: boolean,
-        someErrors: string,
-    }
-
-}
-type SetSomeErrorsType = {
-    type: typeof SET_SOME_ERRORS,
-    errorMessage: string
-}
-
-type SetCaptchaUrlType = {
-    type: typeof SET_SOME_ERRORS,
-    url: string
-}
-
 type InitialStateType = {
     userId: null | number,
     login: null | string,
@@ -44,7 +23,7 @@ const initialState: InitialStateType = {
     url: null,
 }
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case SET_USER_AUTH_DATA: {
             return {
@@ -69,11 +48,38 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setUserAuthDataActionCreator: SetUserAuthDataType = (userId, login, email, isAuth, someErrors) => ({type: SET_USER_AUTH_DATA, data: {userId, login, email, isAuth, someErrors}});
-const setSomeErrorsActionCreator: SetSomeErrorsType = (errorMessage) => ({type: SET_SOME_ERRORS, errorMessage});
-const setCaptchaUrlActionCreator: SetCaptchaUrlType = (url) => ({type: SET_CAPTCHA_URL, url});
+type SetUserAuthDataPayloadType = {
+    userId: number | null,
+    login: string | null,
+    email: string | null,
+    isAuth: boolean,
+    someErrors: string | null,
+}
 
-export const setUserAuthThunkCreator = () => async (dispatch) => {
+type SetUserAuthDataType = {
+    type: typeof SET_USER_AUTH_DATA,
+    data: SetUserAuthDataPayloadType
+}
+
+export const setUserAuthDataActionCreator = (userId: number | null, login: string | null, email: string | null, isAuth: boolean, someErrors: string | null): SetUserAuthDataType => ({
+    type: SET_USER_AUTH_DATA, data: {userId, login, email, isAuth, someErrors}
+});
+
+type SetSomeErrorsType = {
+    type: typeof SET_SOME_ERRORS,
+    errorMessage: string
+}
+
+const setSomeErrorsActionCreator = (errorMessage: string): SetSomeErrorsType => ({type: SET_SOME_ERRORS, errorMessage});
+
+type SetCaptchaUrlType = {
+    type: typeof SET_CAPTCHA_URL,
+    url: string
+}
+
+const setCaptchaUrlActionCreator = (url: string): SetCaptchaUrlType => ({type: SET_CAPTCHA_URL, url});
+
+export const setUserAuthThunkCreator = () => async (dispatch: any) => {
     const data = await getAuthInfoRequest();
 
     if (data.resultCode === 0) {
@@ -83,7 +89,7 @@ export const setUserAuthThunkCreator = () => async (dispatch) => {
     }
 }
 
-export const setLoginDataThunkCreator = (dataRequest) => async (dispatch) => {
+export const setLoginDataThunkCreator = (dataRequest: any) => async (dispatch: any) => {
     const data = await setLoginDataRequest(dataRequest);
 
     if (data.resultCode === 0) {
@@ -99,13 +105,13 @@ export const setLoginDataThunkCreator = (dataRequest) => async (dispatch) => {
     }
 }
 
-export const getCaptchaUrlThunkCreator = () => async (dispatch) => {
+export const getCaptchaUrlThunkCreator = () => async (dispatch: any) => {
     const data = await getCaptchaUrlRequest();
 
     dispatch(setCaptchaUrlActionCreator(data));
 }
 
-export const logoutThunkCreator = () => async (dispatch) => {
+export const logoutThunkCreator = () => async (dispatch: any) => {
     const data = await logoutRequest();
     
     if (data.resultCode === 0) {

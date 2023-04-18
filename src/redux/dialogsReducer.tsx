@@ -1,54 +1,65 @@
 const SEND_NEW_MESSAGE = 'SEND-NEW-MESSAGE';
 
-const initialState = {
+type DialogsDataType = {
+    id: string,
+    name: string,
+    messages: [string]
+}
+
+type InitialStateType = {
+    dialogsData: DialogsDataType[],
+    newMessagesBody: string
+}
+
+const initialState: InitialStateType = {
     dialogsData: [
         {
             id: "0",
-            name: 'Artem',
+            name: 'Curtis Morales',
             messages: [
-                'Hi bro',
+                '!)(@(#@',
             ]
         },
         {
             id: '1',
-            name: 'Vanya',
+            name: 'Michael Lee',
             messages: [
-                'What`s up?',
+                '))!*@@& ###$@',
             ]
         },
         {
             id: '2',
-            name: 'Egor',
+            name: 'Timothy Thomas',
             messages: [
-                'How a u?',
+                '!@% . *& *(&# . )(* (*#',
             ]
         },
         {
             id: '3',
-            name: 'Nastya',
+            name: 'Barbara Valdez',
             messages: [
-                'I love u',
+                '@&#(* #&#(*& )#(* )#*',
             ]
         },
         {
             id: '4',
-            name: 'Danya',
+            name: 'Elizabeth Johnson',
             messages: [
-                'Fuck u man',
+                '@*&^#$&^$^',
             ]
         },
         {
             id: '5',
-            name: 'Tanya',
+            name: 'John Lopez',
             messages: [
-                'I miss u',
+                '*&@^!^',
             ]
         }
     ],
     newMessagesBody: '',
 };
 
-const dialogsReducer = (state = initialState, action) => {
+const dialogsReducer = (state = initialState, action: any): InitialStateType => {
     switch(action.type) {
         case SEND_NEW_MESSAGE: {
             return {
@@ -61,7 +72,7 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const sendNewMessageActionCreator = (data) => {
+export const sendNewMessageActionCreator = (data: any) => {
     return {
         type: SEND_NEW_MESSAGE,
         text: {...data}

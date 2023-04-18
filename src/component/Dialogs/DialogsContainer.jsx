@@ -1,4 +1,4 @@
-import { sendNewMessageActionCreator } from '../../redux/dialogsReducer';
+import { sendNewMessageActionCreator } from '../../redux/dialogsReducer.tsx';
 import { connect } from 'react-redux';
 
 import Dialogs from './Dialogs';
