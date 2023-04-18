@@ -2,11 +2,15 @@ import { setUserAuthThunkCreator } from "./authReducer.tsx";
 
 const SET_INITIAL_LOAD = 'SET-INITIAL-LOAD';
 
-const initialState = {
+type InitialStateType = {
+    initialLoad: Boolean,
+}
+
+const initialState: InitialStateType = {
     initialLoad: false,
 }
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case SET_INITIAL_LOAD: {
             return {
@@ -19,9 +23,13 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setInitialLoadActionCreator = () => ({type: SET_INITIAL_LOAD});
+type SetInitialLoadType = {
+    type: typeof SET_INITIAL_LOAD,
+}
 
-export const getAuthInfoThunkCreator = () => (dispatch) => {
+export const setInitialLoadActionCreator = (): SetInitialLoadType => ({type: SET_INITIAL_LOAD});
+
+export const getAuthInfoThunkCreator = () => (dispatch: any) => {
     const promiseRequset = dispatch(setUserAuthThunkCreator());
 
     Promise.all([promiseRequset])

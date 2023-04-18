@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-import { getAuthInfoThunkCreator } from "./redux/appReducer";
+import { getAuthInfoThunkCreator } from "./redux/appReducer.tsx";
 
 import App from "./App";
 

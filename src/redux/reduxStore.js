@@ -7,7 +7,7 @@ import friendsReducer from "./friendsReducer";
 import usersReducer from "./usersReducer";
 import musicReducer from "./musicReducer";
 import authReducer from "./authReducer.tsx";
-import appReducer from "./appReducer";
+import appReducer from "./appReducer.tsx";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
