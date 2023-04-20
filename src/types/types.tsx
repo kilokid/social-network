@@ -24,8 +24,8 @@ export type ProfileType = {
 }
 
 export type PostDataType = {
-    id: string,
-    text: string,
+    id: number,
+    postText: string,
     likes: string
 }
 

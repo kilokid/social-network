@@ -1,6 +1,8 @@
+import { ThunkAction } from 'redux-thunk';
 import { getUserProfileRequest, getProfilerStatusRequest, setProfileStatusRequest, setProfilePhotosRequest, setProfileInfoRequest } from '../api/api';
 
 import { PhotosType, PostDataType, ProfileType } from "../types/types";
+import { AppStateType } from './reduxStore';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -13,24 +15,25 @@ let idNumber = 3;
 type InitialStateType = {
     postsData: Array<PostDataType>,
     profile: null | ProfileType,
-    status: string
+    status: string,
+    postText?: string | null
 }
 
 const initialState: InitialStateType = {
     postsData: [
         {
-            id: '0',
-            text: '%@^(!#(',
+            id: 0,
+            postText: '%@^(!#(',
             likes: '14'
         },
         {
-            id: '1',
-            text: '***',
+            id: 1,
+            postText: '***',
             likes: '234'
         },
         {
-            id: '2',
-            text: 'Where a u??',
+            id: 2,
+            postText: 'Where a u??',
             likes: '2'
         }
     ],
@@ -38,12 +41,12 @@ const initialState: InitialStateType = {
     status: '',
 };
 
-const profileReducer = (state = initialState, action: any): InitialStateType => {
+const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
         case ADD_POST: {
             const newPosts = {
                 id: idNumber,
-                text: action.newPost.postText,
+                postText: action.newPost.postText,
                 likes: '0'
             }
 
@@ -84,17 +87,19 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
     }
 }
 
+type ActionsTypes = AddPostType | DeletePostType | SetUserProfileType | SetProfileStatusType | SetProfilePhotosType;
+
 type AddPostType = {
     type: typeof ADD_POST,
     newPost: PostDataType
 }
-export const addPostActionCreator = (data: Object): AddPostType => ({type: ADD_POST, newPost: {...data}});
+export const addPostActionCreator = (data: PostDataType): AddPostType => ({type: ADD_POST, newPost: {...data}});
 
 type DeletePostType = {
     type: typeof DELETE_POST,
-    id: string
+    id: number
 }
-export const deletePostActionCreator = (id: string): DeletePostType => ({type: DELETE_POST, id});
+export const deletePostActionCreator = (id: number): DeletePostType => ({type: DELETE_POST, id});
 
 type SetUserProfileType = {
     type: typeof SET_USER_PROFILE,
@@ -114,24 +119,26 @@ type SetProfilePhotosType = {
 }
 export const setProfilePhotosActionCreator = (photos: PhotosType): SetProfilePhotosType => ({type: SAVE_PHOTOS_SUCCESS, photos});
 
-export const getUserProfileThunkCreator = (userId: string) => {
-    return async (dispatch: any) => {
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
+
+export const getUserProfileThunkCreator = (userId: number): ThunkType => {
+    return async (dispatch) => {
         const data = await getUserProfileRequest(userId)
         
         dispatch(setUserProfileActionCreator(data));
     }
 }
 
-export const getProfileStatusThunkCreator = (userId: string) => {
-    return async (dispatch: any) => {
+export const getProfileStatusThunkCreator = (userId: number): ThunkType => {
+    return async (dispatch) => {
         const data = await getProfilerStatusRequest(userId);
         
         dispatch(setProfileStatusActionCreator(data));
     }
 }
 
-export const setProfileStatusThunkCreator = (status: string) => {
-    return async (dispatch: any) => {
+export const setProfileStatusThunkCreator = (status: string): ThunkType => {
+    return async (dispatch) => {
         try {
             const data = await setProfileStatusRequest(status);
             
@@ -145,8 +152,8 @@ export const setProfileStatusThunkCreator = (status: string) => {
     }
 }
 
-export const savePhotosThunkCreator = (file: any) => {
-    return async (dispatch: any) => {
+export const savePhotosThunkCreator = (file: HTMLInputElement): ThunkType => {
+    return async (dispatch) => {
         const data = await setProfilePhotosRequest(file);
         
         if (data.resultCode === 0)
@@ -156,8 +163,8 @@ export const savePhotosThunkCreator = (file: any) => {
     }
 }
 
-export const saveProfileInfoThunkCreator = (profile: ProfileType, userId: string) => {
-    return async (dispatch: any) => {
+export const saveProfileInfoThunkCreator = (profile: ProfileType, userId: number): ThunkType => {
+    return async (dispatch) => {
         const data = await setProfileInfoRequest(profile);
         
         if (data.resultCode === 0)

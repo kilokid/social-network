@@ -14,7 +14,7 @@ const MyPosts = ({posts, onCreatePost, onDeletePost}) => {
         onDeletePost(id);
     }
 
-    const elements = posts.map(({text, likes, id}) => <Post key={id} text={text} likes={likes} onDelete={onDelete} id={id} />);
+    const elements = posts.map(({postText, likes, id}) => <Post key={id} text={postText} likes={likes} onDelete={onDelete} id={id} />);
 
     return (
         <>
