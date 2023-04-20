@@ -15,11 +15,13 @@ const Profile = memo(({profile, posts, onCreatePost, onDeletePost, setProfileSta
           saveProfileInfo={saveProfileInfo}
           userId={userId}
         />
-        <MyPosts
-          posts={posts}
-          onCreatePost={onCreatePost}
-          onDeletePost={onDeletePost}
-        />
+        {isOwner && 
+          <MyPosts
+            posts={posts}
+            onCreatePost={onCreatePost}
+            onDeletePost={onDeletePost}
+          />
+        }
       </div>
     );
 })

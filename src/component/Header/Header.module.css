@@ -48,3 +48,28 @@
 .login_block .login_btn:hover {
   background: black;
 }
+
+.logout {
+  display: flex;
+  align-items: center;
+}
+
+.logout > p {
+  font-size: 18px;
+  font-weight: 700;
+  margin-right: 12px;
+}
+
+.logout > button {
+  color: white;
+  background: #1D8BD8;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease-in-out;
+}
+
+.logout > button:hover {
+  background: black;
+}

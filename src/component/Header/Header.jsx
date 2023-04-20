@@ -13,7 +13,7 @@ const Header = ({login, isAuth, logoutUser}) => {
             </div>
             <div className={s.login_block}>
                 {isAuth ?
-                    <div>
+                    <div className={s.logout}>
                         <p>{login}</p>
                         <button onClick={logoutUser}>Logout</button>
                     </div> :
