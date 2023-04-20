@@ -1,11 +1,27 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setCurrentPageActionCreator, getUsersThunkCreator, followOnUserThunkCreator, unFollowOnUserThunkCreator } from '../../redux/usersReducer.tsx';
-import { getUsers, getPageSize, getCurrentPage, getIsFetching, getIsFollowingProgress, getTotalUsersCount } from '../../redux/userSelector';
+import { getUsers, getPageSize, getCurrentPage, getIsFetching, getIsFollowingProgress, getTotalUsersCount } from '../../redux/userSelector.tsx';
 
-import Users from './Users';
+import { AppStateType } from '../../redux/reduxStore';
+
+import Users from './Users.tsx';
 import Loader from '../Commons/Loader/Loader';
-import { get } from 'react-hook-form';
+
+type MapStatePropsType = {
+    
+}
+
+type DispatchPropsType = {
+
+}
+
+type OwnPropsType = {
+
+}
+
+type PropsType = MapStatePropsType & DispatchPropsType & OwnPropsType;
+
 
 const UsersApiContainer = (props) => {
     const getUsers = (currentPage) => {
@@ -40,7 +56,7 @@ const UsersApiContainer = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),

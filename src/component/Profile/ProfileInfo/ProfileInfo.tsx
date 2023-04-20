@@ -8,7 +8,7 @@ import { ProfileType } from '../../../types/types';
 
 import s from './ProfileInfo.module.css';
 
-type Props = {
+type PropsType = {
   profile: ProfileType,
   setStatus: () => void,
   status: string,
@@ -18,7 +18,7 @@ type Props = {
   userId: number
 }
 
-const ProfileInfo: React.FC<Props> = ({profile, setStatus, status, isOwner, savePhotos, saveProfileInfo, userId}) => {
+const ProfileInfo: React.FC<PropsType> = ({profile, setStatus, status, isOwner, savePhotos, saveProfileInfo, userId}) => {
   const [editMode, setEditMode] = useState(false);
 
   if (!profile) {
