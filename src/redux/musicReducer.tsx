@@ -47,7 +47,7 @@ const initialState: InitialStateType = {
     ]
 }
 
-const musicReducer = (state = initialState, action: any): InitialStateType => {
+const musicReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
         case PLAY_SONG:
             console.log('play');
@@ -57,6 +57,8 @@ const musicReducer = (state = initialState, action: any): InitialStateType => {
             return state;
     }
 }
+
+type ActionsTypes = PlaySongType | StopSongPlayingType;
 
 type PlaySongType = {
     type: typeof PLAY_SONG,
