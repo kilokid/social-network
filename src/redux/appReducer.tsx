@@ -1,4 +1,6 @@
+import { ThunkAction } from "redux-thunk";
 import { setUserAuthThunkCreator } from "./authReducer.tsx";
+import { AppStateType } from "./reduxStore";
 
 const SET_INITIAL_LOAD = 'SET-INITIAL-LOAD';
 
@@ -10,7 +12,7 @@ const initialState: InitialStateType = {
     initialLoad: false,
 }
 
-const authReducer = (state = initialState, action: any): InitialStateType => {
+const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case SET_INITIAL_LOAD: {
             return {
@@ -23,14 +25,18 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
     }
 }
 
+type ActionsTypes = SetInitialLoadType;
+
 type SetInitialLoadType = {
     type: typeof SET_INITIAL_LOAD,
 }
 
 export const setInitialLoadActionCreator = (): SetInitialLoadType => ({type: SET_INITIAL_LOAD});
 
-export const getAuthInfoThunkCreator = () => (dispatch: any) => {
-    const promiseRequset = dispatch(setUserAuthThunkCreator());
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
+
+export const getAuthInfoThunkCreator = (): ThunkType => async (dispatch) => {
+    const promiseRequset = await dispatch(setUserAuthThunkCreator());
 
     Promise.all([promiseRequset])
         .then(() => {

@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
 
-import { getUserRequest, followUserRequest, unfollowUserRequest } from "../api/api";
+import { getUserRequest, followUserRequest, unfollowUserRequest } from "../api/api.tsx";
 import { UserType} from "../types/types";
 
 import { AppStateType } from "./reduxStore";

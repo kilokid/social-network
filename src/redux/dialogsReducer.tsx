@@ -3,7 +3,8 @@ const SEND_NEW_MESSAGE = 'SEND-NEW-MESSAGE';
 type DialogsDataType = {
     id: string,
     name: string,
-    messages: Array<string>
+    messages: Array<string>,
+    newMessage: string
 }
 
 type InitialStateType = {
@@ -59,7 +60,7 @@ const initialState: InitialStateType = {
     newMessagesBody: '',
 };
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
         case SEND_NEW_MESSAGE: {
             return {
@@ -71,6 +72,8 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType => 
             return state;
     }
 }
+
+type ActionsTypes = SendMessageType;
 
 type SendMessageType = {
     type: typeof SEND_NEW_MESSAGE,

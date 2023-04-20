@@ -1,4 +1,6 @@
-import { getAuthInfoRequest, setLoginDataRequest, logoutRequest, getCaptchaUrlRequest } from "../api/api";
+import { ThunkAction } from "redux-thunk";
+import { getAuthInfoRequest, setLoginDataRequest, logoutRequest, getCaptchaUrlRequest } from "../api/api.tsx";
+import { AppStateType } from "./reduxStore";
 // import { setInitialLoadActionCreator } from "./appReducer";
 
 const SET_USER_AUTH_DATA = 'SET-USER-AUTH-DATA';
@@ -23,7 +25,14 @@ const initialState: InitialStateType = {
     url: null,
 }
 
-const authReducer = (state = initialState, action: any): InitialStateType => {
+type DataRequestType = {
+    email: string | null,
+    password: string | null,
+    rememberMe: boolean | null,
+    captcha: string | null,
+}
+
+const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case SET_USER_AUTH_DATA: {
             return {
@@ -56,6 +65,8 @@ type SetUserAuthDataPayloadType = {
     someErrors: string | null,
 }
 
+type ActionsTypes = SetSomeErrorsType | SetUserAuthDataType | SetCaptchaUrlType;
+
 type SetUserAuthDataType = {
     type: typeof SET_USER_AUTH_DATA,
     data: SetUserAuthDataPayloadType
@@ -79,7 +90,9 @@ type SetCaptchaUrlType = {
 
 const setCaptchaUrlActionCreator = (url: string): SetCaptchaUrlType => ({type: SET_CAPTCHA_URL, url});
 
-export const setUserAuthThunkCreator = () => async (dispatch: any) => {
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
+
+export const setUserAuthThunkCreator = (): ThunkType => async (dispatch) => {
     const data = await getAuthInfoRequest();
 
     if (data.resultCode === 0) {
@@ -89,7 +102,7 @@ export const setUserAuthThunkCreator = () => async (dispatch: any) => {
     }
 }
 
-export const setLoginDataThunkCreator = (dataRequest: any) => async (dispatch: any) => {
+export const setLoginDataThunkCreator = (dataRequest: DataRequestType): ThunkType => async (dispatch) => {
     const data = await setLoginDataRequest(dataRequest);
 
     if (data.resultCode === 0) {
@@ -105,13 +118,13 @@ export const setLoginDataThunkCreator = (dataRequest: any) => async (dispatch: a
     }
 }
 
-export const getCaptchaUrlThunkCreator = () => async (dispatch: any) => {
+export const getCaptchaUrlThunkCreator = (): ThunkType => async (dispatch) => {
     const data = await getCaptchaUrlRequest();
 
     dispatch(setCaptchaUrlActionCreator(data));
 }
 
-export const logoutThunkCreator = () => async (dispatch: any) => {
+export const logoutThunkCreator = (): ThunkType => async (dispatch) => {
     const data = await logoutRequest();
     
     if (data.resultCode === 0) {
