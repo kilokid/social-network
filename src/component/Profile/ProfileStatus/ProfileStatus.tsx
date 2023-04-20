@@ -1,8 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 
 import s from './ProfileStatus.module.css';
 
-const ProfileStatus = ({storeStatus, updateStoreStatus}) => {
+type PropsType = {
+    storeStatus: string,
+    updateStoreStatus: () => void,
+}
+
+type StateType = {
+
+}
+
+const ProfileStatus: PropsType = ({storeStatus, updateStoreStatus}) => {
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(storeStatus);
 
@@ -13,7 +22,7 @@ const ProfileStatus = ({storeStatus, updateStoreStatus}) => {
         updateStoreStatus(status);
     };
 
-    const onChangeStatus = (e) => {
+    const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value);
     }
 

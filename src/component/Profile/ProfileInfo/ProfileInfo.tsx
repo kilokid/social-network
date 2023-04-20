@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import Loader from '../../Commons/Loader/Loader';
-import ProfileStatus from '../ProfileStatus/ProfileStatus';
+import ProfileStatus from '../ProfileStatus/ProfileStatus.tsx';
 import ProfileDataForm from '../ProfileDataForm/ProfileDataForm';
 
 import { ProfileType } from '../../../types/types';
