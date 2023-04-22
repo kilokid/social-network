@@ -16,21 +16,27 @@
 .posts_form input {
   width: 80%;
   border: none;
-  background: lightgray;
-  padding: 20px 20px 30px 20px;
+  background: #F8F9FA;
+  padding: 20px;
+  color: black;
   margin-bottom: 12px;
+  border: 1px solid black;
+  border-radius: 6px;
 }
 
 .posts_form button {
+  color: white;
+  background: #1D8BD8;
   width: fit-content;
-  background: lightgreen;
-  border: none;
-  padding: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
   cursor: pointer;
+  border: none;
+  transition: background 0.3s ease-in-out;
 }
 
 .posts_form button:hover {
-  color: white;
+  background: black;
 }
 
 .posts {
