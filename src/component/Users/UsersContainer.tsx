@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setCurrentPageActionCreator, getUsersThunkCreator, followOnUserThunkCreator, unFollowOnUserThunkCreator } from '../../redux/usersReducer.tsx';
+import { actions, getUsersThunkCreator, followOnUserThunkCreator, unFollowOnUserThunkCreator } from '../../redux/usersReducer.tsx';
 import { getUsers, getPageSize, getCurrentPage, getIsFetching, getIsFollowingProgress, getTotalUsersCount } from '../../redux/userSelector.tsx';
 
 import { AppStateType } from '../../redux/reduxStore';
@@ -70,7 +70,7 @@ const mapStateToProps = (state: AppStateType) => {
 const UsersContainer = connect(mapStateToProps, {
     followUser: followOnUserThunkCreator,
     unfollowUser: unFollowOnUserThunkCreator,
-    setCurrentPage: setCurrentPageActionCreator,
+    setCurrentPage: actions.setCurrentPageActionCreator,
     getUsersRequest: getUsersThunkCreator,
 })(UsersApiContainer);
 

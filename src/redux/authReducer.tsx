@@ -1,12 +1,8 @@
 import { ThunkAction } from "redux-thunk";
 import { getAuthInfoRequest, setLoginDataRequest, logoutRequest, getCaptchaUrlRequest } from "../api/api.tsx";
-import { AppStateType } from "./reduxStore";
+import { AppStateType, InferActionsTypes } from "./reduxStore";
 import { ResultCodesEnum } from "../types/types.tsx";
 // import { setInitialLoadActionCreator } from "./appReducer";
-
-const SET_USER_AUTH_DATA = 'SET-USER-AUTH-DATA';
-const SET_SOME_ERRORS = 'SET-SOME-ERRORS';
-const SET_CAPTCHA_URL = 'SET-CAPTCHA-URL';
 
 type InitialStateType = {
     userId: null | number,
@@ -35,19 +31,19 @@ type DataRequestType = {
 
 const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case SET_USER_AUTH_DATA: {
+        case 'SET_USER_AUTH_DATA': {
             return {
                 ...state,
                 ...action.data,
             }
         }
-        case SET_SOME_ERRORS: {
+        case 'SET_SOME_ERRORS': {
             return {
                 ...state,
                 someErrors: action.errorMessage,
             }
         }
-        case SET_CAPTCHA_URL: {
+        case 'SET_CAPTCHA_URL': {
             return {
                 ...state,
                 ...action.url,
@@ -66,30 +62,13 @@ type SetUserAuthDataPayloadType = {
     someErrors: string | null,
 }
 
-type ActionsTypes = SetSomeErrorsType | SetUserAuthDataType | SetCaptchaUrlType;
+type ActionsTypes = InferActionsTypes<typeof actions>;
 
-type SetUserAuthDataType = {
-    type: typeof SET_USER_AUTH_DATA,
-    data: SetUserAuthDataPayloadType
+export const actions = {
+    setUserAuthDataActionCreator: (userId: number | null, login: string | null, email: string | null, isAuth: boolean, someErrors: string | null) => ({type: 'SET_USER_AUTH_DATA', data: {userId, login, email, isAuth, someErrors}} as const),
+    setSomeErrorsActionCreator: (errorMessage: string) => ({type: 'SET_SOME_ERRORS', errorMessage} as const),
+    setCaptchaUrlActionCreator: (url: string) => ({type: 'SET_CAPTCHA_URL', url} as const),
 }
-
-export const setUserAuthDataActionCreator = (userId: number | null, login: string | null, email: string | null, isAuth: boolean, someErrors: string | null): SetUserAuthDataType => ({
-    type: SET_USER_AUTH_DATA, data: {userId, login, email, isAuth, someErrors}
-});
-
-type SetSomeErrorsType = {
-    type: typeof SET_SOME_ERRORS,
-    errorMessage: string
-}
-
-const setSomeErrorsActionCreator = (errorMessage: string): SetSomeErrorsType => ({type: SET_SOME_ERRORS, errorMessage});
-
-type SetCaptchaUrlType = {
-    type: typeof SET_CAPTCHA_URL,
-    url: string
-}
-
-const setCaptchaUrlActionCreator = (url: string): SetCaptchaUrlType => ({type: SET_CAPTCHA_URL, url});
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
 
@@ -99,7 +78,7 @@ export const setUserAuthThunkCreator = (): ThunkType => async (dispatch) => {
     if (data.resultCode === ResultCodesEnum.Success) {
         const {id, login, email} = data.data;
 
-        dispatch(setUserAuthDataActionCreator(id, login, email, true, ''));
+        dispatch(actions.setUserAuthDataActionCreator(id, login, email, true, ''));
     }
 }
 
@@ -115,21 +94,21 @@ export const setLoginDataThunkCreator = (dataRequest: DataRequestType): ThunkTyp
             dispatch(getCaptchaUrlThunkCreator());
         }
 
-        dispatch(setSomeErrorsActionCreator(data.messages[0]));
+        dispatch(actions.setSomeErrorsActionCreator(data.messages[0]));
     }
 }
 
 export const getCaptchaUrlThunkCreator = (): ThunkType => async (dispatch) => {
     const data = await getCaptchaUrlRequest();
 
-    dispatch(setCaptchaUrlActionCreator(data));
+    dispatch(actions.setCaptchaUrlActionCreator(data));
 }
 
 export const logoutThunkCreator = (): ThunkType => async (dispatch) => {
     const data = await logoutRequest();
     
     if (data.resultCode === ResultCodesEnum.Success) {
-        dispatch(setUserAuthDataActionCreator(null, null, null, false, ''));
+        dispatch(actions.setUserAuthDataActionCreator(null, null, null, false, ''));
     }
 }
 

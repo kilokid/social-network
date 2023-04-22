@@ -1,4 +1,4 @@
-import { sendNewMessageActionCreator } from '../../redux/dialogsReducer.tsx';
+import { actions } from '../../redux/dialogsReducer.tsx';
 import { connect } from 'react-redux';
 
 import Dialogs from './Dialogs';
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, {
-        sendMessage: sendNewMessageActionCreator,
+        sendMessage: actions.sendNewMessageActionCreator,
     }),
     WithAuthRedirect,
 )(Dialogs);

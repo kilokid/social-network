@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { playSongActionCreator, stopPlayingSongActionCreator } from "../../redux/musicReducer.tsx";
+import { actions } from "../../redux/musicReducer.tsx";
 
 import Music from "./Music";
 
@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 }
 
 const MusicContainer = connect(mapStateToProps, {
-    playSong: playSongActionCreator,
-    stopSong: stopPlayingSongActionCreator
+    playSong: actions.playSongActionCreator,
+    stopSong: actions.stopPlayingSongActionCreator
 })(Music);
 
 export default MusicContainer;

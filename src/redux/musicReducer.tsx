@@ -1,5 +1,4 @@
-const PLAY_SONG = 'PLAY-SONG';
-const STOP_PLAYING = 'STOP-PLAYING';
+import { InferActionsTypes } from "./reduxStore";
 
 type MusicsType = {
     id: number,
@@ -49,29 +48,20 @@ const initialState: InitialStateType = {
 
 const musicReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
-        case PLAY_SONG:
+        case 'PLAY_SONG':
             console.log('play');
-        case STOP_PLAYING:
+        case 'STOP_PLAYING':
             console.timeLog('stop')
         default:
             return state;
     }
 }
 
-type ActionsTypes = PlaySongType | StopSongPlayingType;
+type ActionsTypes = InferActionsTypes<typeof actions>;
 
-type PlaySongType = {
-    type: typeof PLAY_SONG,
-    musicId: string
+export const actions = {
+    playSongActionCreator: (musicId: string) => ({type: 'PLAY_SONG', musicId}),
+    stopPlayingSongActionCreator: (musicId: string) => ({type: 'STOP_PLAYING', musicId}),
 }
-
-export const playSongActionCreator = (musicId: string): PlaySongType => ({type: PLAY_SONG, musicId});
-
-type StopSongPlayingType = {
-    type: typeof STOP_PLAYING,
-    musicId: string
-}
-
-export const stopPlayingSongActionCreator = (musicId: string): StopSongPlayingType => ({type: STOP_PLAYING, musicId});
 
 export default musicReducer;
