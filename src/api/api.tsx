@@ -1,6 +1,6 @@
 import axios from "axios"
 
-import { UserType, ProfileType, PhotosType } from "../types/types"
+import { UserType, ProfileType, PhotosType, ResultCodesEnum} from "../types/types"
 
 const request = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -24,7 +24,7 @@ export const getUserRequest = (currentPage: number, pageSize: number) => {
 }
 
 type FollowType = {
-    resultCode: number,
+    resultCode: ResultCodesEnum,
     messages: Array<string>,
     data: any
 }
@@ -56,7 +56,7 @@ type MeResponseType = {
         email: string,
         login: string
     },
-    resultCode: number,
+    resultCode: ResultCodesEnum,
     messages: Array<string>,
 }
 
@@ -82,7 +82,7 @@ export const setProfileStatusRequest = (status: string) => {
 }
 
 type LoginResponseType = {
-    resultCode: number
+    resultCode: ResultCodesEnum
     messages: Array<string>,
     data: {
       userId: number
@@ -109,7 +109,7 @@ export const logoutRequest = () => {
 }
 
 type ProfilePhotoResponseType = {
-    resultCode: number,
+    resultCode: ResultCodesEnum,
     messages: Array<string>,
     data: PhotosType
 }

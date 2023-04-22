@@ -1,6 +1,7 @@
 import { ThunkAction } from "redux-thunk";
 import { getAuthInfoRequest, setLoginDataRequest, logoutRequest, getCaptchaUrlRequest } from "../api/api.tsx";
 import { AppStateType } from "./reduxStore";
+import { ResultCodesEnum } from "../types/types.tsx";
 // import { setInitialLoadActionCreator } from "./appReducer";
 
 const SET_USER_AUTH_DATA = 'SET-USER-AUTH-DATA';
@@ -94,8 +95,8 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 export const setUserAuthThunkCreator = (): ThunkType => async (dispatch) => {
     const data = await getAuthInfoRequest();
-
-    if (data.resultCode === 0) {
+    
+    if (data.resultCode === ResultCodesEnum.Success) {
         const {id, login, email} = data.data;
 
         dispatch(setUserAuthDataActionCreator(id, login, email, true, ''));
@@ -105,12 +106,12 @@ export const setUserAuthThunkCreator = (): ThunkType => async (dispatch) => {
 export const setLoginDataThunkCreator = (dataRequest: DataRequestType): ThunkType => async (dispatch) => {
     const data = await setLoginDataRequest(dataRequest);
 
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodesEnum.Success) {
         dispatch(setUserAuthThunkCreator());
     }
     else
     {
-        if (data.resultCode === 10) {
+        if (data.resultCode === ResultCodesEnum.CaptchaIsRequired) {
             dispatch(getCaptchaUrlThunkCreator());
         }
 
@@ -127,7 +128,7 @@ export const getCaptchaUrlThunkCreator = (): ThunkType => async (dispatch) => {
 export const logoutThunkCreator = (): ThunkType => async (dispatch) => {
     const data = await logoutRequest();
     
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodesEnum.Success) {
         dispatch(setUserAuthDataActionCreator(null, null, null, false, ''));
     }
 }
