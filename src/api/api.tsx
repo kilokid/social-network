@@ -1,62 +1,96 @@
 import axios from "axios"
 
+import { UserType, ProfileType, PhotosType } from "../types/types"
+
 const request = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
-    'API-KEY': '9675b145-b3c3-4bd1-be1b-e370f493e960',
+    headers: {
+        'API-KEY': '9675b145-b3c3-4bd1-be1b-e370f493e960',
+    }
 })
 
-export const getUserRequest = (currentPage, pageSize) => {
-    return request.get(`users?page=${currentPage}&count=${pageSize}`)
+type UsersType = {
+    items: Array<UserType>,
+    totalCount: number,
+    error: string
+}
+
+export const getUserRequest = (currentPage: number, pageSize: number) => {
+    return request.get<UsersType>(`users?page=${currentPage}&count=${pageSize}`)
         .then(response => {
             return response.data;
         })
 }
 
-export const followUserRequest = (userId) => {
-    return request.post(`follow/${userId}`)
+type FollowType = {
+    resultCode: number,
+    messages: Array<string>,
+    data: any
+}
+
+export const followUserRequest = (userId: number) => {
+    return request.post<FollowType>(`follow/${userId}`)
         .then(response => {
             return response.data;
         })
 }
 
-export const unfollowUserRequest = (userId) => {
-    return request.delete(`follow/${userId}`)
+export const unfollowUserRequest = (userId: number) => {
+    return request.delete<FollowType>(`follow/${userId}`)
         .then(response => {
             return response.data;
         })
 }
 
-export const getUserProfileRequest = (userId) => {
-    return request.get(`profile/${userId}`)
+export const getUserProfileRequest = (userId: number) => {
+    return request.get<ProfileType>(`profile/${userId}`)
         .then(response => {
             return response.data;
         })
+}
+
+type MeResponseType = {
+    data: {
+        id: number,
+        email: string,
+        login: string
+    },
+    resultCode: number,
+    messages: Array<string>,
 }
 
 export const getAuthInfoRequest = () => {
-    return request.get('auth/me')
+    return request.get<MeResponseType>('auth/me')
         .then(response => {
             return response.data;
         })
 }
 
-export const getProfilerStatusRequest = (userId) => {
+export const getProfilerStatusRequest = (userId: number) => {
     return request.get(`profile/status/${userId}`)
     .then(response => {
         return response.data;
     })
 }
 
-export const setProfileStatusRequest = (status) => {
-    return request.put(`profile/status`, {status})
+export const setProfileStatusRequest = (status: string) => {
+    return request.put<FollowType>(`profile/status`, {status})
     .then(response => {
         return response.data;
     })
 }
 
+type LoginResponseType = {
+    resultCode: number
+    messages: Array<string>,
+    data: {
+      userId: number
+    }
+}
+
 export const setLoginDataRequest = ({email, password, rememberMe, captcha = null}) => {
-    return request.post('auth/login', {
+    return request.post<LoginResponseType>('auth/login', {
         email,
         password,
         rememberMe,
@@ -68,17 +102,23 @@ export const setLoginDataRequest = ({email, password, rememberMe, captcha = null
 }
 
 export const logoutRequest = () => {
-    return request.delete('auth/login')
+    return request.delete<FollowType>('auth/login')
     .then(response => {
         return response.data;
     }) 
+}
+
+type ProfilePhotoResponseType = {
+    resultCode: number,
+    messages: Array<string>,
+    data: PhotosType
 }
 
 export const setProfilePhotosRequest = (file) => {
     const formData = new FormData();
     formData.append('image', file);
 
-    return request.put('profile/photo', formData, {
+    return request.put<ProfilePhotoResponseType>('profile/photo', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
@@ -88,15 +128,19 @@ export const setProfilePhotosRequest = (file) => {
     }) 
 }
 
-export const setProfileInfoRequest = (profile) => {
-    return request.put('profile', profile)
+export const setProfileInfoRequest = (profile: ProfileType) => {
+    return request.put<FollowType>('profile', profile)
     .then(response => {
         return response.data;
     }) 
 }
 
+type CaptchaType = {
+    url: string,
+}
+
 export const getCaptchaUrlRequest = () => {
-    return request.get('security/get-captcha-url')
+    return request.get<CaptchaType>('security/get-captcha-url')
     .then(response => {
         return response.data;
     }) 
