@@ -1,4 +1,4 @@
-import profileReducer, { addPostActionCreator, deletePostActionCreator } from "./profileReducer";
+import profileReducer, { addPostActionCreator, deletePostActionCreator } from "./profileReducer.tsx";
 
 const state = {
     postsData: [

@@ -1,20 +1,6 @@
 import { InferActionsTypes } from "./reduxStore";
 
-type MusicsType = {
-    id: number,
-    title: string,
-    author: string,
-    time: string,
-    cover: string,
-    play: boolean,
-    added: boolean,
-}
-
-type InitialStateType = {
-    musics: MusicsType[]
-}
-
-const initialState: InitialStateType = {
+const initialState = {
     musics: [
         {
             id: 0,
@@ -45,6 +31,8 @@ const initialState: InitialStateType = {
         },
     ]
 }
+
+type InitialStateType = typeof initialState;
 
 const musicReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {

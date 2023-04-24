@@ -6,14 +6,7 @@ import { AppStateType, InferActionsTypes } from './reduxStore';
 
 let idNumber = 3;
 
-type InitialStateType = {
-    postsData: Array<PostDataType>,
-    profile: null | ProfileType,
-    status: string,
-    postText?: string | null
-}
-
-const initialState: InitialStateType = {
+const initialState = {
     postsData: [
         {
             id: 0,
@@ -34,6 +27,8 @@ const initialState: InitialStateType = {
     profile: null,
     status: '',
 };
+
+type InitialStateType = typeof initialState;
 
 const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
