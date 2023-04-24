@@ -2,18 +2,8 @@ import { ThunkAction } from "redux-thunk";
 import { getAuthInfoRequest, setLoginDataRequest, logoutRequest, getCaptchaUrlRequest } from "../api/api.tsx";
 import { AppStateType, InferActionsTypes } from "./reduxStore";
 import { ResultCodesEnum } from "../types/types.tsx";
-// import { setInitialLoadActionCreator } from "./appReducer";
 
-type InitialStateType = {
-    userId: null | number,
-    login: null | string,
-    email: null | string,
-    isAuth: boolean,
-    someErrors: string,
-    url: null | string
-}
-
-const initialState: InitialStateType = {
+const initialState = {
     userId: null,
     login: null,
     email: null,
@@ -21,6 +11,8 @@ const initialState: InitialStateType = {
     someErrors: '',
     url: null,
 }
+
+type InitialStateType = typeof initialState;
 
 type DataRequestType = {
     email: string | null,
@@ -31,12 +23,11 @@ type DataRequestType = {
 
 const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case 'SET_USER_AUTH_DATA': {
+        case 'SET_USER_AUTH_DATA':
             return {
                 ...state,
-                ...action.data,
+                ...action.data as object
             }
-        }
         case 'SET_SOME_ERRORS': {
             return {
                 ...state,
@@ -46,20 +37,12 @@ const authReducer = (state = initialState, action: ActionsTypes): InitialStateTy
         case 'SET_CAPTCHA_URL': {
             return {
                 ...state,
-                ...action.url,
+                ...action.url as String,
             }
         }
         default:
             return state
     }
-}
-
-type SetUserAuthDataPayloadType = {
-    userId: number | null,
-    login: string | null,
-    email: string | null,
-    isAuth: boolean,
-    someErrors: string | null,
 }
 
 type ActionsTypes = InferActionsTypes<typeof actions>;

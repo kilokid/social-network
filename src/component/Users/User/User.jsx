@@ -19,7 +19,7 @@ const User = ({user, unfollowUser, followUser, isFollowingProgress}) => {
                 <NavLink to={`/profile/${user.id}`} className={s.user_link}>
                     <span className={s.ava}>
                         {user.photos.small &&
-                            <img src={user.photos.small} alt={user.name} />
+                            <img className={s.ava} src={user.photos.small} alt={user.name} />
                         }
                     </span>
                 </NavLink>

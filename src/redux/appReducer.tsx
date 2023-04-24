@@ -2,13 +2,11 @@ import { ThunkAction } from "redux-thunk";
 import { setUserAuthThunkCreator } from "./authReducer.tsx";
 import { AppStateType, InferActionsTypes } from "./reduxStore";
 
-type InitialStateType = {
-    initialLoad: Boolean,
-}
-
-const initialState: InitialStateType = {
+const initialState = {
     initialLoad: false,
 }
+
+type InitialStateType = typeof initialState;
 
 const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {

@@ -13,7 +13,7 @@ const request = axios.create({
 type UsersType = {
     items: Array<UserType>,
     totalCount: number,
-    error: string
+    error: string | null,
 }
 
 export const getUserRequest = (currentPage: number, pageSize: number) => {
