@@ -6,7 +6,14 @@ import { AppStateType, InferActionsTypes } from './reduxStore';
 
 let idNumber = 3;
 
-const initialState = {
+type InitialStateType = {
+    postsData: Array<PostDataType>,
+    profile: null | ProfileType,
+    status: string,
+    postText?: string | null
+}
+
+const initialState: InitialStateType = {
     postsData: [
         {
             id: 0,
@@ -28,8 +35,6 @@ const initialState = {
     status: '',
 };
 
-type InitialStateType = typeof initialState;
-
 const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
         case 'ADD_POST': {
@@ -44,12 +49,11 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
             return {
                 ...state,
                 postsData: [...state.postsData, newPosts],
-                postText: '',
             }
         }
         case 'SET_USER_PROFILE': {
-        return {
-            ...state,
+            return {
+                ...state,
                 profile: action.userProfile,
             }
         }
