@@ -6,7 +6,7 @@ const User = ({user, unfollowUser, followUser, isFollowingProgress}) => {
     const follow = (userID) => {
         followUser(userID);
     }
-
+    console.log(user);
     const unfollow = (userID) => {
         unfollowUser(userID);
     }
@@ -17,7 +17,11 @@ const User = ({user, unfollowUser, followUser, isFollowingProgress}) => {
         <li className={s.user}>
             <div className={s.avatar_block}>
                 <NavLink to={`/profile/${user.id}`} className={s.user_link}>
-                    <span className={s.ava}></span>
+                    <span className={s.ava}>
+                        {user.photos.small &&
+                            <img src={user.photos.small} alt={user.name} />
+                        }
+                    </span>
                 </NavLink>
                 {user.followed ?
                     <button
