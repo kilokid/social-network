@@ -11,7 +11,7 @@ const ProfileContainer = lazy(() => import('./component/Profile/ProfileContainer
 const DialogsContainer = lazy(() => import('./component/Dialogs/DialogsContainer.tsx'));
 const UsersContainer = lazy(() => import('./component/Users/UsersContainer.tsx'));
 const MusicContainer = lazy(() => import('./component/Music/MusicContainer'));
-const LoginContainer = lazy(() => import('./component/Login/LoginContainer'));
+const LoginContainer = lazy(() => import('./component/Login/LoginContainer.tsx'));
 
 const App = ({setInitialLoad, initialLoad}) => {
   useEffect(() => {

@@ -1,8 +1,15 @@
+import { FC } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import s from './Dialog.module.css';
 
-const Dialog = ({name, message, id}) => {
+type PropsType = {
+    name: string,
+    message: string,
+    id: number
+}
+
+const Dialog: FC<PropsType> = ({name, message, id}) => {
     return (
         <li className={s.dialog}>
             <Link to={`/dialogs/${id}`}>

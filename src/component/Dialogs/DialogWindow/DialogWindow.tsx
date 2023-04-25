@@ -2,11 +2,16 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import s from './DialogWindow.module.css';
+import { FC } from 'react';
 
-const DialogWindow = ({sendMessage}) => {
+type PropsType = {
+    sendMessage: (textMessage: string) => void,
+}
+
+const DialogWindow: FC<PropsType> = ({sendMessage}) => {
     const {dialogId} = useParams();
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: string) => {
         sendMessage(data)
     }
 

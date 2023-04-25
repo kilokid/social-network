@@ -13,7 +13,9 @@ const initialState = [
     }
 ];
 
-const friendsReducer = (state = initialState, action: any) => {
+export type InitialStateType = typeof initialState;
+
+const friendsReducer = (state = initialState, action: any): InitialStateType => {
     return state;
 }
 
