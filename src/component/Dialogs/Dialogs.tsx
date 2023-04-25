@@ -2,10 +2,21 @@ import Dialog from './Dialog/Dialog';
 import DialogWindow from './DialogWindow/DialogWindow';
 
 import s from './Dialogs.module.css';
-import { Navigate } from 'react-router-dom';
+import { FC } from 'react';
 
-const Dialogs = ({messages, sendMessage, isAuth}) => {
-    const onSendMessage = (data) => {
+type MessagesType = {
+    id: number,
+    name: string,
+    messages: Array<string>,
+}
+
+type PropsType = {
+    messages: Array<MessagesType>,
+    sendMessage: (messageText: string) => void,
+};
+
+const Dialogs: FC<PropsType> = ({messages, sendMessage}) => {
+    const onSendMessage = (data: string) => {
         sendMessage(data)
     }
 

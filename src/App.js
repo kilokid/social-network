@@ -8,7 +8,7 @@ import Loader from './component/Commons/Loader/Loader';
 import './App.css';
 
 const ProfileContainer = lazy(() => import('./component/Profile/ProfileContainer'));
-const DialogsContainer = lazy(() => import('./component/Dialogs/DialogsContainer'));
+const DialogsContainer = lazy(() => import('./component/Dialogs/DialogsContainer.tsx'));
 const UsersContainer = lazy(() => import('./component/Users/UsersContainer.tsx'));
 const MusicContainer = lazy(() => import('./component/Music/MusicContainer'));
 const LoginContainer = lazy(() => import('./component/Login/LoginContainer'));

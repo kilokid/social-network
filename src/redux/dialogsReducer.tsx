@@ -48,7 +48,7 @@ const initialState = {
     newMessagesBody: '',
 };
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
