@@ -4,7 +4,7 @@ import Post from './Post/Post';
 
 import s from './MyPosts.module.css';
 
-const MyPosts = ({posts, onCreatePost, onDeletePost}) => {
+const MyPosts = ({profile, posts, onCreatePost, onDeletePost}) => {
 
     const onSubmit = (data) => {
         onCreatePost(data);
@@ -14,7 +14,7 @@ const MyPosts = ({posts, onCreatePost, onDeletePost}) => {
         onDeletePost(id);
     }
 
-    const elements = posts.map(({postText, likes, id}) => <Post key={id} text={postText} likes={likes} onDelete={onDelete} id={id} />);
+    const elements = posts.map(({postText, likes, id}) => <Post key={id} ava={profile?.photos.small} text={postText} likes={likes} onDelete={onDelete} id={id} />);
 
     return (
         <>

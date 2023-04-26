@@ -44,9 +44,15 @@ const ProfileInfo: React.FC<PropsType> = ({profile, setStatus, status, isOwner, 
         <img src='https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg' />
       </div>
       <div className={s.main_info}>
-        <img src={profile.photos.large ? profile.photos.large : withOutAvatar} alt={profile.fullName} />
-        {/* {isOwner && <input type="file" onChange={onSaveNewAvatarPhoto} />} */}
-        <div>
+        <picture>
+          <img src={profile.photos.large ? profile.photos.large : withOutAvatar} alt={profile.fullName} />
+          {isOwner && <input className={s.change_input} type="file" onChange={onSaveNewAvatarPhoto} />}
+        </picture>
+        <div className={s.main_info_profile}>
+          <h3>{profile.fullName}</h3>
+          <ProfileStatus updateStoreStatus={setStatus} storeStatus={status} isOwner={isOwner} />
+        </div>
+        <div className={s.contacts}>
           {editMode ? <ProfileDataForm profile={profile} onSubmit={onSubmit} /> : <ProfileData editProfileInfo={() => setEditMode(true)} profile={profile} setStatus={setStatus} status={status} />}
         </div>
       </div>
@@ -54,12 +60,10 @@ const ProfileInfo: React.FC<PropsType> = ({profile, setStatus, status, isOwner, 
   );
 }
 
-const ProfileData = ({profile, setStatus, status, editProfileInfo}) => {
+const ProfileData = ({profile, editProfileInfo}) => {
   return (
     <>
-      <h3>{profile.fullName}</h3>
         <ul>
-          <ProfileStatus updateStoreStatus={setStatus} storeStatus={status} />
           <li>About me: {profile.aboutMe}</li>
           { profile.lookingForAJob && <li>Looking for a job</li>}
           {profile.lookingForAJob && <li>Job Description: {profile.lookingForAJobDescription}</li>}

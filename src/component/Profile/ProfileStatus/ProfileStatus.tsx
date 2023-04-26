@@ -11,7 +11,7 @@ type StateType = {
 
 }
 
-const ProfileStatus: PropsType = ({storeStatus, updateStoreStatus}) => {
+const ProfileStatus: PropsType = ({storeStatus, updateStoreStatus, isOwner}) => {
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(storeStatus);
 
@@ -33,7 +33,7 @@ const ProfileStatus: PropsType = ({storeStatus, updateStoreStatus}) => {
     return (
         <li className={s.status_wrapper}>
             {!editMode ?
-                <span onClick={activeEditMode}>{storeStatus ? storeStatus : 'Set your status'}</span> :
+                <span onClick={isOwner ? activeEditMode : null}>{storeStatus ? storeStatus : isOwner ? 'Set your status' : 'No status'}</span> :
                 <input onChange={onChangeStatus} autoFocus onBlur={disableEditMode} value={status} />
             }
         </li>

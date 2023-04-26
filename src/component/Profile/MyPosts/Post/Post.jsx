@@ -1,9 +1,9 @@
 import s from './Post.module.css';
 
-const Post = ({text, likes, id, onDelete}) => {
+const Post = ({ava, text, likes, id, onDelete}) => {
     return (
         <li className={s.post}>
-            <span></span>
+            <img src={ava} alt={id} />
             <div>
                 <p>{text}</p>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Ei-like.svg/1200px-Ei-like.svg.png" />
