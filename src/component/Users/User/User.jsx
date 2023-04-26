@@ -6,7 +6,7 @@ const User = ({user, unfollowUser, followUser, isFollowingProgress}) => {
     const follow = (userID) => {
         followUser(userID);
     }
-    console.log(user);
+    
     const unfollow = (userID) => {
         unfollowUser(userID);
     }
