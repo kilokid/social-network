@@ -9,23 +9,15 @@
 
 .main_info {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   margin-top: -44px;
   margin-left: 22px;
 }
 
-.main_info > img {
+.main_info > picture > img {
   width: 160px;
   height: 160px;
-  margin-right: 24px;
   border-radius: 8px;
-}
-
-.main_info h3 {
-  margin-bottom: 14px;
-  font-size: 24px;
-  margin-top: 12px;
-  font-weight: 700;
 }
 
 .main_info ul > li {
@@ -40,4 +32,40 @@
 .main_info ul > li a:hover {
   color: gray;
   border-color: gray;
+}
+
+.main_info > picture {
+  position: relative;
+  width: fit-content;
+  height: 160px;
+}
+
+.change_input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+  font-size: 0;
+  border: none;
+  opacity: 0;
+  background: initial;
+}
+
+.main_info_profile {
+  margin-top: 44px;
+  margin-left: 24px;
+}
+
+.main_info_profile h3 {
+  margin-bottom: 14px;
+  font-size: 24px;
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.contacts {
+  width: 100%;
+  margin-top: 18px;
 }

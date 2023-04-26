@@ -1,10 +1,17 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 
 import s from './Login.module.css';
 
-const Login = ({requestLoginData, errorMessage, isAuth, captchaUrl}) => {
+type PropsType = {
+    requestLoginData: (loginData: object) => void,
+    errorMessage: string,
+    isAuth: boolean,
+    captchaUrl: string,
+}
+
+const Login: FC<PropsType> = ({requestLoginData, errorMessage, isAuth, captchaUrl}) => {
     const onSubmit = (data) => {
         requestLoginData(data);
     }

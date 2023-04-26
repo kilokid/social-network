@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 
 import { setLoginDataThunkCreator } from "../../redux/authReducer.tsx";
+import { AppStateType } from '../../redux/reduxStore';
 
-import Login from "./Login";
+import Login from "./Login.tsx";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     isAuth: state.auth.isAuth,
     errorMessage: state.auth.someErrors,
     captchaUrl: state.auth.url,
