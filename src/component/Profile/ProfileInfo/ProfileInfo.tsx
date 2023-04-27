@@ -39,9 +39,11 @@ const ProfileInfo: React.FC<PropsType> = ({profile, setStatus, status, isOwner, 
   const withOutAvatar =  'https://static.prinseps.com/media/uploads/cryptopunk6278.png';
 
   return (
+      <>
+      {editMode ? <ProfileDataForm profile={profile} onSubmit={onSubmit} /> :
       <div className={s.content}>
       <div className={s.hero_block}>
-        <img src='https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg' />
+        {/* <img src='https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg' /> */}
       </div>
       <div className={s.main_info}>
         <picture>
@@ -53,10 +55,12 @@ const ProfileInfo: React.FC<PropsType> = ({profile, setStatus, status, isOwner, 
           <ProfileStatus updateStoreStatus={setStatus} storeStatus={status} isOwner={isOwner} />
         </div>
         <div className={s.contacts}>
-          {editMode ? <ProfileDataForm profile={profile} onSubmit={onSubmit} /> : <ProfileData editProfileInfo={() => setEditMode(true)} profile={profile} setStatus={setStatus} status={status} />}
+          <ProfileData editProfileInfo={() => setEditMode(true)} profile={profile} />
         </div>
       </div>
     </div>
+    }
+    </>
   );
 }
 
@@ -68,10 +72,10 @@ const ProfileData = ({profile, editProfileInfo}) => {
           { profile.lookingForAJob && <li>Looking for a job</li>}
           {profile.lookingForAJob && <li>Job Description: {profile.lookingForAJobDescription}</li>}
           {Object.keys(profile.contacts).map(key => {
-            return <li key={key}>{key}: {profile.contacts[key]}</li>
+            if (profile.contacts[key]) return <li key={key}>{key}: {profile.contacts[key]}</li>;
           })}
         </ul>
-        <button onClick={editProfileInfo}>Edit</button>
+        <button className={s.edit_info} onClick={editProfileInfo}>Edit</button>
     </>
   )
 }

@@ -12,6 +12,7 @@ const DialogsContainer = lazy(() => import('./component/Dialogs/DialogsContainer
 const UsersContainer = lazy(() => import('./component/Users/UsersContainer.tsx'));
 const MusicContainer = lazy(() => import('./component/Music/MusicContainer'));
 const LoginContainer = lazy(() => import('./component/Login/LoginContainer.tsx'));
+const News = lazy(() => import('./component/News/News.jsx'));
 
 const App = ({setInitialLoad, initialLoad}) => {
   useEffect(() => {
@@ -36,6 +37,7 @@ const App = ({setInitialLoad, initialLoad}) => {
               <Route path="/profile" element={ <ProfileContainer /> } />
               <Route path="/profile/:userId?" element={ <ProfileContainer /> } />
               <Route path="/users" element={ <UsersContainer /> } />
+              <Route path="/news" element={ <News /> } />
               <Route path="/music" element={ <MusicContainer /> } />
               <Route path="/login" element={ <LoginContainer /> } />
             </Routes>
