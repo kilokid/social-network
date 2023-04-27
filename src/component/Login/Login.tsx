@@ -40,7 +40,7 @@ const LoginForm = ({errorMessage, onSubmit, captchaUrl}) => {
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
             <ul>
                 <li className={s.field}>
-                    <input {...register("email", {required: 'Please enter your Email'})} type="text" placeholder="Email" />
+                    <input {...register("email", {required: 'Please enter your Email'})} type="text" placeholder="Email" autocomplete="off" />
                     {errors.email && <span className={s.error}>{errors.email.message}</span>}
                 </li>
                 <li className={s.field}>

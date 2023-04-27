@@ -17,6 +17,7 @@ const ProfileDataForm = ({profile, onSubmit}) => {
                         {...register('fullName')}
                         type='text'
                         placeholder='Full name'
+                        autocomplete="off"
                     />
                 </li>
                 <li className={s.item}>About me:
@@ -25,6 +26,7 @@ const ProfileDataForm = ({profile, onSubmit}) => {
                         {...register('aboutMe')}
                         type='text'
                         placeholder='About me'
+                        autocomplete="off"
                     />
                 </li>
                 <li className={s.item}>Looking for a job:
@@ -39,6 +41,7 @@ const ProfileDataForm = ({profile, onSubmit}) => {
                         {...register('lookingForAJobDescription')}
                         type='text'
                         placeholder='My professional skills'
+                        autocomplete="off"
                     />
                 </li>
                 {Object.keys(profile.contacts).map(key => {
@@ -48,6 +51,7 @@ const ProfileDataForm = ({profile, onSubmit}) => {
                         {...register(`contacts.${key}`)}
                         type='text'
                         placeholder={key}
+                        autocomplete="off"
                     />
                     {/* {profile.contacts[key]} */}
                     </li>

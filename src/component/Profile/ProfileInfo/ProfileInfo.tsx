@@ -55,7 +55,7 @@ const ProfileInfo: React.FC<PropsType> = ({profile, setStatus, status, isOwner, 
           <ProfileStatus updateStoreStatus={setStatus} storeStatus={status} isOwner={isOwner} />
         </div>
         <div className={s.contacts}>
-          <ProfileData editProfileInfo={() => setEditMode(true)} profile={profile} />
+          <ProfileData editProfileInfo={() => setEditMode(true)} profile={profile} isOwner={isOwner} />
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@ const ProfileInfo: React.FC<PropsType> = ({profile, setStatus, status, isOwner, 
   );
 }
 
-const ProfileData = ({profile, editProfileInfo}) => {
+const ProfileData = ({profile, editProfileInfo, isOwner}) => {
   return (
     <>
         <ul>
@@ -75,7 +75,7 @@ const ProfileData = ({profile, editProfileInfo}) => {
             if (profile.contacts[key]) return <li key={key}>{key}: {profile.contacts[key]}</li>;
           })}
         </ul>
-        <button className={s.edit_info} onClick={editProfileInfo}>Edit</button>
+        {isOwner && <button className={s.edit_info} onClick={editProfileInfo}>Edit</button>}
     </>
   )
 }
