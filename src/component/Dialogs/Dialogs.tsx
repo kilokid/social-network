@@ -21,6 +21,8 @@ const Dialogs: FC<PropsType> = ({messages, sendMessage}) => {
     }
 
     return (
+        <>
+        <div className={s.notice}>❗️Section under development</div>
         <div className={s.dialogs}>
             <ul className={s.dialogs_items}>
                 {messages.map( ({id, name, messages}) => {
@@ -29,6 +31,7 @@ const Dialogs: FC<PropsType> = ({messages, sendMessage}) => {
             </ul>
             <DialogWindow sendMessage={onSendMessage} />
         </div>
+        </>
     );
 }
 
