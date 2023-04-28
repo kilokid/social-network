@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksocial_network=self.webpackChunksocial_network||[]).push([[567],{6567:function(e,n,t){t.r(n),t.d(n,{default:function(){return s}});var c="News_notice__+6DaW",r=t(184),s=function(){return(0,r.jsx)("div",{className:c,children:"\u2757\ufe0fSection under development"})}}}]);
+//# sourceMappingURL=567.51e95943.chunk.js.map
