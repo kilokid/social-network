@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { logoutThunkCreator } from "../../redux/authReducer.tsx";
+import { logoutThunkCreator } from "../../redux/authReducer.ts";
 import Header from "./Header";
 
 const HeaderApiContainer = ({login, isAuth, logoutUser}) => {

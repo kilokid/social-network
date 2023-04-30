@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { setUserAuthThunkCreator } from "./authReducer.tsx";
+import { setUserAuthThunkCreator } from "./authReducer.ts";
 import { AppStateType, InferActionsTypes } from "./reduxStore";
 
 const initialState = {

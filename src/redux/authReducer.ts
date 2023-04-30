@@ -1,7 +1,7 @@
 import { ThunkAction } from "redux-thunk";
 import { getAuthInfoRequest, setLoginDataRequest, logoutRequest, getCaptchaUrlRequest } from "../api/api.tsx";
 import { AppStateType, InferActionsTypes } from "./reduxStore";
-import { ResultCodesEnum } from "../types/types.tsx";
+import { ResultCodesEnum } from "../types/types.ts";
 
 const initialState = {
     userId: null,

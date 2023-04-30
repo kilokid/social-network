@@ -1,4 +1,4 @@
-import { actions } from '../../redux/dialogsReducer.tsx';
+import { actions } from '../../redux/dialogsReducer.ts';
 import { connect } from 'react-redux';
 
 import Dialogs from './Dialogs.tsx';

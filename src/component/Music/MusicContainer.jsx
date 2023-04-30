@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { actions } from "../../redux/musicReducer.tsx";
+import { actions } from "../../redux/musicReducer.ts";
 
 import Music from "./Music";
 

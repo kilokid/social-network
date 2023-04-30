@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { actions, getUserProfileThunkCreator, getProfileStatusThunkCreator, setProfileStatusThunkCreator, savePhotosThunkCreator, saveProfileInfoThunkCreator } from '../../redux/profileReducer.tsx';
+import { actions, getUserProfileThunkCreator, getProfileStatusThunkCreator, setProfileStatusThunkCreator, savePhotosThunkCreator, saveProfileInfoThunkCreator } from '../../redux/profileReducer.ts';
 
 import Profile from './Profile';
 import WithAuthRedirect from '../../hoc/withAuthRedirect';
