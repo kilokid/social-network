@@ -20,17 +20,30 @@
 
 .pages button {
     cursor: pointer;
-    border: none;
-    background: lightgreen;
-    padding: 5px;
-    font-size: 14px;
-    border-radius: 4px;
+    border: 1px solid #F8F9FA;
+    background: #1D8BD8;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 7px;
     color: white;
+}
+
+.pages button:hover {
+    background: white;
+    border: 1px solid #1D8BD8;
+    color: black;
 }
 
 .pages > li.currentPage > button {
     font-weight: 700;
-    background: orange;
+    background: black;
+    cursor: default;
+}
+
+.pages > li.currentPage > button:hover {
+    background: black;
+    border: 1px solid #F8F9FA;
+    color: white;
 }
 
 .pages .pagBtn {
