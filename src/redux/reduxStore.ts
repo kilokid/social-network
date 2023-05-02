@@ -1,15 +1,15 @@
-import { applyMiddleware, combineReducers, createStore, Reducer } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import ThunkMiddleware from "redux-thunk";
 
-import profileReducer from "./profileReducer.ts";
-import dialogsReducer from "./dialogsReducer.ts";
-import friendsReducer from "./friendsReducer.ts";
-import usersReducer from "./usersReducer.ts";
-import musicReducer from "./musicReducer.ts";
-import authReducer from "./authReducer.ts";
-import appReducer from "./appReducer.ts";
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import friendsReducer from "./friendsReducer";
+import usersReducer from "./usersReducer";
+import musicReducer from "./musicReducer";
+import authReducer from "./authReducer";
+import appReducer from "./appReducer";
 
-const reducers: Reducer = combineReducers({
+const reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     friends: friendsReducer,
