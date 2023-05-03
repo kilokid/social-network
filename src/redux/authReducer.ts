@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { getAuthInfoRequest, setLoginDataRequest, logoutRequest, getCaptchaUrlRequest } from "../api/api.tsx";
+import { getAuthInfoRequest, setLoginDataRequest, logoutRequest, getCaptchaUrlRequest } from "../api/api.ts";
 import { AppStateType, InferActionsTypes } from "./reduxStore";
 import { ResultCodesEnum } from "../types/types.ts";
 

@@ -1,13 +1,13 @@
 import { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { actions, getUsersThunkCreator, followOnUserThunkCreator, unFollowOnUserThunkCreator } from '../../redux/usersReducer.ts';
-import { getUsers, getPageSize, getCurrentPage, getIsFetching, getIsFollowingProgress, getTotalUsersCount } from '../../redux/userSelector.ts';
+import { actions, getUsersThunkCreator, followOnUserThunkCreator, unFollowOnUserThunkCreator } from '../../redux/usersReducer';
+import { getUsers, getPageSize, getCurrentPage, getIsFetching, getIsFollowingProgress, getTotalUsersCount } from '../../redux/userSelector';
 
 import { AppStateType } from '../../redux/reduxStore';
 
 import {UserType} from '../../types/types';
 
-import Users from './Users.tsx';
+import Users from './Users';
 import Loader from '../Commons/Loader/Loader';
 
 type MapStatePropsType = {
@@ -15,13 +15,12 @@ type MapStatePropsType = {
     users: Array<UserType>,
     pageSize: number,
     totalUsersCount: number,
-    pageNumber: number,
     isFollowingProgress: boolean,
     isFetching: boolean,
 }
 
 type DispatchPropsType = {
-    setCurrentPage: () => void,
+    setCurrentPage: (pageNumber: number) => void,
     followUser: () => void,
     unfollowUser: () => void,
 }
@@ -43,7 +42,7 @@ const UsersApiContainer: FC<PropsType> = (props) => {
         // eslint-disable-next-line
     }, [props.currentPage])
 
-    const {users, pageSize, pageNumber, totalUsersCount, currentPage, setCurrentPage, followUser, unfollowUser, isFollowingProgress} = props;
+    const {users, pageSize, totalUsersCount, currentPage, setCurrentPage, followUser, unfollowUser, isFollowingProgress} = props;
 
     return (
         <>
@@ -53,7 +52,6 @@ const UsersApiContainer: FC<PropsType> = (props) => {
                 <Users 
                     users={users}
                     pageSize={pageSize}
-                    pageNumber={pageNumber}
                     totalUsersCount={totalUsersCount}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}

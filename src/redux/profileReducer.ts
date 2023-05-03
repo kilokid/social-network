@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { getUserProfileRequest, getProfilerStatusRequest, setProfileStatusRequest, setProfilePhotosRequest, setProfileInfoRequest } from '../api/api.tsx';
+import { getUserProfileRequest, getProfilerStatusRequest, setProfileStatusRequest, setProfilePhotosRequest, setProfileInfoRequest } from '../api/api.ts';
 
 import { PhotosType, PostDataType, ProfileType } from "../types/types";
 import { AppStateType, InferActionsTypes } from './reduxStore';

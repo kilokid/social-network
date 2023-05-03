@@ -1,16 +1,26 @@
 import { NavLink } from 'react-router-dom';
 
+import { UserType } from '../../../types/types';
+
 import s from './User.module.css';
 
 import userAva from '../../../assets/images/user-ava.png';
+import { FC } from 'react';
 
-const User = ({user, unfollowUser, followUser, isFollowingProgress}) => {
-    const follow = (e, userID) => {
+type PropsType = {
+    user: UserType,
+    unfollowUser: (userID: number) => void,
+    followUser: (userID: number) => void,
+    isFollowingProgress: Array<number>,
+}
+
+const User: FC<PropsType> = ({user, unfollowUser, followUser, isFollowingProgress}) => {
+    const follow = (e: React.MouseEvent<HTMLButtonElement>, userID: number) => {
         e.preventDefault();
         followUser(userID);
     }
     
-    const unfollow = (e, userID) => {
+    const unfollow = (e: React.MouseEvent<HTMLButtonElement>, userID: number) => {
         e.preventDefault();
         unfollowUser(userID);
     }

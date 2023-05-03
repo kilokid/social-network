@@ -1,18 +1,35 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
+
+import {UserType} from '../../types/types';
 
 import User from './User/User';
 
 import s from './User.module.css';
 
-const Users = ({users, portionSize = 10, ...props}) => {
+type UsePropsType = {
+    users: Array<UserType>,
+}
+
+type OwnPropsType = {
+    unfollowUser: () => void,
+    followUser: () => void,
+    setCurrentPage: (page: number) => void,
+    isFollowingProgress: boolean,
+    totalUsersCount: number,
+    pageSize: number,
+    currentPage: number,
+    portionSize?: number
+}
+
+type PropsType = UsePropsType & OwnPropsType;
+
+const Users: FC<PropsType> = ({users, portionSize = 10, ...props}) => {
     const elements = users.map(user => {
         return <User 
             key={user.id}
             user={user}
             unfollowUser={props.unfollowUser}
             followUser={props.followUser}
-            setUsers={props.setUsers}
-            setIsFollowing={props.setIsFollowing}
             isFollowingProgress={props.isFollowingProgress}
         />
     })
