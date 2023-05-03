@@ -1,30 +1,40 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { actions, getUsersThunkCreator, followOnUserThunkCreator, unFollowOnUserThunkCreator } from '../../redux/usersReducer.ts';
 import { getUsers, getPageSize, getCurrentPage, getIsFetching, getIsFollowingProgress, getTotalUsersCount } from '../../redux/userSelector.ts';
 
 import { AppStateType } from '../../redux/reduxStore';
 
+import {UserType} from '../../types/types';
+
 import Users from './Users.tsx';
 import Loader from '../Commons/Loader/Loader';
 
 type MapStatePropsType = {
-    
+    currentPage: number,
+    users: Array<UserType>,
+    pageSize: number,
+    totalUsersCount: number,
+    pageNumber: number,
+    isFollowingProgress: boolean,
+    isFetching: boolean,
 }
 
 type DispatchPropsType = {
-
+    setCurrentPage: () => void,
+    followUser: () => void,
+    unfollowUser: () => void,
 }
 
 type OwnPropsType = {
-
+    getUsersRequest: (currentPage: number, pageSize: number) => void,
 }
 
 type PropsType = MapStatePropsType & DispatchPropsType & OwnPropsType;
 
 
-const UsersApiContainer = (props) => {
-    const getUsers = (currentPage) => {
+const UsersApiContainer: FC<PropsType> = (props) => {
+    const getUsers = (currentPage: number) => {
         props.getUsersRequest(currentPage, props.pageSize);
     }
 
