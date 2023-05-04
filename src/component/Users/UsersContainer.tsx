@@ -15,7 +15,7 @@ type MapStatePropsType = {
     users: Array<UserType>,
     pageSize: number,
     totalUsersCount: number,
-    isFollowingProgress: boolean,
+    isFollowingProgress: Array<number>,
     isFetching: boolean,
 }
 

@@ -14,7 +14,7 @@ type OwnPropsType = {
     unfollowUser: () => void,
     followUser: () => void,
     setCurrentPage: (page: number) => void,
-    isFollowingProgress: boolean,
+    isFollowingProgress: Array<number>,
     totalUsersCount: number,
     pageSize: number,
     currentPage: number,
