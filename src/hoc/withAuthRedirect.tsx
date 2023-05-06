@@ -15,7 +15,7 @@ type MapPropsType = {
 }
 
 function WithAuthRedirect <WCP>(Component: ComponentType<WCP>) {
-    const RedirectContainer = (props: WCP & MapPropsType) => {
+    const RedirectContainer: FC<WCP & MapPropsType> = (props) => {
         const {isAuth, ...restProps} = props;
 
         return (

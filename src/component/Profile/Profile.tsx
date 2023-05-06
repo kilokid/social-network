@@ -1,10 +1,25 @@
-import { memo } from 'react';
+import { FC, memo } from 'react';
 
-import ProfileInfo from './ProfileInfo/ProfileInfo.tsx';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPosts from './MyPosts/MyPosts.jsx';
 import Loader from '../Commons/Loader/Loader';
 
-const Profile = memo(({profile, posts, onCreatePost, onDeletePost, setProfileStatus, status, isOwner, savePhotos, saveProfileInfo, userId}) => {
+import { ProfileType } from '../../types/types';
+
+type PropsType = {
+  profile: ProfileType,
+  posts: [],
+  onDeletePost: () => void,
+  onCreatePost: () => void,
+  setProfileStatus: () => void,
+  status: string,
+  isOwner: boolean,
+  savePhotos: () => void,
+  saveProfileInfo: () => void,
+  userId: number,
+}
+
+const Profile: FC<PropsType> = memo(({profile, posts, onCreatePost, onDeletePost, setProfileStatus, status, isOwner, savePhotos, saveProfileInfo, userId}) => {
   if (!profile) {
     return <Loader />
   }  

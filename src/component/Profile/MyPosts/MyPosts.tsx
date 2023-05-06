@@ -4,7 +4,17 @@ import Post from './Post/Post';
 
 import s from './MyPosts.module.css';
 
-const MyPosts = ({profile, posts, onCreatePost, onDeletePost}) => {
+import { ProfileType } from '../../types/types';
+import { FC } from "react";
+
+type PropsType = {
+    profile: ProfileType,
+    posts: [],
+    onCreatePost: () => void,
+    onDeletePost: () => void,
+}
+
+const MyPosts: FC<PropsType> = ({profile, posts, onCreatePost, onDeletePost}) => {
 
     const onSubmit = (data) => {
         onCreatePost(data);

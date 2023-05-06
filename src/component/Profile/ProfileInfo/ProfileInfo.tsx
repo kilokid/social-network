@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 
 import Loader from '../../Commons/Loader/Loader';
-import ProfileStatus from '../ProfileStatus/ProfileStatus.tsx';
+import ProfileStatus from '../ProfileStatus/ProfileStatus';
 import ProfileDataForm from '../ProfileDataForm/ProfileDataForm';
 
 import { ProfileType } from '../../../types/types';
@@ -10,7 +10,7 @@ import s from './ProfileInfo.module.css';
 
 type PropsType = {
   profile: ProfileType,
-  setStatus: () => void,
+  setStatus: (status: string) => void,
   status: string,
   isOwner: boolean,
   savePhotos: (arg0:string) => void,
@@ -18,7 +18,7 @@ type PropsType = {
   userId: number
 }
 
-const ProfileInfo: React.FC<PropsType> = ({profile, setStatus, status, isOwner, savePhotos, saveProfileInfo, userId}) => {
+const ProfileInfo: FC<PropsType> = ({profile, setStatus, status, isOwner, savePhotos, saveProfileInfo, userId}) => {
   const [editMode, setEditMode] = useState(false);
 
   if (!profile) {
@@ -64,7 +64,13 @@ const ProfileInfo: React.FC<PropsType> = ({profile, setStatus, status, isOwner, 
   );
 }
 
-const ProfileData = ({profile, editProfileInfo, isOwner}) => {
+type ProfileDataType = {
+  profile: ProfileType,
+  editProfileInfo: () => void,
+  isOwner: boolean,
+}
+
+const ProfileData: FC<ProfileDataType> = ({profile, editProfileInfo, isOwner}) => {
   return (
     <>
         <ul>

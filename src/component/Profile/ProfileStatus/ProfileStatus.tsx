@@ -1,17 +1,14 @@
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent, FC } from "react";
 
 import s from './ProfileStatus.module.css';
 
 type PropsType = {
     storeStatus: string,
-    updateStoreStatus: () => void,
+    updateStoreStatus: (status: string) => void,
+    isOwner: boolean,
 }
 
-type StateType = {
-
-}
-
-const ProfileStatus: PropsType = ({storeStatus, updateStoreStatus, isOwner}) => {
+const ProfileStatus: FC<PropsType> = ({storeStatus, updateStoreStatus, isOwner}) => {
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(storeStatus);
 

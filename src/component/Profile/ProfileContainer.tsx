@@ -19,6 +19,7 @@ type PropsType = {
     profile: ProfileType,
     saveProfileInfo: () => void,
     savePhotos: () => void,
+    router: any,
 }
 
 const ProfileApiContainer: FC<PropsType> = (props) => {
@@ -27,9 +28,9 @@ const ProfileApiContainer: FC<PropsType> = (props) => {
 
         if (!userId)
         {
-            if (props.isAuth) {
+            // if (props.isAuth) {
                 userId = props.userId;
-            }
+            // }
         }
 
         getProfile(userId);
@@ -68,7 +69,7 @@ const mapStateToProps = (state: AppStateType) => {
 
 const AuthRedirectContainer = WithAuthRedirect(ProfileApiContainer);
 
-const WithUrlRouteProfileComponent = (props) => {
+const WithUrlRouteProfileComponent = (props: any) => {
     const location = useLocation();
     const navigate = useNavigate();
     const params = useParams();
