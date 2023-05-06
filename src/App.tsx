@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { FC, lazy, Suspense, useEffect } from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
 
 import HeaderContainer from './component/Header/HeaderContainer';
@@ -8,17 +8,22 @@ import Loader from './component/Commons/Loader/Loader';
 import './App.css';
 
 const ProfileContainer = lazy(() => import('./component/Profile/ProfileContainer'));
-const DialogsContainer = lazy(() => import('./component/Dialogs/DialogsContainer.tsx'));
-const UsersContainer = lazy(() => import('./component/Users/UsersContainer.tsx'));
+const DialogsContainer = lazy(() => import('./component/Dialogs/DialogsContainer'));
+const UsersContainer = lazy(() => import('./component/Users/UsersContainer'));
 const MusicContainer = lazy(() => import('./component/Music/MusicContainer'));
-const LoginContainer = lazy(() => import('./component/Login/LoginContainer.tsx'));
+const LoginContainer = lazy(() => import('./component/Login/LoginContainer'));
 const News = lazy(() => import('./component/News/News.jsx'));
 
-const App = ({setInitialLoad, initialLoad}) => {
+type PropsType = {
+  setInitialLoad: () => void,
+  initialLoad: boolean,
+}
+
+const App: FC<PropsType> = ({setInitialLoad, initialLoad}) => {
   useEffect(() => {
       setInitialLoad();
 
-       // eslint-disable-next-line
+      // eslint-disable-next-line
   }, []);
   
   if (!initialLoad) {

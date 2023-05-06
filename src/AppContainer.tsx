@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-import { getAuthInfoThunkCreator } from "./redux/appReducer.ts";
+import { getAuthInfoThunkCreator } from "./redux/appReducer";
+import { AppStateType } from "./redux/reduxStore";
 
 import App from "./App";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     initialLoad: state.app.initialLoad
 })
 

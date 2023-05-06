@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
@@ -8,7 +8,20 @@ import Profile from './Profile';
 import WithAuthRedirect from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
-const ProfileApiContainer = (props) => {
+import { AppStateType } from '../../redux/reduxStore'
+import { ProfileType } from '../../types/types';
+
+type PropsType = {
+    getUserProfile: (userId: number) => void,
+    getProfileStatus: (userId: number) => void,
+    isAuth: boolean,
+    userId: number,
+    profile: ProfileType,
+    saveProfileInfo: () => void,
+    savePhotos: () => void,
+}
+
+const ProfileApiContainer: FC<PropsType> = (props) => {
     const refreshProfile = () => {
         let userId = props.router.params.userId;
 
@@ -23,11 +36,11 @@ const ProfileApiContainer = (props) => {
         getStatus(userId);
     }
 
-    const getProfile = (userId) => {
+    const getProfile = (userId: number) => {
         props.getUserProfile(userId)
     }
 
-    const getStatus = (userId) => {
+    const getStatus = (userId: number) => {
         props.getProfileStatus(userId)
     }
 
@@ -43,7 +56,7 @@ const ProfileApiContainer = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         posts: state.profilePage.postsData,
         profile: state.profilePage.profile,
