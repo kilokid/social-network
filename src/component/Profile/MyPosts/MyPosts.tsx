@@ -10,17 +10,17 @@ import { FC } from "react";
 type PropsType = {
     profile: ProfileType,
     posts: [],
-    onCreatePost: () => void,
-    onDeletePost: () => void,
+    onCreatePost: (data: object) => void,
+    onDeletePost: (id: number) => void,
 }
 
 const MyPosts: FC<PropsType> = ({profile, posts, onCreatePost, onDeletePost}) => {
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: object) => {
         onCreatePost(data);
     }
 
-    const onDelete = (id) => {
+    const onDelete = (id: number) => {
         onDeletePost(id);
     }
 
@@ -41,7 +41,11 @@ const MyPosts: FC<PropsType> = ({profile, posts, onCreatePost, onDeletePost}) =>
     );
 }
 
-const PostForm = ({onSubmit}) => {
+type PostFormType = {
+    onSubmit: (data: object) => void,
+}
+
+const PostForm: FC<PostFormType> = ({onSubmit}) => {
     const {register, handleSubmit, formState: {errors}} = useForm();
     
     return (

@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import MyPosts from './MyPosts/MyPosts.jsx';
+import MyPosts from './MyPosts/MyPosts';
 import Loader from '../Commons/Loader/Loader';
 
 import { ProfileType } from '../../types/types';
