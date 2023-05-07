@@ -1,6 +1,15 @@
+import { FC } from 'react';
 import s from './Post.module.css';
 
-const Post = ({ava, text, likes, id, onDelete}) => {
+type PropsType = {
+    ava: string,
+    text: string,
+    likes: string,
+    id: number,
+    onDelete: (id: number) => void,
+}
+
+const Post: FC<PropsType> = ({ava, text, likes, id, onDelete}) => {
     return (
         <li className={s.post}>
             <img src={ava} alt={id} />
