@@ -12,7 +12,7 @@ type PropsType = {
 }
 
 const Login: FC<PropsType> = ({requestLoginData, errorMessage, isAuth, captchaUrl}) => {
-    const onSubmit = (data) => {
+    const onSubmit = (data: object) => {
         requestLoginData(data);
     }
 
@@ -26,7 +26,13 @@ const Login: FC<PropsType> = ({requestLoginData, errorMessage, isAuth, captchaUr
     )
 }
 
-const LoginForm = ({errorMessage, onSubmit, captchaUrl}) => {
+type LoginFormType = {
+    errorMessage: object,
+    onSubmit: (data: object) => void,
+    captchaUrl: string
+}
+
+const LoginForm: FC<LoginFormType> = ({errorMessage, onSubmit, captchaUrl}) => {
     const { register, handleSubmit, formState: {errors}, setError } = useForm({mode: 'onBlur'});
     
     // useEffect(() => {

@@ -22,7 +22,11 @@ const DialogWindow: FC<PropsType> = ({sendMessage}) => {
     );
 }
 
-const DialogForm = ({onSubmit}) => {
+type DialogFormPropsType = {
+    onSubmit: () => void,
+}
+
+const DialogForm: FC<DialogFormPropsType> = ({onSubmit}) => {
     const {register, handleSubmit} = useForm();
 
     return (

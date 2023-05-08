@@ -3,8 +3,15 @@ import { NavLink } from 'react-router-dom';
 import s from './Header.module.css';
 
 import logo from '../../assets/images/ufo.svg';
+import { FC } from 'react';
 
-const Header = ({login, isAuth, logoutUser}) => {
+type PropsType = {
+    login: string,
+    isAuth: boolean,
+    logoutUser: () => void,
+}
+
+const Header: FC<PropsType> = ({login, isAuth, logoutUser}) => {
     return (
         <header className={s.header}>
             <div>
