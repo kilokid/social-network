@@ -1,14 +1,14 @@
 const initialState = [
     {
-        id: '0',
+        id: 0,
         name: 'Me'
     },
     {
-        id: '1',
+        id: 1,
         name: 'You'
     },
     {
-        id: '2',
+        id: 2,
         name: 'We'
     }
 ];

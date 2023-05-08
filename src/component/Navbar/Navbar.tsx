@@ -4,7 +4,14 @@ import Friends from './Friends/Friends';
 
 import s from './Navbar.module.css';
 
-const Navbar = ({friends}) => {
+import {FriendType} from '../../types/types';
+import { FC } from 'react';
+
+type PropsType = {
+    friends: Array<FriendType>,
+}
+
+const Navbar: FC<PropsType> = ({friends}) => {
     return (
         <nav className={s.nav}>
             <ul>

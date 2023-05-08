@@ -2,7 +2,15 @@ import { useForm } from "react-hook-form";
 
 import s from './ProfileDataForm.module.css';
 
-const ProfileDataForm = ({profile, onSubmit}) => {
+import { ProfileType } from '../../../types/types}'
+import { FC } from "react";
+
+type PropsType = {
+    profile: ProfileType,
+    onSubmit: () => void,
+}
+
+const ProfileDataForm: FC<PropsType> = ({profile, onSubmit}) => {
     const {register, handleSubmit, formState: {errors}} = useForm();
 
     return (

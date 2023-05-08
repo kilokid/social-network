@@ -1,6 +1,13 @@
 import s from './Friends.module.css';
 
-const Friends = ({friends}) => {
+import {FriendType} from '../../types/types';
+import { FC } from 'react';
+
+type PropsType = {
+    friends: Array<FriendType>,
+}
+
+const Friends: FC<PropsType> = ({friends}) => {
     const items = friends.map(friend => {
         return (
             <li key={friend.id}>

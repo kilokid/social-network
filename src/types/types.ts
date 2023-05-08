@@ -38,6 +38,11 @@ export type UserType = {
     followed: boolean
 }
 
+export type FriendType = {
+    id: number,
+    name: string,
+}
+
 export enum ResultCodesEnum {
     Success = 0,
     Error = 1,
