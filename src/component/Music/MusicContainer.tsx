@@ -4,7 +4,9 @@ import { actions } from "../../redux/musicReducer.ts";
 
 import Music from "./Music";
 
-const mapStateToProps = (state) => {
+import { AppStateType } from "../../redux/reduxStore";
+
+const mapStateToProps = (state: AppStateType) => {
     return {
         musics: state.musics.musics
     }

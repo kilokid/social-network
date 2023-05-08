@@ -43,6 +43,16 @@ export type FriendType = {
     name: string,
 }
 
+export type SongType = {
+    id: number,
+    title: string,
+    author: string,
+    time: string,
+    cover: string,
+    play: boolean,
+    added: boolean,
+}
+
 export enum ResultCodesEnum {
     Success = 0,
     Error = 1,

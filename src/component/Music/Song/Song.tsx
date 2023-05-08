@@ -1,6 +1,13 @@
+import { FC } from 'react';
 import s from './Song.module.css';
 
-const Song = ({song}) => {
+import { SongType } from '../../../types/types';
+
+type PropsType = {
+    song: SongType,
+}
+
+const Song: FC<PropsType> = ({song}) => {
     return (
         <li>
             <div className={s.cover}>
