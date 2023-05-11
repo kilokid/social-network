@@ -6,7 +6,13 @@ import Header from "./Header";
 import { AppStateType } from "../../redux/reduxStore";
 import { FC } from "react";
 
-const HeaderApiContaine = ({login, isAuth, logoutUser}) => {
+type PropsType = {
+    login: string,
+    isAuth: boolean,
+    logoutUser: () => void,
+}
+
+const HeaderApiContainer: FC<PropsType> = ({login, isAuth, logoutUser}) => {
 
     return <Header login={login} isAuth={isAuth} logoutUser={logoutUser} />
 }

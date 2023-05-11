@@ -5,6 +5,8 @@ import {UserType} from '../../types/types';
 import User from './User/User';
 
 import s from './User.module.css';
+import { useSelector } from 'react-redux';
+import { getCurrentPage, getTotalUsersCount } from '../../redux/userSelector';
 
 type UsePropsType = {
     users: Array<UserType>,
@@ -34,7 +36,10 @@ const Users: FC<PropsType> = ({users, portionSize = 10, ...props}) => {
         />
     })
 
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    const totalUsersCount = useSelector(getTotalUsersCount);
+    // const currentPage = useSelector(getCurrentPage);
+
+    const pagesCount = Math.ceil(totalUsersCount / props.pageSize);
     const pages: Array<number> = [];
 
     for (let i = 1; i <= pagesCount; i++) {

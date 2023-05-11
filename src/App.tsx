@@ -12,7 +12,7 @@ const DialogsContainer = lazy(() => import('./component/Dialogs/DialogsContainer
 const UsersContainer = lazy(() => import('./component/Users/UsersContainer'));
 const MusicContainer = lazy(() => import('./component/Music/MusicContainer'));
 const LoginContainer = lazy(() => import('./component/Login/LoginContainer'));
-const News = lazy(() => import('./component/News/News.jsx'));
+const News = lazy(() => import('./component/News/News'));
 
 type PropsType = {
   setInitialLoad: () => void,
