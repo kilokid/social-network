@@ -11,7 +11,7 @@ const ProfileContainer = lazy(() => import('./component/Profile/ProfileContainer
 const DialogsContainer = lazy(() => import('./component/Dialogs/DialogsContainer'));
 const UsersContainer = lazy(() => import('./component/Users/UsersContainer'));
 const MusicContainer = lazy(() => import('./component/Music/MusicContainer'));
-const LoginContainer = lazy(() => import('./component/Login/LoginContainer'));
+const Login = lazy(() => import('./component/Login/Login'));
 const News = lazy(() => import('./component/News/News'));
 
 type PropsType = {
@@ -44,7 +44,7 @@ const App: FC<PropsType> = ({setInitialLoad, initialLoad}) => {
               <Route path="/users" element={ <UsersContainer /> } />
               <Route path="/news" element={ <News /> } />
               <Route path="/music" element={ <MusicContainer /> } />
-              <Route path="/login" element={ <LoginContainer /> } />
+              <Route path="/login" element={ <Login /> } />
             </Routes>
           </Suspense>
         </div>
