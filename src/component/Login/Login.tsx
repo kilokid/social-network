@@ -1,5 +1,6 @@
 import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 import s from './Login.module.css';
@@ -11,7 +12,9 @@ type PropsType = {
     captchaUrl: string,
 }
 
-const Login: FC<PropsType> = ({requestLoginData, errorMessage, isAuth, captchaUrl}) => {
+const Login: FC<PropsType> = ({requestLoginData, errorMessage, captchaUrl}) => {
+    const isAuth = useSelector((state) => state.auth.isAuth);
+
     const onSubmit = (data: object) => {
         requestLoginData(data);
     }
@@ -34,13 +37,6 @@ type LoginFormType = {
 
 const LoginForm: FC<LoginFormType> = ({errorMessage, onSubmit, captchaUrl}) => {
     const { register, handleSubmit, formState: {errors}, setError } = useForm({mode: 'onBlur'});
-    
-    // useEffect(() => {
-    //     if (errorMessage) {
-    //         setError("form", { type: "custom", message: errorMessage});
-    //     }
-    //     // eslint-disable-next-line
-    // }, [errorMessage]);
 
     return (
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
