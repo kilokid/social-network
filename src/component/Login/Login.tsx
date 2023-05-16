@@ -1,19 +1,22 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { AppStateType } from "../../redux/reduxStore";
+import { setLoginDataThunkCreator } from "../../redux/authReducer.ts";
 
 import s from './Login.module.css';
 
-type PropsType = {
-    requestLoginData: (loginData: object) => void,
-    errorMessage: string,
-    isAuth: boolean,
-    captchaUrl: string,
-}
+const Login: FC = () => {
+    const isAuth = useSelector((state: AppStateType) => state.auth.isAuth);
+    const captchaUrl = useSelector((state: AppStateType) => state.auth.url);
+    const errorMessage = useSelector((state: AppStateType) => state.auth.someErrors);
 
-const Login: FC<PropsType> = ({requestLoginData, errorMessage, captchaUrl}) => {
-    const isAuth = useSelector((state) => state.auth.isAuth);
+    const dispatch = useDispatch();
+
+    const requestLoginData = (data: object): void => {
+        dispatch(setLoginDataThunkCreator(data));
+    }
 
     const onSubmit = (data: object) => {
         requestLoginData(data);
