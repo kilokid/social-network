@@ -31,7 +31,7 @@ const Messages: FC = () => {
 
     useEffect(() => {
         ws.addEventListener('message', (e) => {
-            setMessages(JSON.parse(e.data));
+            setMessages((prevMessages) => [...prevMessages, ...JSON.parse(e.data)]);
         })
     }, [])
     
@@ -55,10 +55,19 @@ const Message: FC<{message: ChatMessageType}> = ({message}) => {
 }
 
 const AddMessageForm: FC = () => {
+    const [message, setMessage] = useState('');
+
+    const sendMessage = () => {
+        if (!message) return;
+
+        ws.send(message);
+        setMessage('');
+    }
+
     return (
         <div>
-            <textarea></textarea>
-            <button>send</button>
+            <textarea onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
+            <button onClick={sendMessage}>send</button>
         </div>
     )
 }
