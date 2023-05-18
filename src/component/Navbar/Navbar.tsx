@@ -20,6 +20,7 @@ const Navbar: FC<PropsType> = ({friends}) => {
                 <li><NavLink style={({isActive}) => ({fontWeight: isActive ? '700' : '500'})} to="/users">Users</NavLink></li>
                 <li><NavLink style={({isActive}) => ({fontWeight: isActive ? '700' : '500'})} to="/news">News</NavLink></li>
                 <li><NavLink style={({isActive}) => ({fontWeight: isActive ? '700' : '500'})} to="/music">Music</NavLink></li>
+                <li><NavLink style={({isActive}) => ({fontWeight: isActive ? '700' : '500'})} to="/chat">Chat</NavLink></li>
             </ul>
             {/* <Friends friends={friends} /> */}
         </nav>
