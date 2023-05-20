@@ -1,7 +1,5 @@
 import { FC, useEffect, useState } from "react";
 
-const ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx');
-
 export type ChatMessageType = {
     message: string,
     photo: string,
@@ -17,23 +15,52 @@ const ChatPage: FC = () => {
     )
 }
 
-const Chat: FC = () => {
+const Chat: FC= () => {
+    const [ws, setWs] = useState<WebSocket | null>(null);
+
+    useEffect(() => {
+        let wsChannel: WebSocket;
+
+        const closeHandler = () => {
+            setTimeout(createChannel, 3000);
+        }
+
+        function createChannel() {
+            wsChannel?.removeEventListener('close', closeHandler);
+            wsChannel?.close();
+
+            wsChannel = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx');
+
+            wsChannel?.addEventListener('close', closeHandler);
+
+            setWs(wsChannel);
+        }
+        
+        createChannel();
+    }, []);
+
     return (
         <div>
-            <Messages />
-            <AddMessageForm />
+            <Messages ws={ws} />
+            <AddMessageForm ws={ws} />
         </div>
     )
 }
 
-const Messages: FC = () => {
+const Messages: FC<{ws: WebSocket | null}> = ({ws}) => {
     const [messages, setMessages] = useState<ChatMessageType[]>([]);
 
     useEffect(() => {
-        ws.addEventListener('message', (e) => {
-            setMessages((prevMessages) => [...prevMessages, ...JSON.parse(e.data)]);
-        })
-    }, [])
+        const messageHandler = (e) => {
+                setMessages((prevMessages) => [...prevMessages, ...JSON.parse(e.data)]);
+        }
+
+        ws?.addEventListener('message', messageHandler);
+
+        return () => {
+            ws?.removeEventListener('message', messageHandler)
+        }
+    }, [ws])
     
     return (
         <div style={{height: '400px', overflowY: 'auto'}}>
@@ -52,20 +79,33 @@ const Message: FC<{message: ChatMessageType}> = ({message}) => {
     )
 }
 
-const AddMessageForm: FC = () => {
+const AddMessageForm: FC<{ws: WebSocket | null}> = ({ws}) => {
     const [message, setMessage] = useState('');
+    const [isReady, setIsReady] = useState<'pending' | 'ready'>('pending');
+
+    useEffect(() => {
+        const openHandler = () => {
+            setIsReady('ready');
+        }
+
+        ws?.addEventListener('open', openHandler);
+
+        return () => {
+            ws?.removeEventListener('open', openHandler);
+        }
+    }, [ws])
 
     const sendMessage = () => {
         if (!message) return;
 
-        ws.send(message);
+        ws?.send(message);
         setMessage('');
     }
 
     return (
         <div>
             <textarea onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
-            <button onClick={sendMessage}>send</button>
+            <button disabled={ws === null || isReady !== 'ready'} onClick={sendMessage}>send</button>
         </div>
     )
 }
