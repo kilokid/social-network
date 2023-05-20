@@ -46,10 +46,8 @@ const Message: FC<{message: ChatMessageType}> = ({message}) => {
     return (
         <div>
             <img src={message.photo} alt="" />
-            <br />
             <h3>{message.userName}</h3>
             {message.message}
-            <hr />
         </div>
     )
 }
