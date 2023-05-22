@@ -8,6 +8,7 @@ import usersReducer from "./usersReducer";
 import musicReducer from "./musicReducer";
 import authReducer from "./authReducer";
 import appReducer from "./appReducer";
+import chatReducer from "./chatReducer";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
@@ -17,6 +18,7 @@ const reducers = combineReducers({
     musics: musicReducer,
     auth: authReducer,
     app: appReducer,
+    chat: chatReducer,
 })
 
 type RootReducerType = typeof reducers;
