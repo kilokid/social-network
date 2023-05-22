@@ -15,7 +15,7 @@ const chatReducer = (state = initialState, action: ActionsTypes): InitialStateTy
         case 'MESSAGES_RECEVIED':
             return {
                 ...state,
-                messages: [...state.messages, ...action.payload.messages]
+                messages: [...state.messages, ...action.payload]
             }
         default:
             return state;
@@ -33,10 +33,7 @@ export const actions = {
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
 
 let _newMessageHandler: ((messages: ChatMessageType[]) => void) | null = null;
-
-const newMessageHandlerCreator = (dispatch: Dispatch) => (messages: ChatMessageType[]) => {
-    console.log(messages);
-    
+const newMessageHandlerCreator = (dispatch: Dispatch) => {
     if (_newMessageHandler === null) {
         _newMessageHandler = (messages) => {
             dispatch(actions.messagesReceivedActionCreator(messages));

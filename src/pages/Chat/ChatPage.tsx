@@ -19,7 +19,7 @@ const ChatPage: FC = () => {
     )
 }
 
-const Chat: FC= () => {
+const Chat: FC = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
