@@ -1,11 +1,11 @@
-import { chatApi, start } from "../api/chatApi";
+import { chatApi } from "../api/chatApi";
 import { ChatMessageType } from "../pages/Chat/ChatPage";
 import { AppStateType, InferActionsTypes } from "./reduxStore";
 import { ThunkAction } from "redux-thunk";
 import { Dispatch } from "redux";
 
 const initialState = {
-    messages: [] as ChatMessageType,
+    messages: [] as ChatMessageType[],
 }
 
 export type InitialStateType = typeof initialState;
@@ -35,11 +35,13 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 let _newMessageHandler: ((messages: ChatMessageType[]) => void) | null = null;
 
 const newMessageHandlerCreator = (dispatch: Dispatch) => (messages: ChatMessageType[]) => {
+    console.log(messages);
+    
     if (_newMessageHandler === null) {
         _newMessageHandler = (messages) => {
             dispatch(actions.messagesReceivedActionCreator(messages));
         }
-    }
+    }    
 
     return _newMessageHandler;
 }
