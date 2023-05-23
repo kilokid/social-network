@@ -46,7 +46,9 @@ const Messages: FC = () => {
     useEffect(() => {
         if (autoScrollActive)
         {
-            messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'});
+            setTimeout(() => {
+                messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'});
+            }, 100)
         }
     }, [messages]);
 
@@ -80,7 +82,6 @@ const Message: FC<{message: ChatMessageType}> = memo( ({message}) => {
 
 const AddMessageForm: FC = () => {
     const [message, setMessage] = useState('');
-    const [isReady, setIsReady] = useState<'pending' | 'ready'>('pending');
     const status = useSelector((state: AppStateType) => state.chat.status);
 
     const dispatch = useDispatch();
