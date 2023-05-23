@@ -1,4 +1,4 @@
-import { React, FC, useEffect, useRef, useState } from "react";
+import { React, FC, useEffect, useRef, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startMessagesListening, stopMessagesListening, sendMessage } from "../../redux/chatReducer";
 
@@ -68,7 +68,7 @@ const Messages: FC = () => {
     )
 }
 
-const Message: FC<{message: ChatMessageType}> = ({message}) => {
+const Message: FC<{message: ChatMessageType}> = memo( ({message}) => {
     return (
         <div>
             <img src={message.photo} alt="" />
@@ -76,7 +76,7 @@ const Message: FC<{message: ChatMessageType}> = ({message}) => {
             {message.message}
         </div>
     )
-}
+} )
 
 const AddMessageForm: FC = () => {
     const [message, setMessage] = useState('');
