@@ -8,7 +8,7 @@ import Loader from './component/Commons/Loader/Loader';
 import './App.css';
 
 const ProfileContainer = lazy(() => import('./component/Profile/ProfileContainer'));
-const DialogsContainer = lazy(() => import('./component/Dialogs/DialogsContainer'));
+const Dialogs = lazy(() => import('./component/Dialogs/Dialogs'));
 const UsersContainer = lazy(() => import('./component/Users/UsersContainer'));
 const MusicContainer = lazy(() => import('./component/Music/MusicContainer'));
 const ChatPage = lazy(() => import('./pages/Chat/ChatPage'));
@@ -39,7 +39,7 @@ const App: FC<PropsType> = ({setInitialLoad, initialLoad}) => {
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/" element={<Navigate to="/profile" />} />
-              <Route path="/dialogs" element={ <DialogsContainer /> } />
+              <Route path="/dialogs" element={ <Dialogs /> } />
               <Route path="/profile" element={ <ProfileContainer /> } />
               <Route path="/profile/:userId?" element={ <ProfileContainer /> } />
               <Route path="/users" element={ <UsersContainer /> } />

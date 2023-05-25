@@ -1,8 +1,12 @@
 import Dialog from './Dialog/Dialog';
 import DialogWindow from './DialogWindow/DialogWindow';
 
+import { actions } from '../../redux/dialogsReducer.ts';
+
 import s from './Dialogs.module.css';
 import { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppStateType } from '../../redux/reduxStore';
 
 type MessagesType = {
     id: number,
@@ -10,14 +14,12 @@ type MessagesType = {
     messages: Array<string>,
 }
 
-type PropsType = {
-    messages: Array<MessagesType>,
-    sendMessage: (messageText: string) => void,
-};
+const Dialogs: FC = () => {
+    const messages = useSelector((state: AppStateType) => state.dialogsPage.dialogsData)
+    const dispatch = useDispatch();
 
-const Dialogs: FC<PropsType> = ({messages, sendMessage}) => {
     const onSendMessage = (data: string) => {
-        sendMessage(data)
+        dispatch(actions.sendNewMessageActionCreator(data));
     }
 
     return (

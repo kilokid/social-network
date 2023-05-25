@@ -6,11 +6,7 @@ import WithAuthRedirect from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { AppStateType } from '../../redux/reduxStore';
 
-const mapStateToProps = (state: AppStateType) => {
-    return {
-        messages: state.dialogsPage.dialogsData,
-    }
-}
+const mapStateToProps = (state: AppStateType) => {}
 
 export default compose(
     connect(mapStateToProps, {
