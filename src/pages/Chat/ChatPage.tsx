@@ -4,6 +4,8 @@ import { startMessagesListening, stopMessagesListening, sendMessage } from "../.
 
 import { AppStateType } from "../../redux/reduxStore";
 
+import s from './chatPage.module.css';
+
 export type ChatMessageType = {
     message: string,
     photo: string,
