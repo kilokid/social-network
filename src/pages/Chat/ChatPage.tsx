@@ -33,7 +33,7 @@ const Chat: FC = () => {
     }, []);
 
     return (
-        <div>
+        <div className={s.chat}>
             <Messages />
             <AddMessageForm />
         </div>
